@@ -1,70 +1,5 @@
 #include "Game.h"
 
-/* Initialize the Game */
-void Game::init()
-{
-	bRenderer::loadConfigFile("config.json");	// load custom configurations replacing the default values in Configuration.cpp
-
-	// let the renderer create an OpenGL context and the main window
-	if(Input::isTouchDevice())
-		bRenderer().initRenderer(true);										// full screen on iOS
-	else
-		bRenderer().initRenderer(1920, 1080, false, "Game on Desktop TODO");		// windowed mode on desktop
-		//bRenderer().initRenderer(View::getScreenWidth(), View::getScreenHeight(), true);		// full screen using full width and height of the screen
-
-	// start main loop 
-	bRenderer().runRenderer();
-}
-
-/* This function is executed when initializing the renderer */
-void Game::initFunction()
-{
-    
-    _offset = 0.0f;
-    _randomOffset = 0.0f;
-    _cameraSpeed = 40.0f;
-    _running = true; _lastStateSpaceKey = bRenderer::INPUT_UNDEFINED;
-    _viewMatrixHUD = Camera::lookAt(vmml::Vector3f(0.0f, 0.0f, 0.25f), vmml::Vector3f::ZERO, vmml::Vector3f::UP);
-    
-    // set shader versions (optional)
-    bRenderer().getObjects()->setShaderVersionDesktop("#version 120");
-    bRenderer().getObjects()->setShaderVersionES("#version 100");
-    
-    // load materials and shaders before loading the model
-    ShaderPtr guyShader = bRenderer().getObjects()->loadShaderFile("guy", 0, false, true, true, false, false);				// load shader from file without lighting, the number of lights won't ever change during rendering (no variable number of lights)
-    ShaderPtr terrainShader = bRenderer().getObjects()->loadShaderFile("terrain", 0, false, true, true, false, false);
-    ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile("tree", 0, false, true, true, false, false);
-    
-    
-    // create additional properties for a model
-    PropertiesPtr guyProperties = bRenderer().getObjects()->createProperties("guyProperties");
-    PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("guyProperties");
-    PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("guyProperties");
-    
-    
-    // load model
-    bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
-    bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
-    bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
-    
-    // automatically generates a shader with a maximum of 4 lights (number of lights may vary between 0 and 4 during rendering without performance loss)
-    
-    
-    
-    
-    // create camera
-    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, -3.0f, 0.5f), vmml::Vector3f(0.f, 0.0f, 0.f));
-    
-
-    
-    
-    
-    
-    
-	// load materials and shaders before loading the model
-		// Update render queue
-	updateRenderQueue("camera", 0.0f);
-}
 
 /* Draw your scene here */
 void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
@@ -91,12 +26,6 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
     if (bRenderer().getInput()->getKeyState(bRenderer::KEY_ESCAPE) == bRenderer::INPUT_PRESS)
         bRenderer().terminateRenderer();
 
-}
-
-/* This function is executed when terminating the renderer */
-void Game::terminateFunction()
-{
-	bRenderer::log("I totally terminated this Renderer :-)");
 }
 
 /* Update render queue */
@@ -135,44 +64,3 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
 }
 
-/* For iOS only: Handle device rotation */
-void Game::deviceRotated()
-{
-	if (bRenderer().isInitialized()){
-		// set view to full screen after device rotation
-		bRenderer().getView()->setFullscreen(true);
-		bRenderer::log("Device rotated");
-	}
-}
-
-/* For iOS only: Handle app going into background */
-void Game::appWillResignActive()
-{
-	if (bRenderer().isInitialized()){
-		// stop the renderer when the app isn't active
-		bRenderer().stopRenderer();
-	}
-}
-
-/* For iOS only: Handle app coming back from background */
-void Game::appDidBecomeActive()
-{
-	if (bRenderer().isInitialized()){
-		// run the renderer as soon as the app is active
-		bRenderer().runRenderer();
-	}
-}
-
-/* For iOS only: Handle app being terminated */
-void Game::appWillTerminate()
-{
-	if (bRenderer().isInitialized()){
-		// terminate renderer before the app is closed
-		bRenderer().terminateRenderer();
-	}
-}
-
-/* Helper functions */
-GLfloat Game::randomNumber(GLfloat min, GLfloat max){
-	return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
-}
