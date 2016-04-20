@@ -19,7 +19,7 @@
 		22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F51CC8024A00C2AEE9 /* tree.mtl */; };
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
-		B44186971BA331E300604D7F /* RenderProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44186961BA331E300604D7F /* RenderProject.cpp */; };
+		B44186971BA331E300604D7F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44186961BA331E300604D7F /* Game.cpp */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
 		B4794A2A1BA6743D00B5E9DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B47949C41BA6743D00B5E9DC /* LICENSE.txt */; };
 		B4794A2B1BA6743D00B5E9DC /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C61BA6743D00B5E9DC /* platform.c */; };
@@ -131,8 +131,8 @@
 		22F2E8F51CC8024A00C2AEE9 /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
-		B44186941BA331E300604D7F /* RenderProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderProject.h; sourceTree = "<group>"; };
-		B44186961BA331E300604D7F /* RenderProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderProject.cpp; sourceTree = "<group>"; };
+		B44186941BA331E300604D7F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		B44186961BA331E300604D7F /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		B47949921BA6742B00B5E9DC /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		B47949C01BA6743D00B5E9DC /* bRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bRenderer.h; sourceTree = "<group>"; };
 		B47949C31BA6743D00B5E9DC /* freetype-gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 		B44186931BA331E300604D7F /* headers */ = {
 			isa = PBXGroup;
 			children = (
-				B44186941BA331E300604D7F /* RenderProject.h */,
+				B44186941BA331E300604D7F /* Game.h */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 		B44186951BA331E300604D7F /* implementation */ = {
 			isa = PBXGroup;
 			children = (
-				B44186961BA331E300604D7F /* RenderProject.cpp */,
+				B44186961BA331E300604D7F /* Game.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -752,7 +752,7 @@
 				B47AD6F31B82800400AFC632 /* ftcache.c in Sources */,
 				B47AD6FD1B82806900AFC632 /* ftgzip.c in Sources */,
 				B47AD6CF1B827E7100AFC632 /* ftwinfnt.c in Sources */,
-				B44186971BA331E300604D7F /* RenderProject.cpp in Sources */,
+				B44186971BA331E300604D7F /* Game.cpp in Sources */,
 				B4794A421BA6743D00B5E9DC /* OBJLoader.cpp in Sources */,
 				B4794A401BA6743D00B5E9DC /* ModelRenderer.cpp in Sources */,
 				B4794A461BA6743D00B5E9DC /* ShaderDataFile.cpp in Sources */,

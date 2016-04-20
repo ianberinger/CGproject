@@ -3,12 +3,12 @@
 
 #include "bRenderer.h"
 
-class RenderProject : public IRenderProject
+class Game : public IRenderProject
 {
 public:
 	/* Constructor and Destructor */
-	RenderProject() : IRenderProject(){}
-    virtual ~RenderProject(){bRenderer::log("RenderProject deleted");}
+	Game() : IRenderProject(){}
+    virtual ~Game(){bRenderer::log("game deleted");}
 
     /* Initialize the Project */
     void init();

@@ -1,7 +1,7 @@
-#include "RenderProject.h"
+#include "Game.h"
 
-/* Initialize the Project */
-void RenderProject::init()
+/* Initialize the Game */
+void Game::init()
 {
 	bRenderer::loadConfigFile("config.json");	// load custom configurations replacing the default values in Configuration.cpp
 
@@ -9,7 +9,7 @@ void RenderProject::init()
 	if(Input::isTouchDevice())
 		bRenderer().initRenderer(true);										// full screen on iOS
 	else
-		bRenderer().initRenderer(1920, 1080, false, "The Cave - Demo");		// windowed mode on desktop
+		bRenderer().initRenderer(1920, 1080, false, "Game on Desktop TODO");		// windowed mode on desktop
 		//bRenderer().initRenderer(View::getScreenWidth(), View::getScreenHeight(), true);		// full screen using full width and height of the screen
 
 	// start main loop 
@@ -17,7 +17,7 @@ void RenderProject::init()
 }
 
 /* This function is executed when initializing the renderer */
-void RenderProject::initFunction()
+void Game::initFunction()
 {
     
     _offset = 0.0f;
@@ -67,7 +67,7 @@ void RenderProject::initFunction()
 }
 
 /* Draw your scene here */
-void RenderProject::loopFunction(const double &deltaTime, const double &elapsedTime)
+void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 {
 //	bRenderer::log("FPS: " + std::to_string(1 / deltaTime));	// write number of frames per second to the console every frame
 
@@ -94,13 +94,13 @@ void RenderProject::loopFunction(const double &deltaTime, const double &elapsedT
 }
 
 /* This function is executed when terminating the renderer */
-void RenderProject::terminateFunction()
+void Game::terminateFunction()
 {
 	bRenderer::log("I totally terminated this Renderer :-)");
 }
 
 /* Update render queue */
-void RenderProject::updateRenderQueue(const std::string &camera, const double &deltaTime)
+void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
 
     /*** Guy ***/
@@ -131,12 +131,12 @@ void RenderProject::updateRenderQueue(const std::string &camera, const double &d
 }
 
 /* Camera movement */
-void RenderProject::updateCamera(const std::string &camera, const double &deltaTime)
+void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
 }
 
 /* For iOS only: Handle device rotation */
-void RenderProject::deviceRotated()
+void Game::deviceRotated()
 {
 	if (bRenderer().isInitialized()){
 		// set view to full screen after device rotation
@@ -146,7 +146,7 @@ void RenderProject::deviceRotated()
 }
 
 /* For iOS only: Handle app going into background */
-void RenderProject::appWillResignActive()
+void Game::appWillResignActive()
 {
 	if (bRenderer().isInitialized()){
 		// stop the renderer when the app isn't active
@@ -155,7 +155,7 @@ void RenderProject::appWillResignActive()
 }
 
 /* For iOS only: Handle app coming back from background */
-void RenderProject::appDidBecomeActive()
+void Game::appDidBecomeActive()
 {
 	if (bRenderer().isInitialized()){
 		// run the renderer as soon as the app is active
@@ -164,7 +164,7 @@ void RenderProject::appDidBecomeActive()
 }
 
 /* For iOS only: Handle app being terminated */
-void RenderProject::appWillTerminate()
+void Game::appWillTerminate()
 {
 	if (bRenderer().isInitialized()){
 		// terminate renderer before the app is closed
@@ -173,6 +173,6 @@ void RenderProject::appWillTerminate()
 }
 
 /* Helper functions */
-GLfloat RenderProject::randomNumber(GLfloat min, GLfloat max){
+GLfloat Game::randomNumber(GLfloat min, GLfloat max){
 	return min + static_cast <GLfloat> (rand()) / (static_cast <GLfloat> (RAND_MAX / (max - min)));
 }

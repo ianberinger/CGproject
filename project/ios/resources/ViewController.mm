@@ -1,11 +1,11 @@
 
 #import "ViewController.h"
-#include "RenderProject.h"
+#include "Game.h"
 
 
 @interface ViewController () {
 @private
-    RenderProject p;
+    Game g;
 }
 
 @end
@@ -17,11 +17,11 @@
     [super viewDidLoad];
     
     // initialize user application
-    p.init();
+    g.init();
     
     // There are two ways to display the view of the renderer in your project:
 //    [self.view addSubview:p.getProjectRenderer().getView()->getUIView()];    // method 1
-    p.getProjectRenderer().getView()->attachToUIView(self.view);   // method 2
+    g.getProjectRenderer().getView()->attachToUIView(self.view);   // method 2
 }
 
 
@@ -33,25 +33,25 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    p.deviceRotated();
+    g.deviceRotated();
 }
 
 - (void)appWillResignActive
 {
     // pass event to c++ application
-    p.appWillResignActive();
+    g.appWillResignActive();
 }
 
 - (void)appDidBecomeActive
 {
     // pass event to c++ application
-    p.appDidBecomeActive();
+    g.appDidBecomeActive();
 }
 
 - (void)appWillTerminate
 {
     // pass event to c++ application
-    p.appWillTerminate();
+    g.appWillTerminate();
 }
 
 @end
