@@ -122,6 +122,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		226318D71CC816030052F272 /* Enitity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enitity.h; sourceTree = "<group>"; };
 		22F2E8EC1CC8024A00C2AEE9 /* guy.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = guy.frag; sourceTree = "<group>"; };
 		22F2E8ED1CC8024A00C2AEE9 /* guy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guy.mtl; sourceTree = "<group>"; };
 		22F2E8EE1CC8024A00C2AEE9 /* guy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guy.obj; sourceTree = "<group>"; };
@@ -345,6 +346,7 @@
 		B44186951BA331E300604D7F /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				226318D71CC816030052F272 /* Enitity.h */,
 				B44186961BA331E300604D7F /* Game.cpp */,
 				3C8815711CC80A9E00F2A332 /* init.cpp */,
 				3C8815731CC80AFC00F2A332 /* helper.cpp */,
