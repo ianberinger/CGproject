@@ -499,7 +499,7 @@ void OBJLoader::createFaceNormals()
 		vmml::Vector3f f = p3 - p1;
 
 		// calculate normal for this face
-		vmml::Vector3f normal = e.cross(f);
+		vmml::Vector3f normal = f.cross(e);
 		//invert z Axis
 		normal.set(normal.x(), normal.y(), (-1.0f)*normal.z());
 
