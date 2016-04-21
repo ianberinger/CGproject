@@ -71,7 +71,7 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
 
     vmml::Vector3f position = cameraPtr->getPosition();
     bRenderer::log("position:" + std::to_string(position.x()) + "::" + std::to_string(position.y()) + "::" + std::to_string(position.z()));
-    cameraPtr->rotateCamera(0.0f, pitch / 50.0, -pitch / 100.0);
+    cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
     cameraPtr->moveCameraForward(roll + 0.7);
 }
 
