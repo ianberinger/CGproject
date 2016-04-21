@@ -2,6 +2,11 @@
 #define PROJECT_MAIN_H
 
 #include "bRenderer.h"
+#include "Barrier.h"
+
+
+
+
 
 class Game : public IRenderProject
 {
@@ -63,6 +68,7 @@ private:
 	bool _running = false; 
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
+    std::vector<std::shared_ptr<Entity>> ent;
 
 };
 
