@@ -34,6 +34,7 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 
     /*** Guy ***/
     // get input rotation
+    
     TouchMap touchMap = bRenderer().getInput()->getTouches();
     int i = 0;
     float rotation = 0.0f;
@@ -62,5 +63,15 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 /* Camera movement */
 void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
+    CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
+    float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
+    float pitch = bRenderer().getInput()->getGyroscopePitch(); // left / right
+    bRenderer::log("roll:" + std::to_string(roll));
+    bRenderer::log("pitch:" + std::to_string(pitch));
+
+    vmml::Vector3f position = cameraPtr->getPosition();
+    bRenderer::log("position:" + std::to_string(position.x()) + "::" + std::to_string(position.y()) + "::" + std::to_string(position.z()));
+    cameraPtr->rotateCamera(0.0f, pitch / 50.0, -pitch / 100.0);
+    cameraPtr->moveCameraForward(roll + 0.7);
 }
 
