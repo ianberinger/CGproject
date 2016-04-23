@@ -64,7 +64,7 @@ private:
 	GLfloat _offset;
 	GLfloat _cameraSpeed;
 	double _mouseX, _mouseY;
-    vmml::Vector3f _carPosition;
+    vmml::Vector3f _carPosition =vmml::Vector3f(0.0,-5.0f, -10.5f);
 	bool _running = false;
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
