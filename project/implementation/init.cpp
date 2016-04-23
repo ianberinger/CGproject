@@ -39,30 +39,20 @@ void Game::initFunction()
 
     // create additional properties for a model
     PropertiesPtr guyProperties = bRenderer().getObjects()->createProperties("guyProperties");
-    PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("guyProperties");
-    PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("guyProperties");
+    PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("terrainProperties");
+    PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("treeProperties");
     PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
-
-    
     
     // load model
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("cube.obj", true, true, false, 4, true, false);
-
-    
-    // automatically generates a shader with a maximum of 4 lights (number of lights may vary between 0 and 4 during rendering without performance loss)
-    
-    
-    
- 
     
     
     // create camera
-    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, -3.0f, 0.5f), vmml::Vector3f(0.f, 0.0f, 0.f));
-    
-    
+    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, -5.0f, -10.5f), vmml::Vector3f(0.f, 0.0f, 0.f));
+    bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, M_PI_F, 0.0f);
     
     
     //loading the the map

@@ -16,9 +16,6 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
     bRenderer().getModelRenderer()->drawQueue(/*GL_LINES*/);
     bRenderer().getModelRenderer()->clearQueue();
     
-    //// Camera Movement ////
-    updateCamera("camera", deltaTime);
-    
     /// Update render queue ///
     updateRenderQueue("camera", deltaTime);
     
@@ -53,36 +50,51 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
    // modelMatrix *= rotationMatrix;
     // submit to render queue
 
+    vmml::Matrix4f guyMatrix = moveCar(modelMatrix, deltaTime);
+    updateCamera(camera, guyMatrix, deltaTime);
     
-    
-    bRenderer().getModelRenderer()->queueModelInstance("guy", "guy_instance", camera, modelMatrix, std::vector<std::string>({ }));
-    
+    ShaderPtr guyShader = bRenderer().getObjects()->getShader("guy");
+    guyShader->setUniform("ModelViewMatrix", guyMatrix);
+    bRenderer().getModelRenderer()->drawModel("guy", "camera", guyMatrix, std::vector<std::string>({ }));
+
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
+    
     for(int i=0; i<ent.size();i++){
         float a= ent[i]->getX();
         float b= ent[i]->getY();
-
         float c= ent[i]->getZ();
 
-         bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(vmml::Vector3f(a,b,c)), std::vector<std::string>({ }));
-        
-        }
+        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(vmml::Vector3f(a,b,c)), std::vector<std::string>({ }));
+    }
     
 }
 
+vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
+    float roll = bRenderer().getInput()->getGyroscopeRoll();
+    float pitch = bRenderer().getInput()->getGyroscopePitch();
+    float velocity = roll*50;
+
+    vmml::Matrix4f transformationMatrix{modelMatrix};
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-(velocity * pitch), 0.0f, -(velocity*(M_PI_F/2-pitch))))
+    * vmml::create_rotation(pitch, vmml::Vector3f(0.0f, 1.0f, 0.0f));
+    _carPosition = transformationMatrix * _carPosition;
+    return transformationMatrix;
+}
+
 /* Camera movement */
-void Game::updateCamera(const std::string &camera, const double &deltaTime)
+void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
     float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
     float pitch = bRenderer().getInput()->getGyroscopePitch(); // left / right
     bRenderer::log("roll:" + std::to_string(roll));
     bRenderer::log("pitch:" + std::to_string(pitch));
-
-    vmml::Vector3f position = cameraPtr->getPosition();
-    bRenderer::log("position:" + std::to_string(position.x()) + "::" + std::to_string(position.y()) + "::" + std::to_string(position.z()));
-    cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
-    cameraPtr->moveCameraForward(roll + 0.7);
+    
+    /*vmml::Vector3f cameraPosition = vmml::Vector3f(_carPosition.x(), -5.0f, _carPosition.z());
+    cameraPtr->setPosition(cameraPosition);*/
+    
+    /*cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
+    cameraPtr->moveCameraForward(roll * 50);*/
 }
 

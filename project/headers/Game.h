@@ -3,9 +3,7 @@
 
 #include "bRenderer.h"
 #include "Barrier.h"
-
-
-
+#include "Player.h"
 
 
 class Game : public IRenderProject
@@ -53,9 +51,10 @@ private:
     
 	/* Update render queue */
 	void updateRenderQueue(const std::string &camera, const double &deltaTime);
+    vmml::Matrix4f moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime);
 
 	/* Camera movement */
-	void updateCamera(const std::string &camera, const double &deltaTime);
+    void updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime);
 
 	/* Helper Functions */
 	GLfloat randomNumber(GLfloat min, GLfloat max);
@@ -65,7 +64,8 @@ private:
 	GLfloat _offset;
 	GLfloat _cameraSpeed;
 	double _mouseX, _mouseY;
-	bool _running = false; 
+    vmml::Vector3f _carPosition;
+	bool _running = false;
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
     std::vector<std::shared_ptr<Entity>> ent;
