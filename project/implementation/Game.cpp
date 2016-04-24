@@ -94,7 +94,7 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
 
     _carPosition = _carPosition+vmml::Vector3f(velocityz, 0.0f, velocity);
     vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-_carPosition.x(),0.0,(-_carPosition.z()-10.5)));
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-_carPosition.x(),0.0,(-_carPosition.z())));
     
     
     _carPosition = _carPosition+vmml::Vector3f(velocityz, 0.0f, velocity);
@@ -110,7 +110,7 @@ void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatr
     bRenderer::log("roll:" + std::to_string(roll));
     bRenderer::log("pitch:" + std::to_string(pitch));
     
-    vmml::Vector3f cameraPosition = vmml::Vector3f(_carPosition.x(), -5.0f, _carPosition.z());
+    vmml::Vector3f cameraPosition = vmml::Vector3f(_carPosition.x(), -5.0f, _carPosition.z()-20.0);
     cameraPtr->setPosition(cameraPosition);
     
     /*cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
