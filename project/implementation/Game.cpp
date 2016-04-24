@@ -23,16 +23,25 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     vmml::Matrix4f guyMatrix = moveCar(modelMatrix, deltaTime);
     
     updateCamera(camera, guyMatrix, deltaTime);
+    //float fogCoefficent = 1.0 / (pow(M_E, (dist*0.05)));
     
     ShaderPtr guyShader = bRenderer().getObjects()->getShader("guy");
     ShaderPtr terrainShader = bRenderer().getObjects()->getShader("terrain");
     ShaderPtr cubeShader = bRenderer().getObjects()->getShader("cube");
     ShaderPtr treeShader = bRenderer().getObjects()->getShader("tree");
     
+    // set fog color
+    guyShader->setUniform("fogColor", this->fogColor);
+    terrainShader->setUniform("fogColor", this->fogColor);
+    cubeShader->setUniform("fogColor", this->fogColor);
+    treeShader->setUniform("fogColor", this->fogColor);
+    
     // draw stuff
     bRenderer().getModelRenderer()->drawModel("guy", "camera", guyMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
+    
+ 
     
     for(auto e: ent) {
         vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());

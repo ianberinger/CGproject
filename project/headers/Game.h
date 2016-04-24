@@ -59,6 +59,9 @@ private:
 	/* Helper Functions */
 	GLfloat randomNumber(GLfloat min, GLfloat max);
 
+    /* Constants */
+    const vmml::Vector4f fogColor = vmml::Vector4f(0.5, 0.5, 0.5, 1);
+    
 	/* Variables */
 	GLfloat _randomOffset;
 	GLfloat _offset;
