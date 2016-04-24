@@ -41,12 +41,13 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
     
- 
-    
     for(auto e: ent) {
         vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());
         
-        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v), std::vector<std::string>({ }));
+        if(std::abs(player.getX()-e->getX())<40||std::abs(player.getZ()-e->getZ())<40){
+            bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+        
+        }
     }
 }
 
