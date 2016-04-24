@@ -63,14 +63,14 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
     
     //Setting the players new coordiantes and rotate him accordingly
     player.setComAngle(player.getComAngle()+velocityz);
-    player.setX(player.getX()+velocity*sinf(player.getComAngle()));
+    player.setX(player.getX()-velocity*sinf(player.getComAngle()));
     player.setY(0.0f);
-    player.setZ(player.getZ()+velocity*cosf(player.getComAngle()));
+    player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
     player.setRotAngle(velocityz);
     
     
     vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-player.getX(),0.0,-player.getZ()))*vmml::create_rotation(player.getComAngle(), vmml::Vector3f::UNIT_Y);
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(player.getX(),0.0,player.getZ()))*vmml::create_rotation(player.getComAngle(), vmml::Vector3f::UNIT_Y);
     
         return transformationMatrix;
 }
@@ -80,7 +80,7 @@ void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatr
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
 
-    vmml::Vector3f cameraPosition = vmml::Vector3f(player.getX()-20.0*sinf(player.getComAngle()), -5.0f, player.getZ()-20.0*cosf(player.getComAngle()));
+    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-20.0*sinf(player.getComAngle()), -5.0f, -player.getZ()-20.0*cosf(player.getComAngle()));
     cameraPtr->setPosition(cameraPosition);
     cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
 }
