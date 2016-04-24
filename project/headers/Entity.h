@@ -47,6 +47,7 @@ public:
     float getX(){return x;}
     float getY(){return y;}
     float getZ(){return z;}
+    vmml::Vector3f getXYZ(){return vmml::Vector3f(x,y,z);}
     
     float getWidth(){return width;}
     float getHeight(){return height;}

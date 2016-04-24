@@ -21,7 +21,6 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
     vmml::Matrix4f modelMatrix;
     vmml::Matrix4f guyMatrix = moveCar(modelMatrix, deltaTime);
-    
     updateCamera(camera, guyMatrix, deltaTime);
     //float fogCoefficent = 1.0 / (pow(M_E, (dist*0.05)));
     
@@ -41,14 +40,20 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
     
+    vmml::Vector3f playerPos = player.getXYZ();
+    
     for(auto e: ent) {
         vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());
-        
+        float distance = playerPos.distance(v);
+        if (distance < 0.5) {
+            player.setCollision(true);
+            bRenderer::log("distance:" + std::to_string(distance));
+        }
         if(std::abs(player.getX()-e->getX())<40||std::abs(player.getZ()-e->getZ())<40){
-            bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
-        
+        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v), std::vector<std::string>({ }));
         }
     }
+
 }
 
 vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
@@ -64,10 +69,20 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
     
     //Setting the players new coordiantes and rotate him accordingly
     player.setComAngle(player.getComAngle()+velocityz);
-    player.setX(player.getX()-velocity*sinf(player.getComAngle()));
-    player.setY(0.0f);
-    player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
     player.setRotAngle(velocityz);
+    
+    if (!player.hasCollision()){
+        player.setX(player.getX()-velocity*sinf(player.getComAngle()));
+        player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
+    } else {
+        bRenderer::log("COLLISION");
+        player.setCollision(false);
+        
+        if (velocity < 0.0) {
+            player.setX(player.getX()-velocity*sinf(player.getComAngle()));
+            player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
+        }
+    }
     
     
     vmml::Matrix4f transformationMatrix{modelMatrix};
