@@ -4,25 +4,16 @@
 /* Draw your scene here */
 void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 {
-//	bRenderer::log("FPS: " + std::to_string(1 / deltaTime));	// write number of frames per second to the console every frame
-
-	//// Draw Scene and do post processing ////
-
-	/// Begin post processing ///
-
-
     /// Draw scene ///
-    
     bRenderer().getModelRenderer()->drawQueue(/*GL_LINES*/);
     bRenderer().getModelRenderer()->clearQueue();
     
     /// Update render queue ///
     updateRenderQueue("camera", deltaTime);
     
-    // Quit renderer when escape is pressed
+    // Quit renderer when escape is pressed ///
     if (bRenderer().getInput()->getKeyState(bRenderer::KEY_ESCAPE) == bRenderer::INPUT_PRESS)
         bRenderer().terminateRenderer();
-
 }
 
 /* Update render queue */
