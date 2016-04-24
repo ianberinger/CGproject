@@ -53,8 +53,11 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
    
     //Getting the inputs from the gyro sensor
-    float roll = bRenderer().getInput()->getGyroscopeRoll();
-    float pitch = bRenderer().getInput()->getGyroscopePitch();
+    float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
+    float pitch = bRenderer().getInput()->getGyroscopePitch(); // left / right
+    bRenderer::log("roll:" + std::to_string(roll));
+    bRenderer::log("pitch:" + std::to_string(pitch));
+    
     float velocity = (roll+0.75)*2.5;
     float velocityz= (pitch*4*M_PI_F)/180;
     
@@ -76,16 +79,9 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
 void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
-    float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
-    float pitch = bRenderer().getInput()->getGyroscopePitch(); // left / right
-    bRenderer::log("roll:" + std::to_string(roll));
-    bRenderer::log("pitch:" + std::to_string(pitch));
-    
+
     vmml::Vector3f cameraPosition = vmml::Vector3f(player.getX()-20.0*sinf(player.getComAngle()), -5.0f, player.getZ()-20.0*cosf(player.getComAngle()));
     cameraPtr->setPosition(cameraPosition);
     cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
-    
-    /*cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
-    cameraPtr->moveCameraForward(roll * 50);*/
 }
 
