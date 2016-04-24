@@ -19,35 +19,26 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 /* Update render queue */
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
-    // translate and scale
-    vmml::Matrix4f modelMatrix = vmml::create_translation(vmml::Vector3f(0.0f, 0.0f, 0.0f));
-   // vmml::Matrix4f rotationMatrix = vmml::create_rotation(rotation, vmml::Vector3f::UNIT_Y);
-   // modelMatrix *= rotationMatrix;
-    // submit to render queue
-    vmml::Vector4f eyePos(bRenderer().getObjects()->getCamera("camera")->getPosition(),0);
-
+    vmml::Matrix4f modelMatrix;
     vmml::Matrix4f guyMatrix = moveCar(modelMatrix, deltaTime);
+    
     updateCamera(camera, guyMatrix, deltaTime);
     
     ShaderPtr guyShader = bRenderer().getObjects()->getShader("guy");
-    
-    bRenderer().getModelRenderer()->drawModel("guy", "camera", guyMatrix, std::vector<std::string>({ }));
-    
     ShaderPtr terrainShader = bRenderer().getObjects()->getShader("terrain");
     ShaderPtr cubeShader = bRenderer().getObjects()->getShader("cube");
     ShaderPtr treeShader = bRenderer().getObjects()->getShader("tree");
     
+    // draw stuff
+    bRenderer().getModelRenderer()->drawModel("guy", "camera", guyMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
     
-    for(int i=0; i<ent.size();i++){
-        float a= ent[i]->getX();
-        float b= ent[i]->getY();
-        float c= ent[i]->getZ();
-
-        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(vmml::Vector3f(a,b,c)), std::vector<std::string>({ }));
+    for(auto e: ent) {
+        vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());
+        
+        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v), std::vector<std::string>({ }));
     }
-    
 }
 
 vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
