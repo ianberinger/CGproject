@@ -45,7 +45,7 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     bRenderer().getObjects()->getCamera("camera")->moveCameraForward(rotation);
     
     // translate and scale
-    vmml::Matrix4f modelMatrix = vmml::create_translation(vmml::Vector3f(0.0f, 0.0f, 5.5f));
+    vmml::Matrix4f modelMatrix = vmml::create_translation(vmml::Vector3f(0.0f, 0.0f, 0.0f));
    // vmml::Matrix4f rotationMatrix = vmml::create_rotation(rotation, vmml::Vector3f::UNIT_Y);
    // modelMatrix *= rotationMatrix;
     // submit to render queue
@@ -87,18 +87,25 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 }
 
 vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
+   
+    //Getting the inputs from the gyro sensor
     float roll = bRenderer().getInput()->getGyroscopeRoll();
     float pitch = bRenderer().getInput()->getGyroscopePitch();
     float velocity = (roll+0.75)*2.5;
-    float velocityz= pitch*2.5;
-
-    _carPosition = _carPosition+vmml::Vector3f(velocityz, 0.0f, velocity);
+    float velocityz= (pitch*4*M_PI_F)/180;
+    
+    //Setting the players new coordiantes and rotate him accordingly
+    player.setComAngle(player.getComAngle()+velocityz);
+    player.setX(player.getX()+velocity*sinf(player.getComAngle()));
+    player.setY(0.0f);
+    player.setZ(player.getZ()+velocity*cosf(player.getComAngle()));
+    player.setRotAngle(velocityz);
+    
+    
     vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-_carPosition.x(),0.0,(-_carPosition.z())));
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(-player.getX(),0.0,-player.getZ()))*vmml::create_rotation(player.getComAngle(), vmml::Vector3f::UNIT_Y);
     
-    
-    _carPosition = _carPosition+vmml::Vector3f(velocityz, 0.0f, velocity);
-    return transformationMatrix;
+        return transformationMatrix;
 }
 
 /* Camera movement */
@@ -110,8 +117,9 @@ void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatr
     bRenderer::log("roll:" + std::to_string(roll));
     bRenderer::log("pitch:" + std::to_string(pitch));
     
-    vmml::Vector3f cameraPosition = vmml::Vector3f(_carPosition.x(), -5.0f, _carPosition.z()-20.0);
+    vmml::Vector3f cameraPosition = vmml::Vector3f(player.getX()-20.0*sinf(player.getComAngle()), -5.0f, player.getZ()-20.0*cosf(player.getComAngle()));
     cameraPtr->setPosition(cameraPosition);
+    cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
     
     /*cameraPtr->rotateCamera(0.0f, pitch / 50.0, 0.0f);
     cameraPtr->moveCameraForward(roll * 50);*/

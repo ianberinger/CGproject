@@ -13,9 +13,25 @@
 
 class Player : public Entity{
 public:
-    typedef Entity super;
+    Player();
     Player(float x, float y, float z, float w, float h, float l, bool col);
-    ~Player();
+    
+    virtual void draw();
+    virtual void update();
+    void setRotAngle(float ang){rotAngle=ang;}
+    float getRotAngle(){return rotAngle;}
+    
+    void setComAngle(float ang){comAngle=ang;}
+    float getComAngle(){return comAngle;}
+    
+    void setOffSetCam(float * off){offSetCam[0]=off[0];offSetCam[1]=off[1];offSetCam[2]=off[2];}
+    float * getOffSetCam(){return offSetCam;}
+    
+    
+private:
+    float rotAngle;
+    float comAngle;
+    float offSetCam[3];
     
 };
 

@@ -28,6 +28,9 @@ void Game::initFunction()
     _running = true; _lastStateSpaceKey = bRenderer::INPUT_UNDEFINED;
     _viewMatrixHUD = Camera::lookAt(vmml::Vector3f(0.0f, 0.0f, 0.25f), vmml::Vector3f::ZERO, vmml::Vector3f::UP);
     
+    float off[3]={0.0f,-5.0f,-18.0f};
+    player.setOffSetCam(off);
+    
     // set shader versions (optional)
     bRenderer().getObjects()->setShaderVersionDesktop("#version 120");
     bRenderer().getObjects()->setShaderVersionES("#version 100");
@@ -53,7 +56,7 @@ void Game::initFunction()
     
     
     // create camera
-    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, -5.0f, -10.5f), vmml::Vector3f(0.f, 0.0f, 0.f));
+    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(0.f, 0.0f, 0.f));
     bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, M_PI_F, 0.0f);
     
     
