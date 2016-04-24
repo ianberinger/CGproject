@@ -71,7 +71,7 @@ bool View::initView(GLint width, GLint height, bool fullscreen, std::string wind
 
 	// OpenGL
 	// clear
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	clearScreen();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
