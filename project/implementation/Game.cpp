@@ -28,22 +28,6 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 /* Update render queue */
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
-
-    /*** Guy ***/
-    // get input rotation
-    
-    TouchMap touchMap = bRenderer().getInput()->getTouches();
-    int i = 0;
-    float rotation = 0.0f;
-    for (auto t = touchMap.begin(); t != touchMap.end(); ++t)
-    {
-        Touch touch = t->second;
-        rotation = (touch.currentPositionX - touch.startPositionX) / 100;
-        if (++i > 1)
-            break;
-    }
-    bRenderer().getObjects()->getCamera("camera")->moveCameraForward(rotation);
-    
     // translate and scale
     vmml::Matrix4f modelMatrix = vmml::create_translation(vmml::Vector3f(0.0f, 0.0f, 0.0f));
    // vmml::Matrix4f rotationMatrix = vmml::create_rotation(rotation, vmml::Vector3f::UNIT_Y);
