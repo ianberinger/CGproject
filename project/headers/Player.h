@@ -27,10 +27,19 @@ public:
     void setOffSetCam(float * off){offSetCam[0]=off[0];offSetCam[1]=off[1];offSetCam[2]=off[2];}
     float * getOffSetCam(){return offSetCam;}
     
+    void setVelocity(float vel){velocity=vel;}
+    float getVelocity(){return velocity;}
+    
+    void setAcceleration(float acc){acceleration=acc;}
+    float getAcceleration(){return acceleration;}
+    
     
 private:
+    const float maxSpeed=10;
     float rotAngle;
     float comAngle;
+    float velocity;
+    float acceleration;
     float offSetCam[3];
     
 };

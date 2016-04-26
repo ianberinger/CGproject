@@ -66,7 +66,7 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
     bRenderer::log("roll:" + std::to_string(roll));
     bRenderer::log("pitch:" + std::to_string(pitch));
     
-    float velocity = (roll+0.75)*2.5;
+    player.setVelocity((roll+0.75)*2.5);
     float velocityz= (pitch*4*M_PI_F)/180;
     
     //Setting the players new coordiantes and rotate him accordingly
@@ -74,15 +74,15 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
     player.setRotAngle(velocityz);
     
     if (!player.hasCollision()){
-        player.setX(player.getX()-velocity*sinf(player.getComAngle()));
-        player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
+        player.setX(player.getX()-player.getVelocity()*sinf(player.getComAngle()));
+        player.setZ(player.getZ()-player.getVelocity()*cosf(player.getComAngle()));
     } else {
         bRenderer::log("COLLISION");
         player.setCollision(false);
         
-        if (velocity < 0.0) {
-            player.setX(player.getX()-velocity*sinf(player.getComAngle()));
-            player.setZ(player.getZ()-velocity*cosf(player.getComAngle()));
+        if (player.getVelocity() < 0.0) {
+            player.setX(player.getX()-player.getVelocity()*sinf(player.getComAngle()));
+            player.setZ(player.getZ()-player.getVelocity()*cosf(player.getComAngle()));
         }
     }
     
