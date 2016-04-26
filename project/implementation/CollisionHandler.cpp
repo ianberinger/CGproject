@@ -37,10 +37,13 @@ bool Collisionhandler::testAABBOverlap(const Player &a, const Entity &b) {
     if (d1x > 0.0f || d1z > 0.0f || d2x > 0.0f || d2z > 0.0f) {
         return false;
     } else {
-        std::cout << "downLeft: " << downLeft << "upLeft: " << upLeft << "downRight: " << downRight << "upRight: " << upRight << std::endl;
+        std::cout << "upLeft: " << upLeft << std::endl;
+        std::cout << "downLeft: " << downLeft << std::endl;
+        std::cout << "downRight: " << downRight << std::endl;
+        std::cout << "upRight: " << upRight << std::endl;
         std::cout << "position x: " << a.getX() << "position z: " << a.getZ() << std::endl;
-        if (((a.getX() - a.getWidth()/2 <= bMinX + 0.5) || (a.getX() + a.getWidth()/2 >= bMaxX + 0.5)) &&
-            (a.getZ() - a.getLength()/2 > bMinZ && a.getZ() - a.getLength()/2 < bMaxZ)) {
+        if (((a.getX() + a.getWidth()/2 <= bMinX + 0.5) || (a.getX() + a.getWidth()/2 >= bMaxX + 0.5)) &&
+            (a.getZ() + a.getLength()/2 > bMinZ && a.getZ() + a.getLength()/2 < bMaxZ)) {
             handleCollision(a, Z);
         } else {
             handleCollision(a, X);
