@@ -83,7 +83,7 @@ void Game::initFunction()
     for(int i=0; i<50;i++){
         for(int j=0;j<50;j++){
             if(matr[i][j]==2){
-                std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),2,2,2,true) );
+                std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true) );
                 ent.push_back(p);
             } else if (matr[i][j]==5){
                 bRenderer::log("START");

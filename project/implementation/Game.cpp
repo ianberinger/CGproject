@@ -45,7 +45,7 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     for(auto e: ent) {
         vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());
         float distance = playerPos.distance(v);
-        if (distance < e->getWidth()) {
+        if (collisionHandler.testAABBOverlap(player, *e)) {
             player.setCollision(true);
             bRenderer::log("distance:" + std::to_string(distance));
         }

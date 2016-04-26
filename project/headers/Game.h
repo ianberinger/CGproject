@@ -4,7 +4,7 @@
 #include "bRenderer.h"
 #include "Barrier.h"
 #include "Player.h"
-
+#include "CollisionHandler.hpp"
 
 class Game : public IRenderProject
 {
@@ -68,6 +68,7 @@ private:
 	GLfloat _cameraSpeed;
 	double _mouseX, _mouseY;
     Player player;
+    Collisionhandler collisionHandler;
 	bool _running = false;
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;

@@ -44,14 +44,14 @@ public:
     
     void setCollision(bool col){collision=col;}
     
-    float getX(){return x;}
-    float getY(){return y;}
-    float getZ(){return z;}
-    vmml::Vector3f getXYZ(){return vmml::Vector3f(x,y,z);}
+    float getX() const {return x;}
+    float getY() const {return y;}
+    float getZ() const {return z;}
+    vmml::Vector3f getXYZ() const {return vmml::Vector3f(x,y,z);}
     
-    float getWidth(){return width;}
-    float getHeight(){return height;}
-    float getLength(){return length;}
+    float getWidth() const {return width;}
+    float getHeight() const {return height;}
+    float getLength() const {return length;}
     
     bool hasCollision(){return collision;}
     
