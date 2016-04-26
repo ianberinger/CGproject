@@ -51,10 +51,10 @@ private:
     
 	/* Update render queue */
 	void updateRenderQueue(const std::string &camera, const double &deltaTime);
-    vmml::Matrix4f moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime);
+    void moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime);
 
 	/* Camera movement */
-    void updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime);
+    void updateCamera(const std::string &camera, const double &deltaTime);
 
 	/* Helper Functions */
 	GLfloat randomNumber(GLfloat min, GLfloat max);

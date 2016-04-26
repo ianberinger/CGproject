@@ -19,9 +19,16 @@ Player::Player(float x, float y, float z, float w, float h, float l, bool col):E
     
 }
 
-void Player::draw(){
+void Player::draw(Renderer &r, vmml::Matrix4f modelMatrix){
+    
+    ShaderPtr guyShader = r.getObjects()->getShader("guy");
+    guyShader->setUniform("fogColor", this->fogColor);
     
     
+    vmml::Matrix4f transformationMatrix{modelMatrix};
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(getComAngle(), vmml::Vector3f::UNIT_Y);
+
+    r.getModelRenderer()->drawModel("guy", "camera", transformationMatrix, std::vector<std::string>({ }));
     
 }
 

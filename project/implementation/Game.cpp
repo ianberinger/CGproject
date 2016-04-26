@@ -20,8 +20,8 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
     vmml::Matrix4f modelMatrix;
-    vmml::Matrix4f guyMatrix = moveCar(modelMatrix, deltaTime);
-    updateCamera(camera, guyMatrix, deltaTime);
+    moveCar(modelMatrix, deltaTime);
+    updateCamera(camera, deltaTime);
     
     vmml::Vector3f playerPos = player.getXYZ();
     
@@ -33,32 +33,30 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
             bRenderer::log("distance:" + std::to_string(distance));
         }
         if(std::abs(player.getX()-e->getX())<40||std::abs(player.getZ()-e->getZ())<40){
-        bRenderer().getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(v), std::vector<std::string>({ }));
+            e->draw(bRenderer(),modelMatrix);
         }
     }
     
-    //float fogCoefficent = 1.0 / (pow(M_E, (dist*0.05)));
     
-    ShaderPtr guyShader = bRenderer().getObjects()->getShader("guy");
+    
     ShaderPtr terrainShader = bRenderer().getObjects()->getShader("terrain");
-    ShaderPtr cubeShader = bRenderer().getObjects()->getShader("cube");
     ShaderPtr treeShader = bRenderer().getObjects()->getShader("tree");
     
     // set fog color
-    guyShader->setUniform("fogColor", this->fogColor);
     terrainShader->setUniform("fogColor", this->fogColor);
-    cubeShader->setUniform("fogColor", this->fogColor);
     treeShader->setUniform("fogColor", this->fogColor);
 
     
     // draw stuff
-    bRenderer().getModelRenderer()->drawModel("guy", "camera", guyMatrix, std::vector<std::string>({ }));
+    player.draw(bRenderer(),modelMatrix);
+    
+    
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
 
 }
 
-vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
+void Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
    
     //Getting the inputs from the gyro sensor
     float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
@@ -86,20 +84,15 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
         }
     }
     
-    
-    vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(player.getX(),0.0,player.getZ()))*vmml::create_rotation(player.getComAngle(), vmml::Vector3f::UNIT_Y);
-    
-        return transformationMatrix;
 }
 
 /* Camera movement */
-void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime)
+void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
     
-    float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.3)*sinf(player.getComAngle());
-    float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.3)*cosf(player.getComAngle());
+    float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.5)*sinf(player.getComAngle());
+    float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.5)*cosf(player.getComAngle());
 
     vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -5.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
     cameraPtr->setPosition(cameraPosition);

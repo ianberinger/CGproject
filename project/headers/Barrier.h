@@ -19,7 +19,7 @@ class Barrier : public Entity{
 
 public:
     Barrier(float x, float y, float z, float w, float h, float l, bool col);
-    virtual void draw();
+    virtual void draw(Renderer &r,vmml::Matrix4f modelMatrix);
     virtual void update();
 
 };

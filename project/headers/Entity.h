@@ -17,6 +17,7 @@
 #include "Updatable.h"
 #include "Renderer.h"
 
+
 class Entity: Updatable {
     
 public:
@@ -32,7 +33,13 @@ public:
         
     }
     
+    
+    
     virtual ~Entity(){}
+    
+    const vmml::Vector4f fogColor = vmml::Vector4f(0.5, 0.5, 0.5, 1);
+
+    
     
     void setX(float x1){x=x1;}
     void setY(float y1){y=y1;}
@@ -54,8 +61,8 @@ public:
     float getLength() const {return length;}
     
     bool hasCollision(){return collision;}
-    
-    virtual void draw()=0;
+
+    virtual void draw(Renderer & r,vmml::Matrix4f modelMatrix)=0;
     
 private:
    float x;
@@ -65,6 +72,7 @@ private:
     float height;
     float length;
     
+
     bool collision;
     
 };
