@@ -51,7 +51,6 @@ private:
     
 	/* Update render queue */
 	void updateRenderQueue(const std::string &camera, const double &deltaTime);
-    void moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime);
 
 	/* Camera movement */
     void updateCamera(const std::string &camera, const double &deltaTime);

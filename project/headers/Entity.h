@@ -14,11 +14,11 @@
 
 #include <iostream>
 #include <string>
-#include "Updatable.h"
 #include "Renderer.h"
 
 
-class Entity: Updatable {
+
+class Entity{
     
 public:
     Entity(float x, float y, float z, float w, float h, float l, bool col){
@@ -62,7 +62,8 @@ public:
     
     bool hasCollision(){return collision;}
 
-    virtual void draw(Renderer & r,vmml::Matrix4f modelMatrix)=0;
+    virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix)=0;
+    virtual void update(Renderer &r)=0;
     
 private:
    float x;

@@ -16,8 +16,8 @@ public:
     Player();
     Player(float x, float y, float z, float w, float h, float l, bool col);
     
-    virtual void draw(Renderer &r, vmml::Matrix4f modelMatrix);
-    virtual void update();
+    virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
+    virtual void update(Renderer &r);
     void setRotAngle(float ang){rotAngle=ang;}
     float getRotAngle(){return rotAngle;}
     

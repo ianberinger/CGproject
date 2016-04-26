@@ -16,7 +16,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col)
     
 }
 
- void Barrier::draw(Renderer &r,vmml::Matrix4f modelMatrix){
+ void Barrier::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
      ShaderPtr cubeShader = r.getObjects()->getShader("cube");
      cubeShader->setUniform("fogColor", fogColor);
 
@@ -25,7 +25,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col)
 
 }
 
-void Barrier::update(){
+void Barrier::update(Renderer &r){
 //do something
 
 }

@@ -19,7 +19,7 @@ Player::Player(float x, float y, float z, float w, float h, float l, bool col):E
     
 }
 
-void Player::draw(Renderer &r, vmml::Matrix4f modelMatrix){
+void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
     ShaderPtr guyShader = r.getObjects()->getShader("guy");
     guyShader->setUniform("fogColor", this->fogColor);
@@ -32,8 +32,40 @@ void Player::draw(Renderer &r, vmml::Matrix4f modelMatrix){
     
 }
 
-void Player::update(){
-    //do something
+void Player::update(Renderer &r){
     
+    
+    //Getting the inputs from the gyro sensor
+    float roll = r.getInput()->getGyroscopeRoll(); // tilt
+    float pitch = r.getInput()->getGyroscopePitch(); // left / right
+    bRenderer::log("roll:" + std::to_string(roll));
+    bRenderer::log("pitch:" + std::to_string(pitch));
+    
+    setVelocity(getVelocity()+((roll+0.75)/20));
+    
+    if(getVelocity()<-0.2){
+        setVelocity(-0.2);
+    }else if(getVelocity()>0.7){
+        setVelocity(0.7);
+    }
+    
+    float velocityz= (pitch*4*M_PI_F)/180;
+    
+    //Setting the players new coordiantes and rotate him accordingly
+    setComAngle(getComAngle()+velocityz);
+    setRotAngle(velocityz);
+    
+    if (!hasCollision()){
+        setX(getX()-getVelocity()*sinf(getComAngle()));
+        setZ(getZ()-getVelocity()*cosf(getComAngle()));
+    } else {
+        bRenderer::log("COLLISION");
+        setCollision(false);
+        
+        if (getVelocity() < 0.0) {
+            setX(getX()-getVelocity()*sinf(getComAngle()));
+            setZ(getZ()-getVelocity()*cosf(getComAngle()));
+        }
+    }
 }
 

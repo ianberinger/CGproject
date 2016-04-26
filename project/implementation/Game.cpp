@@ -20,7 +20,7 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
     vmml::Matrix4f modelMatrix;
-    moveCar(modelMatrix, deltaTime);
+    player.update(bRenderer());
     updateCamera(camera, deltaTime);
     
     vmml::Vector3f playerPos = player.getXYZ();
@@ -56,43 +56,14 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 
 }
 
-void Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &deltaTime) {
-   
-    //Getting the inputs from the gyro sensor
-    float roll = bRenderer().getInput()->getGyroscopeRoll(); // tilt
-    float pitch = bRenderer().getInput()->getGyroscopePitch(); // left / right
-    bRenderer::log("roll:" + std::to_string(roll));
-    bRenderer::log("pitch:" + std::to_string(pitch));
-    
-    player.setVelocity((roll+0.75)*2.5);
-    float velocityz= (pitch*4*M_PI_F)/180;
-    
-    //Setting the players new coordiantes and rotate him accordingly
-    player.setComAngle(player.getComAngle()+velocityz);
-    player.setRotAngle(velocityz);
-    
-    if (!player.hasCollision()){
-        player.setX(player.getX()-player.getVelocity()*sinf(player.getComAngle()));
-        player.setZ(player.getZ()-player.getVelocity()*cosf(player.getComAngle()));
-    } else {
-        bRenderer::log("COLLISION");
-        player.setCollision(false);
-        
-        if (player.getVelocity() < 0.0) {
-            player.setX(player.getX()-player.getVelocity()*sinf(player.getComAngle()));
-            player.setZ(player.getZ()-player.getVelocity()*cosf(player.getComAngle()));
-        }
-    }
-    
-}
 
 /* Camera movement */
 void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
     
-    float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.5)*sinf(player.getComAngle());
-    float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.5)*cosf(player.getComAngle());
+    float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*sinf(player.getComAngle());
+    float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 
     vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -5.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
     cameraPtr->setPosition(cameraPosition);
