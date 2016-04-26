@@ -97,8 +97,11 @@ vmml::Matrix4f Game::moveCar(const vmml::Matrix4f &modelMatrix, const double &de
 void Game::updateCamera(const std::string &camera, const vmml::Matrix4f &carMatrix, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
+    
+    float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.3)*sinf(player.getComAngle());
+    float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*2.3)*cosf(player.getComAngle());
 
-    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-20.0*sinf(player.getComAngle()), -5.0f, -player.getZ()-20.0*cosf(player.getComAngle()));
+    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -5.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
     cameraPtr->setPosition(cameraPosition);
     cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
 }
