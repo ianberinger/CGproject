@@ -65,7 +65,7 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
     float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*sinf(player.getComAngle());
     float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 
-    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -5.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
+    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -10.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
     cameraPtr->setPosition(cameraPosition);
     cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
 }

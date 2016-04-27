@@ -11,7 +11,7 @@
 
 Helper h;
 
-Player::Player():Entity(0.0f, 0.0f, 0.0f, 1, 2, 2, true){
+Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true){
     
     
 }
@@ -24,14 +24,13 @@ Player::Player(float x, float y, float z, float w, float h, float l, bool col):E
 
 void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
-    ShaderPtr guyShader = r.getObjects()->getShader("guy");
+    ShaderPtr guyShader = r.getObjects()->getShader("car");
     guyShader->setUniform("fogColor", this->fogColor);
     
-    
     vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(getComAngle(), vmml::Vector3f::UNIT_Y);
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));
 
-    r.getModelRenderer()->drawModel("guy", "camera", transformationMatrix, std::vector<std::string>({ }));
+    r.getModelRenderer()->drawModel("car", "camera", transformationMatrix, std::vector<std::string>({ }));
     
 }
 
@@ -46,6 +45,7 @@ void Player::update(Renderer &r){
     
     setVelocity(h.clip(getVelocity()+((roll+0.75)/20), minSpeed ,maxSpeed));
     
+    setAddAngle(pitch);
     float velocityz= (pitch*4*M_PI_F)/180;
     
     //Setting the players new coordiantes and rotate him accordingly

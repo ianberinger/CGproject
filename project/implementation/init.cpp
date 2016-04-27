@@ -40,23 +40,26 @@ void Game::initFunction()
     ShaderPtr terrainShader = bRenderer().getObjects()->loadShaderFile("terrain", 0, false, true, true, false, false);
     ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile("tree", 0, false, true, true, false, false);
     ShaderPtr cubeShader = bRenderer().getObjects()->loadShaderFile("cube", 0, false, true, true, false, false);
-
+    ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
     
     // create additional properties for a model
     PropertiesPtr guyProperties = bRenderer().getObjects()->createProperties("guyProperties");
     PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("terrainProperties");
     PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("treeProperties");
     PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
+    PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
+
     
     // load model
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("cube.obj", true, true, false, 4, true, false);
-    
+    bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
+
     
     // create camera
-    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(0.f, 0.0f, 0.f));
+    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
     bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, M_PI_F, 0.0f);
     
     
