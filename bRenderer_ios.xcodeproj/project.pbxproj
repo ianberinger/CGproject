@@ -27,7 +27,7 @@
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
 		3C8815721CC80A9E00F2A332 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815711CC80A9E00F2A332 /* init.cpp */; };
-		3C8815741CC80AFC00F2A332 /* helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815731CC80AFC00F2A332 /* helper.cpp */; };
+		3C8815741CC80AFC00F2A332 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815731CC80AFC00F2A332 /* Helper.cpp */; };
 		3C8815761CC80B3300F2A332 /* ios-specific.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815751CC80B3300F2A332 /* ios-specific.cpp */; };
 		646BFB141CCE95690081924B /* CollisionHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646BFB121CCE95690081924B /* CollisionHandler.cpp */; };
 		B44186971BA331E300604D7F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44186961BA331E300604D7F /* Game.cpp */; };
@@ -153,8 +153,9 @@
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
 		3C8815711CC80A9E00F2A332 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
-		3C8815731CC80AFC00F2A332 /* helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helper.cpp; sourceTree = "<group>"; };
+		3C8815731CC80AFC00F2A332 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		3C8815751CC80B3300F2A332 /* ios-specific.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "ios-specific.cpp"; sourceTree = "<group>"; };
+		3CA595DC1CD0A5CC0023AF5B /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		646BFB121CCE95690081924B /* CollisionHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionHandler.cpp; sourceTree = "<group>"; };
 		646BFB131CCE95690081924B /* CollisionHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CollisionHandler.hpp; path = ../implementation/CollisionHandler.hpp; sourceTree = "<group>"; };
 		B44186941BA331E300604D7F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -362,6 +363,7 @@
 				22C4208D1CC8F939005E790E /* Player.h */,
 				22C420931CC8FEBB005E790E /* Barrier.h */,
 				646BFB131CCE95690081924B /* CollisionHandler.hpp */,
+				3CA595DC1CD0A5CC0023AF5B /* Helper.h */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -373,7 +375,7 @@
 				B44186961BA331E300604D7F /* Game.cpp */,
 				646BFB121CCE95690081924B /* CollisionHandler.cpp */,
 				3C8815711CC80A9E00F2A332 /* init.cpp */,
-				3C8815731CC80AFC00F2A332 /* helper.cpp */,
+				3C8815731CC80AFC00F2A332 /* Helper.cpp */,
 				3C8815751CC80B3300F2A332 /* ios-specific.cpp */,
 				226397911CCD2B9200A2553C /* Player.cpp */,
 			);
@@ -779,7 +781,7 @@
 				B4794A411BA6743D00B5E9DC /* ObjectManager.cpp in Sources */,
 				B4794A361BA6743D00B5E9DC /* CubeMap.cpp in Sources */,
 				B4794A371BA6743D00B5E9DC /* DepthMap.cpp in Sources */,
-				3C8815741CC80AFC00F2A332 /* helper.cpp in Sources */,
+				3C8815741CC80AFC00F2A332 /* Helper.cpp in Sources */,
 				B47AD6C11B827DF200AFC632 /* ftlcdfil.c in Sources */,
 				B47AD6E91B827FA900AFC632 /* autofit.c in Sources */,
 				B4794A491BA6743D00B5E9DC /* Sprite.cpp in Sources */,

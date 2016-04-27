@@ -7,6 +7,9 @@
 //
 
 #include "Player.h"
+#include "Helper.h"
+
+Helper h;
 
 Player::Player():Entity(0.0f, 0.0f, 0.0f, 1, 2, 2, true){
     
@@ -41,13 +44,7 @@ void Player::update(Renderer &r){
     bRenderer::log("roll:" + std::to_string(roll));
     bRenderer::log("pitch:" + std::to_string(pitch));
     
-    setVelocity(getVelocity()+((roll+0.75)/20));
-    
-    if(getVelocity()<-0.2){
-        setVelocity(-0.2);
-    }else if(getVelocity()>0.7){
-        setVelocity(0.7);
-    }
+    setVelocity(h.clip(getVelocity()+((roll+0.75)/20), minSpeed ,maxSpeed));
     
     float velocityz= (pitch*4*M_PI_F)/180;
     

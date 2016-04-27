@@ -35,7 +35,8 @@ public:
     
     
 private:
-    const float maxSpeed=10;
+    const float minSpeed=-0.2;
+    const float maxSpeed=0.7;
     float rotAngle;
     float comAngle;
     float velocity;
