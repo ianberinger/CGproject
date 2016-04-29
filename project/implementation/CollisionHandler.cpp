@@ -37,19 +37,60 @@ bool Collisionhandler::testAABBOverlap(const Player &a, const Entity &b) {
     if (d1x > 0.0f || d1z > 0.0f || d2x > 0.0f || d2z > 0.0f) {
         return false;
     } else {
-        std::cout << "upLeft: " << upLeft << std::endl;
-        std::cout << "downLeft: " << downLeft << std::endl;
-        std::cout << "downRight: " << downRight << std::endl;
-        std::cout << "upRight: " << upRight << std::endl;
-        std::cout << "position x: " << a.getX() << "position z: " << a.getZ() << std::endl;
-        if (((a.getX() + a.getWidth()/2 <= bMinX + 0.5) || (a.getX() + a.getWidth()/2 >= bMaxX + 0.5)) &&
-            (a.getZ() + a.getLength()/2 > bMinZ && a.getZ() + a.getLength()/2 < bMaxZ)) {
-            handleCollision(a, Z);
-        } else {
-            handleCollision(a, X);
-        }
+        handleCollision(a, getCollisionSide(bMaxX, bMinX, bMaxZ, bMinZ, a, b));
+        
         return true;
     }
+}
+
+Collisionhandler::Side Collisionhandler::getCollisionSide(float max_x, float min_x, float max_z, float min_z, const Entity &a, const Entity &b) {
+    float x_left = a.getX() - a.getWidth()/2;
+    float x_right = (a.getX() + a.getWidth()/2);
+    float z_up = (a.getZ() + a.getLength()/2);
+    float z_down = a.getZ() - a.getLength()/2 ;
+    
+    vmml::Vector3f xVec {b.getX(), 0, 0};
+    vmml::Vector3f yVec {0, b.getY()+b.getHeight(), 0};
+    vmml::Vector3f zVec {0,0,b.getZ()};
+    
+    if ((x_left >= min_x || x_right <= max_x) && (z_up <= min_z || z_down >= max_z)) {
+        if (a.getZ() < 0) {
+            if (z_up <= min_z) {
+                collisionForce = vmml::Vector3f(0,0,b.getZ());
+            } else {
+                collisionForce = vmml::Vector3f(0,0,-b.getZ());
+            }
+        } else {
+            if (z_up <= min_z) {
+                collisionForce = vmml::Vector3f(0,0,-b.getZ());
+            } else {
+                collisionForce = vmml::Vector3f(0,0,b.getZ());
+            }
+        }
+        return X;
+    } else if ((z_up <= max_z || z_down >= min_z) && (x_right >= max_x || x_right <= min_x)){
+        if (a.getX() < 0) {
+            if (x_right <= min_x) {
+                collisionForce = vmml::Vector3f(b.getX(), 0, 0);
+            } else {
+                collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
+            }
+        } else {
+            if (x_right <= min_x) {
+                collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
+            } else {
+                collisionForce = vmml::Vector3f(b.getX(), 0, 0);
+            }
+        }
+        return Z;
+    } else {
+        //collisionForce = vmml::Vector3f::ZERO;
+        return NONE;
+    }
+}
+
+vmml::Vector3f Collisionhandler::getCollisionForce() {
+    return vmml::normalize(collisionForce);
 }
 
 void Collisionhandler::handleCollision(const Entity &a, Side side) {

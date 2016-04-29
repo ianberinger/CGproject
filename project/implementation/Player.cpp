@@ -34,14 +34,14 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
 }
 
-void Player::update(Renderer &r){
+void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
     
     
     //Getting the inputs from the gyro sensor
     float roll = r.getInput()->getGyroscopeRoll(); // tilt
     float pitch = r.getInput()->getGyroscopePitch(); // left / right
-    bRenderer::log("roll:" + std::to_string(roll));
-    bRenderer::log("pitch:" + std::to_string(pitch));
+    /*bRenderer::log("roll:" + std::to_string(roll));
+    bRenderer::log("pitch:" + std::to_string(pitch));*/
     
     setVelocity(h.clip(getVelocity()+((roll+0.75)/20), minSpeed ,maxSpeed));
     
@@ -52,12 +52,17 @@ void Player::update(Renderer &r){
     setComAngle(getComAngle()+velocityz);
     setRotAngle(velocityz);
     
-    if (!hasCollision()){
-        setX(getX()-getVelocity()*sinf(getComAngle()));
-        setZ(getZ()-getVelocity()*cosf(getComAngle()));
-    } else {
+    setX(getX()-getVelocity()*sinf(getComAngle()));
+    setZ(getZ()-getVelocity()*cosf(getComAngle()));
+    
+    if (hasCollision()){
         bRenderer::log("COLLISION");
         setCollision(false);
+        
+        vmml::Vector3f newVelocity {getXYZ() + collisionForce};
+        
+        setX(newVelocity.x());
+        setZ(newVelocity.z());
         
         if (getVelocity() < 0.0) {
             setX(getX()-getVelocity()*sinf(getComAngle()));

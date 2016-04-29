@@ -20,7 +20,7 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
     vmml::Matrix4f modelMatrix;
-    player.update(bRenderer());
+    player.update(bRenderer(), collisionHandler.getCollisionForce());
     updateCamera(camera, deltaTime);
     
     vmml::Vector3f playerPos = player.getXYZ();
@@ -30,7 +30,6 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
         float distance = playerPos.distance(v);
         if (collisionHandler.testAABBOverlap(player, *e)) {
             player.setCollision(true);
-            bRenderer::log("distance:" + std::to_string(distance));
         }
         if(std::abs(player.getX()-e->getX())<40||std::abs(player.getZ()-e->getZ())<40){
             e->draw(bRenderer(),modelMatrix);

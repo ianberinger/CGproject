@@ -16,12 +16,15 @@
 
 class Collisionhandler {
 public:
-    enum Side {X, Z};
+    enum Side {X, Z, NONE};
 
     Collisionhandler();
     bool testAABBOverlap(const Player &a, const Entity &b);
     void handleCollision(const Entity &a, Side side);
+    vmml::Vector3f getCollisionForce();
 private:
+    Side getCollisionSide(float max_x, float min_x, float max_z, float min_z, const Entity &a, const Entity &b);
+    vmml::Vector3f collisionForce;
 };
 
 #endif /* CollisionHandler_hpp */

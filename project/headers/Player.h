@@ -17,7 +17,7 @@ public:
     Player(float x, float y, float z, float w, float h, float l, bool col);
     
     virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
-    virtual void update(Renderer &r);
+    virtual void update(Renderer &r, const vmml::Vector3f &collisionForce);
     void setRotAngle(float ang){rotAngle=ang;}
     float getRotAngle(){return rotAngle;}
     
