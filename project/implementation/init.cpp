@@ -54,7 +54,9 @@ void Game::initFunction()
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
     PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
 
-
+    globalShaders.push_back(sphereShader);
+    globalShaders.push_back(terrainShader);
+    globalShaders.push_back(treeShader);
     
     // load model
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);

@@ -65,6 +65,7 @@ private:
 	double _mouseX, _mouseY;
     Player player;
     Collisionhandler collisionHandler;
+    std::vector<ShaderPtr> globalShaders;
 	bool _running = false;
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;

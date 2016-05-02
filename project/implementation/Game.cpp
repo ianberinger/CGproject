@@ -35,18 +35,9 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
         }
     }
     
-    
-    
-    ShaderPtr terrainShader = bRenderer().getObjects()->getShader("terrain");
-    ShaderPtr sphereShader = bRenderer().getObjects()->getShader("sphere");
-    ShaderPtr treeShader = bRenderer().getObjects()->getShader("tree");
-    
-    // set fog color
-    terrainShader->setUniform("fogColor", this->fogColor);
-    sphereShader->setUniform("fogColor", this->fogColor);
-    treeShader->setUniform("fogColor", this->fogColor);
-    
-
+    for (auto s: globalShaders) {
+        s->setUniform("fogColor", this->fogColor);
+    }
     
     // draw stuff
     player.draw(bRenderer(),modelMatrix);
