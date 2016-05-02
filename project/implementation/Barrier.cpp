@@ -21,7 +21,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col)
      cubeShader->setUniform("fogColor", fogColor);
 
      
-     r.getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(getXYZ()), std::vector<std::string>({ }));
+     r.getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(getXYZ())*vmml::create_scaling(vmml::Vector3f(2.0f, 1.0f, 2.0f)), std::vector<std::string>({ }));
 
 }
 
