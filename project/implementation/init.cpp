@@ -38,6 +38,7 @@ void Game::initFunction()
     // load materials and shaders before loading the model
     ShaderPtr guyShader = bRenderer().getObjects()->loadShaderFile("guy", 0, false, true, true, false, false);				// load shader from file without lighting, the number of lights won't ever change during rendering (no variable number of lights)
     ShaderPtr terrainShader = bRenderer().getObjects()->loadShaderFile("terrain", 0, false, true, true, false, false);
+    ShaderPtr sphereShader = bRenderer().getObjects()->loadShaderFile("sphere", 0, false, true, true, false, false);
     ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile("tree", 0, false, true, true, false, false);
     ShaderPtr cubeShader = bRenderer().getObjects()->loadShaderFile("cube", 0, false, true, true, false, false);
     ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
@@ -47,6 +48,7 @@ void Game::initFunction()
     // create additional properties for a model
     PropertiesPtr guyProperties = bRenderer().getObjects()->createProperties("guyProperties");
     PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("terrainProperties");
+    PropertiesPtr sphereProperties = bRenderer().getObjects()->createProperties("sphereProperties");
     PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("treeProperties");
     PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
@@ -57,6 +59,7 @@ void Game::initFunction()
     // load model
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
+    bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4, true, false);    
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("cube.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);

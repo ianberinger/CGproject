@@ -39,18 +39,21 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     
     
     ShaderPtr terrainShader = bRenderer().getObjects()->getShader("terrain");
+    ShaderPtr sphereShader = bRenderer().getObjects()->getShader("sphere");
     ShaderPtr treeShader = bRenderer().getObjects()->getShader("tree");
     
     // set fog color
     terrainShader->setUniform("fogColor", this->fogColor);
+    sphereShader->setUniform("fogColor", this->fogColor);
     treeShader->setUniform("fogColor", this->fogColor);
+    
 
     
     // draw stuff
     player.draw(bRenderer(),modelMatrix);
-    
-    
-    bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix, std::vector<std::string>({ }));
+
+    bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+    bRenderer().getModelRenderer()->queueModelInstance("sphere", "sphere_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(200.0f)), std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("tree", "tree_instance", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(5.0f,0.0f,5.0f))*vmml::create_scaling(vmml::Vector3f(0.02f,0.02f,0.02f)), std::vector<std::string>({ }));
 
 }

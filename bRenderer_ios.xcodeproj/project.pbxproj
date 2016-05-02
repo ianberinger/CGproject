@@ -37,6 +37,10 @@
 		22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F51CC8024A00C2AEE9 /* tree.mtl */; };
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
+		3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */; };
+		3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */; };
+		3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E801CD7FB3300B01D9D /* sphere.mtl */; };
+		3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E811CD7FB3300B01D9D /* sphere.obj */; };
 		3C8815721CC80A9E00F2A332 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815711CC80A9E00F2A332 /* init.cpp */; };
 		3C8815741CC80AFC00F2A332 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815731CC80AFC00F2A332 /* Helper.cpp */; };
 		3C8815761CC80B3300F2A332 /* ios-specific.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815751CC80B3300F2A332 /* ios-specific.cpp */; };
@@ -175,6 +179,10 @@
 		22F2E8F51CC8024A00C2AEE9 /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
+		3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sphere.vert; sourceTree = "<group>"; };
+		3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sphere.frag; sourceTree = "<group>"; };
+		3C4E3E801CD7FB3300B01D9D /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
+		3C4E3E811CD7FB3300B01D9D /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		3C8815711CC80A9E00F2A332 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
 		3C8815731CC80AFC00F2A332 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		3C8815751CC80B3300F2A332 /* ios-specific.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "ios-specific.cpp"; sourceTree = "<group>"; };
@@ -410,6 +418,10 @@
 		B47949841BA6742B00B5E9DC /* data */ = {
 			isa = PBXGroup;
 			children = (
+				3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */,
+				3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */,
+				3C4E3E801CD7FB3300B01D9D /* sphere.mtl */,
+				3C4E3E811CD7FB3300B01D9D /* sphere.obj */,
 				22C25B071CCC060B00CF3265 /* cube.frag */,
 				22C25B081CCC060B00CF3265 /* cube.vert */,
 				22F2E8EC1CC8024A00C2AEE9 /* guy.frag */,
@@ -762,6 +774,7 @@
 				22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */,
 				22F2E8F81CC8024A00C2AEE9 /* guy.frag in Resources */,
 				22F2E8F91CC8024A00C2AEE9 /* guy.mtl in Resources */,
+				3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */,
 				22A4CA711CD748D9009AB514 /* wheel.obj in Resources */,
 				22F2E8FD1CC8024A00C2AEE9 /* terrain.mtl in Resources */,
 				229DF8E21CC93F1000262F16 /* cube.mtl in Resources */,
@@ -769,6 +782,7 @@
 				22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */,
 				22A4CA721CD748D9009AB514 /* wheel.png in Resources */,
 				22F2E8FF1CC8024A00C2AEE9 /* terrain.vert in Resources */,
+				3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */,
 				229DF8E11CC93F1000262F16 /* cube.obj in Resources */,
 				22A4CA761CD7493A009AB514 /* wheel.vert in Resources */,
 				22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */,
@@ -776,11 +790,13 @@
 				22F2E8FE1CC8024A00C2AEE9 /* terrain.obj in Resources */,
 				22C25B091CCC060B00CF3265 /* cube.frag in Resources */,
 				228595001CD108B20063E8A6 /* car.frag in Resources */,
+				3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */,
 				22F2E9001CC8024A00C2AEE9 /* tree.frag in Resources */,
 				228595011CD108B20063E8A6 /* car.vert in Resources */,
 				B47949AF1BA6742B00B5E9DC /* config.json in Resources */,
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
 				B4794A301BA6743D00B5E9DC /* LICENSE.txt in Resources */,
+				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
