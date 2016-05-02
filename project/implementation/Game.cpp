@@ -22,11 +22,8 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     vmml::Matrix4f modelMatrix;
     player.update(bRenderer(), collisionHandler.getCollisionForce());
     updateCamera(camera, deltaTime);
-    
-    vmml::Vector3f playerPos = player.getXYZ();
-    
+        
     for(auto e: ent) {
-        vmml::Vector3f v = vmml::Vector3f(e->getX(), e->getY(), e->getZ());
         if (collisionHandler.testAABBOverlap(player, *e)) {
             player.setCollision(true);
         }
