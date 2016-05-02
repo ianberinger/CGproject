@@ -16,6 +16,12 @@
 		229B06431CC912F500EDFF9C /* map2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 229B06421CC912F500EDFF9C /* map2.txt */; };
 		229DF8E11CC93F1000262F16 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 229DF8DF1CC93F1000262F16 /* cube.obj */; };
 		229DF8E21CC93F1000262F16 /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 229DF8E01CC93F1000262F16 /* cube.mtl */; };
+		22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 22A4CA6D1CD748D9009AB514 /* wheel.mtl */; };
+		22A4CA711CD748D9009AB514 /* wheel.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22A4CA6E1CD748D9009AB514 /* wheel.obj */; };
+		22A4CA721CD748D9009AB514 /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A4CA6F1CD748D9009AB514 /* wheel.png */; };
+		22A4CA751CD7493A009AB514 /* wheel.frag in Resources */ = {isa = PBXBuildFile; fileRef = 22A4CA731CD7493A009AB514 /* wheel.frag */; };
+		22A4CA761CD7493A009AB514 /* wheel.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22A4CA741CD7493A009AB514 /* wheel.vert */; };
+		22A4CA791CD74A5C009AB514 /* Wheel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22A4CA781CD74A5C009AB514 /* Wheel.cpp */; };
 		22C25B091CCC060B00CF3265 /* cube.frag in Resources */ = {isa = PBXBuildFile; fileRef = 22C25B071CCC060B00CF3265 /* cube.frag */; };
 		22C25B0A1CCC060B00CF3265 /* cube.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22C25B081CCC060B00CF3265 /* cube.vert */; };
 		22C420911CC8FD78005E790E /* Barrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22C4208F1CC8FD78005E790E /* Barrier.cpp */; };
@@ -145,6 +151,13 @@
 		229DF8DF1CC93F1000262F16 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		229DF8E01CC93F1000262F16 /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
 		229DF8E31CC944BC00262F16 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		22A4CA6D1CD748D9009AB514 /* wheel.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wheel.mtl; sourceTree = "<group>"; };
+		22A4CA6E1CD748D9009AB514 /* wheel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wheel.obj; sourceTree = "<group>"; };
+		22A4CA6F1CD748D9009AB514 /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
+		22A4CA731CD7493A009AB514 /* wheel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wheel.frag; sourceTree = "<group>"; };
+		22A4CA741CD7493A009AB514 /* wheel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wheel.vert; sourceTree = "<group>"; };
+		22A4CA771CD749AA009AB514 /* Wheel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
+		22A4CA781CD74A5C009AB514 /* Wheel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wheel.cpp; sourceTree = "<group>"; };
 		22C25B071CCC060B00CF3265 /* cube.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.frag; sourceTree = "<group>"; };
 		22C25B081CCC060B00CF3265 /* cube.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.vert; sourceTree = "<group>"; };
 		22C4208D1CC8F939005E790E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -372,6 +385,7 @@
 				B44186941BA331E300604D7F /* Game.h */,
 				22C4208D1CC8F939005E790E /* Player.h */,
 				22C420931CC8FEBB005E790E /* Barrier.h */,
+				22A4CA771CD749AA009AB514 /* Wheel.h */,
 				646BFB131CCE95690081924B /* CollisionHandler.hpp */,
 				3CA595DC1CD0A5CC0023AF5B /* Helper.h */,
 			);
@@ -383,6 +397,7 @@
 			children = (
 				22C4208F1CC8FD78005E790E /* Barrier.cpp */,
 				B44186961BA331E300604D7F /* Game.cpp */,
+				22A4CA781CD74A5C009AB514 /* Wheel.cpp */,
 				646BFB121CCE95690081924B /* CollisionHandler.cpp */,
 				3C8815711CC80A9E00F2A332 /* init.cpp */,
 				3C8815731CC80AFC00F2A332 /* Helper.cpp */,
@@ -398,6 +413,9 @@
 				22C25B071CCC060B00CF3265 /* cube.frag */,
 				22C25B081CCC060B00CF3265 /* cube.vert */,
 				22F2E8EC1CC8024A00C2AEE9 /* guy.frag */,
+				22A4CA6D1CD748D9009AB514 /* wheel.mtl */,
+				22A4CA6E1CD748D9009AB514 /* wheel.obj */,
+				22A4CA6F1CD748D9009AB514 /* wheel.png */,
 				22F2E8ED1CC8024A00C2AEE9 /* guy.mtl */,
 				229B06421CC912F500EDFF9C /* map2.txt */,
 				22F2E8EE1CC8024A00C2AEE9 /* guy.obj */,
@@ -411,6 +429,8 @@
 				22F2E8F31CC8024A00C2AEE9 /* terrain.vert */,
 				229DF8DF1CC93F1000262F16 /* cube.obj */,
 				229DF8E01CC93F1000262F16 /* cube.mtl */,
+				22A4CA731CD7493A009AB514 /* wheel.frag */,
+				22A4CA741CD7493A009AB514 /* wheel.vert */,
 				228594FE1CD108B20063E8A6 /* car.frag */,
 				228594FF1CD108B20063E8A6 /* car.vert */,
 				22F2E8F41CC8024A00C2AEE9 /* tree.frag */,
@@ -742,12 +762,17 @@
 				22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */,
 				22F2E8F81CC8024A00C2AEE9 /* guy.frag in Resources */,
 				22F2E8F91CC8024A00C2AEE9 /* guy.mtl in Resources */,
+				22A4CA711CD748D9009AB514 /* wheel.obj in Resources */,
 				22F2E8FD1CC8024A00C2AEE9 /* terrain.mtl in Resources */,
 				229DF8E21CC93F1000262F16 /* cube.mtl in Resources */,
 				B4794A2A1BA6743D00B5E9DC /* LICENSE.txt in Resources */,
+				22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */,
+				22A4CA721CD748D9009AB514 /* wheel.png in Resources */,
 				22F2E8FF1CC8024A00C2AEE9 /* terrain.vert in Resources */,
 				229DF8E11CC93F1000262F16 /* cube.obj in Resources */,
+				22A4CA761CD7493A009AB514 /* wheel.vert in Resources */,
 				22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */,
+				22A4CA751CD7493A009AB514 /* wheel.frag in Resources */,
 				22F2E8FE1CC8024A00C2AEE9 /* terrain.obj in Resources */,
 				22C25B091CCC060B00CF3265 /* cube.frag in Resources */,
 				228595001CD108B20063E8A6 /* car.frag in Resources */,
@@ -857,6 +882,7 @@
 				B47AD6EB1B827FB500AFC632 /* bdf.c in Sources */,
 				B47AD6ED1B827FC200AFC632 /* cff.c in Sources */,
 				B4794A341BA6743D00B5E9DC /* Camera.cpp in Sources */,
+				22A4CA791CD74A5C009AB514 /* Wheel.cpp in Sources */,
 				B4794A3E1BA6743D00B5E9DC /* Model.cpp in Sources */,
 				B4794A3A1BA6743D00B5E9DC /* Geometry.cpp in Sources */,
 				B4794A521BA6743D00B5E9DC /* BView.mm in Sources */,

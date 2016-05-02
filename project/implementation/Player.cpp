@@ -12,7 +12,21 @@
 Helper h;
 
 Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true){
+   
+    //wheels for the car
+    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true) );
+    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true) );
+    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true) );
+    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true) );
     
+    wheels.push_back(w1);
+    wheels.push_back(w2);
+    wheels.push_back(w3);
+    wheels.push_back(w4);
+
+
+
+
     
 }
 
@@ -29,6 +43,11 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
     vmml::Matrix4f transformationMatrix{modelMatrix};
     transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));
+    
+    for(auto e : wheels){
+        e->draw(r, transformationMatrix);
+    
+    }
 
     r.getModelRenderer()->drawModel("car", "camera", transformationMatrix, std::vector<std::string>({ }));
     
@@ -47,6 +66,12 @@ void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
     
     setAddAngle(pitch);
     float velocityz= (pitch*4*M_PI_F)/180;
+    
+    for(auto e : wheels){
+        e->update(r, collisionForce);
+        
+    }
+    
     
     //Setting the players new coordiantes and rotate him accordingly
     setComAngle(getComAngle()+velocityz);

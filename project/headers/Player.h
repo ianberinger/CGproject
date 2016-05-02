@@ -10,6 +10,7 @@
 #define Player_h
 
 #include "Entity.h"
+#include "Wheel.h"
 
 class Player : public Entity{
 public:
@@ -46,6 +47,8 @@ private:
     float velocity;
     float acceleration;
     float offSetCam[3];
+    std::vector<std::shared_ptr<Wheel>> wheels;
+
     
 };
 

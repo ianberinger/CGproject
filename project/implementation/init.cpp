@@ -41,6 +41,8 @@ void Game::initFunction()
     ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile("tree", 0, false, true, true, false, false);
     ShaderPtr cubeShader = bRenderer().getObjects()->loadShaderFile("cube", 0, false, true, true, false, false);
     ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
+    ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
+
     
     // create additional properties for a model
     PropertiesPtr guyProperties = bRenderer().getObjects()->createProperties("guyProperties");
@@ -48,6 +50,8 @@ void Game::initFunction()
     PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("treeProperties");
     PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
+    PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
+
 
     
     // load model
@@ -56,7 +60,9 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("cube.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
-
+    bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
+    
+    
     
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
