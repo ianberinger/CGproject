@@ -41,6 +41,7 @@
 		3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */; };
 		3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E801CD7FB3300B01D9D /* sphere.mtl */; };
 		3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E811CD7FB3300B01D9D /* sphere.obj */; };
+		3C4E3E881CD80B8900B01D9D /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E3E871CD80B8900B01D9D /* Tree.cpp */; };
 		3C8815721CC80A9E00F2A332 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815711CC80A9E00F2A332 /* init.cpp */; };
 		3C8815741CC80AFC00F2A332 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815731CC80AFC00F2A332 /* Helper.cpp */; };
 		3C8815761CC80B3300F2A332 /* ios-specific.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8815751CC80B3300F2A332 /* ios-specific.cpp */; };
@@ -183,6 +184,8 @@
 		3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sphere.frag; sourceTree = "<group>"; };
 		3C4E3E801CD7FB3300B01D9D /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		3C4E3E811CD7FB3300B01D9D /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		3C4E3E861CD80B3800B01D9D /* Tree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
+		3C4E3E871CD80B8900B01D9D /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
 		3C8815711CC80A9E00F2A332 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
 		3C8815731CC80AFC00F2A332 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		3C8815751CC80B3300F2A332 /* ios-specific.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "ios-specific.cpp"; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 				22A4CA771CD749AA009AB514 /* Wheel.h */,
 				646BFB131CCE95690081924B /* CollisionHandler.hpp */,
 				3CA595DC1CD0A5CC0023AF5B /* Helper.h */,
+				3C4E3E861CD80B3800B01D9D /* Tree.h */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -411,6 +415,7 @@
 				3C8815731CC80AFC00F2A332 /* Helper.cpp */,
 				3C8815751CC80B3300F2A332 /* ios-specific.cpp */,
 				226397911CCD2B9200A2553C /* Player.cpp */,
+				3C4E3E871CD80B8900B01D9D /* Tree.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				B47AD7051B8280A900AFC632 /* ftsystem.c in Sources */,
 				B4794A331BA6743D00B5E9DC /* obj_parser.cpp in Sources */,
 				B4794A571BA6743D00B5E9DC /* View_ios.mm in Sources */,
+				3C4E3E881CD80B8900B01D9D /* Tree.cpp in Sources */,
 				B4794A4A1BA6743D00B5E9DC /* TextSprite.cpp in Sources */,
 				B4794A2D1BA6743D00B5E9DC /* texture-font.c in Sources */,
 				B4794A2C1BA6743D00B5E9DC /* texture-atlas.c in Sources */,

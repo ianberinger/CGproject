@@ -3,6 +3,7 @@
 
 #include "bRenderer.h"
 #include "Barrier.h"
+#include "Tree.h"
 #include "Player.h"
 #include "CollisionHandler.hpp"
 
