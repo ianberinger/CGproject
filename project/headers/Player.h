@@ -11,6 +11,7 @@
 
 #include "Entity.h"
 #include "Wheel.h"
+#include "CollisionHandler.hpp"
 
 class Player : public Entity{
 public:
@@ -37,6 +38,7 @@ public:
     void setAcceleration(float acc){acceleration=acc;}
     float getAcceleration(){return acceleration;}
     
+    void setCollisionHandler(Collisionhandler *handler) {collisionHandler = handler;}
     
 private:
     const float minSpeed=-0.2;
@@ -48,8 +50,8 @@ private:
     float acceleration;
     float offSetCam[3];
     std::vector<std::shared_ptr<Wheel>> wheels;
-
-    
+    vmml::Vector3f _collisionForce;
+    Collisionhandler *collisionHandler;
 };
 
 #endif /* Player_h */

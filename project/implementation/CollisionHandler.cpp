@@ -12,7 +12,7 @@ Collisionhandler::Collisionhandler() {
     
 }
 
-bool Collisionhandler::testAABBOverlap(const Player &a, const Entity &b) {
+bool Collisionhandler::testAABBOverlap(const Entity &a, const Entity &b) {
     
     float aMinX = a.getX() - a.getWidth() / 2 - a.getLength() / 2;
     float aMaxX = a.getX() + a.getWidth() / 2 + a.getLength() / 2;
@@ -37,62 +37,84 @@ bool Collisionhandler::testAABBOverlap(const Player &a, const Entity &b) {
     if (d1x > 0.0f || d1z > 0.0f || d2x > 0.0f || d2z > 0.0f) {
         return false;
     } else {
-        handleCollision(a, getCollisionSide(bMaxX, bMinX, bMaxZ, bMinZ, a, b));
+        handleCollision(bMaxX, bMinX, bMaxZ, bMinZ, a, b);
         
         return true;
     }
 }
 
-Collisionhandler::Side Collisionhandler::getCollisionSide(float max_x, float min_x, float max_z, float min_z, const Entity &a, const Entity &b) {
+void Collisionhandler::handleCollision(float max_x, float min_x, float max_z, float min_z, const Entity &a, const Entity &b) {
     float x_left = a.getX() - a.getWidth()/2;
     float x_right = (a.getX() + a.getWidth()/2);
     float z_up = (a.getZ() + a.getLength()/2);
     float z_down = a.getZ() - a.getLength()/2 ;
     
-    vmml::Vector3f xVec {b.getX(), 0, 0};
-    vmml::Vector3f yVec {0, b.getY()+b.getHeight(), 0};
-    vmml::Vector3f zVec {0,0,b.getZ()};
+    collisionForce.x() = 0.0;
+    collisionForce.z() = 0.0;
     
-    if ((x_left >= min_x || x_right <= max_x) && (z_up <= min_z || z_down >= max_z)) {
-        if (a.getZ() < 0) {
-            if (z_up <= min_z) {
-                collisionForce = vmml::Vector3f(0,0,b.getZ());
-            } else {
-                collisionForce = vmml::Vector3f(0,0,-b.getZ());
+    switch (b.getType()) {
+        case Entity::RAMP: {
+            float rampOccupation = z_up - min_z >= a.getLength() ? 1 : z_up - min_z <= 0 ? 0 : z_up - min_z;
+            if (_carHeight < b.getHeight()) {
+                _carHeight += b.getHeight()/b.getLength() * rampOccupation;
             }
-        } else {
-            if (z_up <= min_z) {
-                collisionForce = vmml::Vector3f(0,0,-b.getZ());
-            } else {
-                collisionForce = vmml::Vector3f(0,0,b.getZ());
+            _collisionAngle = -std::atan(_carHeight/b.getLength());
+            if (z_up >= max_z + b.getLength()/2) {
+                gravityFlag = true;
             }
+            break;
         }
-        return X;
-    } else if ((z_up <= max_z || z_down >= min_z) && (x_right >= max_x || x_right <= min_x)){
-        if (a.getX() < 0) {
-            if (x_right <= min_x) {
-                collisionForce = vmml::Vector3f(b.getX(), 0, 0);
-            } else {
-                collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
+        case Entity::BARRIER: {
+            if ((x_left >= min_x || x_right <= max_x) && (z_up <= min_z || z_down >= max_z)) {
+                if (a.getZ() < 0) {
+                    if (z_up <= min_z) {
+                        collisionForce = vmml::Vector3f(0,0,b.getZ());
+                    } else {
+                        collisionForce = vmml::Vector3f(0,0,-b.getZ());
+                    }
+                } else {
+                    if (z_up <= min_z) {
+                        collisionForce = vmml::Vector3f(0,0,-b.getZ());
+                    } else {
+                        collisionForce = vmml::Vector3f(0,0,b.getZ());
+                    }
+                }
+            } else if ((z_up <= max_z || z_down >= min_z) && (x_right >= max_x || x_right <= min_x)){
+                if (a.getX() < 0) {
+                    if (x_right <= min_x) {
+                        collisionForce = vmml::Vector3f(b.getX(), 0, 0);
+                    } else {
+                        collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
+                    }
+                } else {
+                    if (x_right <= min_x) {
+                        collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
+                    } else {
+                        collisionForce = vmml::Vector3f(b.getX(), 0, 0);
+                    }
+                }
             }
-        } else {
-            if (x_right <= min_x) {
-                collisionForce = vmml::Vector3f(-b.getX(), 0, 0);
-            } else {
-                collisionForce = vmml::Vector3f(b.getX(), 0, 0);
-            }
+            break;
         }
-        return Z;
-    } else {
-        //collisionForce = vmml::Vector3f::ZERO;
-        return NONE;
     }
+    
 }
 
 vmml::Vector3f Collisionhandler::getCollisionForce() {
-    return vmml::normalize(collisionForce);
+    collisionForce = vmml::normalize(collisionForce);
+    collisionForce.y() = _collisionAngle;
+    return collisionForce;
 }
 
-void Collisionhandler::handleCollision(const Entity &a, Side side) {
-    std::cout << "Side: " << side << std::endl;
+void Collisionhandler::applyGravity() {
+    if (gravityFlag) {
+        _collisionAngle = (std::abs(_collisionAngle) - 0.1)*-1;
+        std::cout << "collision angle: " << _collisionAngle << std::endl;
+        _carHeight = _carHeight - 0.1;
+    }
+    if (std::abs(_carHeight) < 0.2) {
+        gravityFlag = false;
+        _carHeight = 0.0;
+        _collisionAngle = 0.0;
+    }
 }

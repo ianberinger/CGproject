@@ -5,6 +5,7 @@
 #include "Barrier.h"
 #include "Tree.h"
 #include "Player.h"
+#include "Ramp.h"
 #include "CollisionHandler.hpp"
 
 class Game : public IRenderProject

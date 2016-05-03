@@ -43,6 +43,7 @@ void Game::initFunction()
     ShaderPtr cubeShader = bRenderer().getObjects()->loadShaderFile("cube", 0, false, true, true, false, false);
     ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
     ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
+    ShaderPtr ram2Shader = bRenderer().getObjects()->loadShaderFile("ram2", 0, false, true, true, false, false);
 
     globalShaders.push_back(sphereShader);
     globalShaders.push_back(terrainShader);
@@ -55,6 +56,7 @@ void Game::initFunction()
     PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
     PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
+    PropertiesPtr ram2Properties = bRenderer().getObjects()->createProperties("ram2Properties");
     
     // load model
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
@@ -65,6 +67,8 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     
+    
+    bRenderer().getObjects()->loadObjModel("ram2.obj", true, true, false, 4, true, false);
     
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
@@ -109,6 +113,12 @@ void Game::initFunction()
                     bRenderer::log("START");
                     player.setZ(i*4-100);
                     player.setX(j*4-100);
+                    player.setCollisionHandler(&collisionHandler);
+                    break;
+                }
+                case 7: {
+                    std::shared_ptr<Entity> p( new Ramp((i*4-100),0,(j*4-100),1,2,5,true, Entity::Type::RAMP));
+                    ent.push_back(p);
                     break;
                 }
             }
