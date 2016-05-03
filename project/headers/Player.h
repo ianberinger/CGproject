@@ -40,6 +40,10 @@ public:
     
     void setCollisionHandler(Collisionhandler *handler) {collisionHandler = handler;}
     
+    void togglePause(){isPaused=!isPaused;}
+    void toggleBirdsEye(){isBirdsEye=!isBirdsEye;}
+    bool birdsEye(){return isBirdsEye;}
+    
 private:
     const float minSpeed=-0.2;
     const float maxSpeed=0.7;
@@ -49,6 +53,8 @@ private:
     float velocity;
     float acceleration;
     float offSetCam[3];
+    bool isPaused = false;
+    bool isBirdsEye = false;
     std::vector<std::shared_ptr<Wheel>> wheels;
     vmml::Vector3f _collisionForce;
     Collisionhandler *collisionHandler;

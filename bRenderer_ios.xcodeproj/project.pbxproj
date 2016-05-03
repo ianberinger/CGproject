@@ -39,6 +39,7 @@
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
 		3C1763881CD8C41300097387 /* ramp.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763861CD8C41300097387 /* ramp.mtl */; };
 		3C1763891CD8C41300097387 /* ramp.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763871CD8C41300097387 /* ramp.obj */; };
+		3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C17638A1CD8D48900097387 /* mapDefinition.txt */; };
 		3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */; };
 		3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */; };
 		3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E801CD7FB3300B01D9D /* sphere.mtl */; };
@@ -187,8 +188,9 @@
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
 		3C1763861CD8C41300097387 /* ramp.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.mtl; sourceTree = "<group>"; };
 		3C1763871CD8C41300097387 /* ramp.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.obj; sourceTree = "<group>"; };
+		3C17638A1CD8D48900097387 /* mapDefinition.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mapDefinition.txt; sourceTree = "<group>"; };
 		3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sphere.vert; sourceTree = "<group>"; };
-		3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sphere.frag; sourceTree = "<group>"; };
+		3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sphere.frag; sourceTree = "<group>"; };
 		3C4E3E801CD7FB3300B01D9D /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		3C4E3E811CD7FB3300B01D9D /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		3C4E3E861CD80B3800B01D9D /* Tree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		B47949841BA6742B00B5E9DC /* data */ = {
 			isa = PBXGroup;
 			children = (
+				3C17638A1CD8D48900097387 /* mapDefinition.txt */,
 				3C1763861CD8C41300097387 /* ramp.mtl */,
 				3C1763871CD8C41300097387 /* ramp.obj */,
 				3C4E3E7E1CD7FB3300B01D9D /* sphere.vert */,
@@ -824,6 +827,7 @@
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
+				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
 				22C25B0A1CCC060B00CF3265 /* cube.vert in Resources */,
 				229B06431CC912F500EDFF9C /* map2.txt in Resources */,

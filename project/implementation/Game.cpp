@@ -19,6 +19,21 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 /* Update render queue */
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
+    if (bRenderer().getInput()->doubleTapRecognized()) {
+        bRenderer::log("DOUBLE");
+        player.toggleBirdsEye();
+        CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
+        if (player.birdsEye()) {
+            cameraPtr->rotateCamera(M_PI*0.25,0.0f,0.0f);
+        } else {
+            cameraPtr->rotateCamera(M_PI*1.75,0.0f,0.0f);
+        }
+        
+    } else if (bRenderer().getInput()->singleTapRecognized()) {
+        bRenderer::log("SINGLE");
+        player.togglePause();
+    }
+    
     vmml::Matrix4f modelMatrix;
     player.update(bRenderer(), collisionHandler.getCollisionForce());
     updateCamera(camera, deltaTime);
@@ -52,7 +67,12 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
     float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*sinf(player.getComAngle());
     float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 
-    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, -10.0f, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
+    float height = -10.0f;
+    if (player.birdsEye()) {
+        height = -70.0f;
+    }
+    
+    vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, height, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
     cameraPtr->setPosition(cameraPosition);
     cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
 }

@@ -28,7 +28,7 @@ Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCO
 
 Player::Player(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     setVelocity(0);
-    setAcceleration(0.2);
+    setAcceleration(0);
     
 }
 
@@ -52,6 +52,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
 }
 
 void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
+    
     _collisionForce = collisionForce;
     
     //Getting the inputs from the gyro sensor
@@ -59,8 +60,14 @@ void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
     float pitch = r.getInput()->getGyroscopePitch(); // left / right
     /*bRenderer::log("roll:" + std::to_string(roll));
      bRenderer::log("pitch:" + std::to_string(pitch));*/
-    
+
     setVelocity(h.clip(getVelocity()+((roll+0.75)/20), minSpeed ,maxSpeed));
+    
+    if (isPaused) {
+        roll = 0.0;
+        pitch = 0.0;
+        setVelocity(0.00000001);
+    }
     
     setAddAngle(pitch);
     float velocityz= (pitch*4*M_PI_F)/180;
