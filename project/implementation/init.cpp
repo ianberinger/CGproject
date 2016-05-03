@@ -71,8 +71,6 @@ void Game::initFunction()
     
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
-    bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, M_PI_F, 0.0f);
-    
     
     //loading the the map
     std::string currLine;
@@ -85,7 +83,6 @@ void Game::initFunction()
         {
             for(int i=0;i<currLine.length();i++){
                 matr[count][i]=currLine[i]-'0';
-
             }
             count++;
         }
@@ -94,29 +91,82 @@ void Game::initFunction()
 
     }
     
+    bool startDefined = false;
     for(int i=0; i<50;i++){
         for(int j=0;j<50;j++){
-            
             switch (matr[i][j]) {
                 case 1: {
-                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
-                    ent.push_back(p);
+                    if (!startDefined) {
+                        int right = matr[i][j+1];
+                        int rightright = matr[i][j+2];
+                        int up = matr[i+1][j];
+                        int upup = matr[i+2][j];
+                        
+                        int z, x;
+                        float angle;
+                        // pi/2 = 90°
+                        if (right == 1 && rightright == 1) {
+                            if (matr[i+1][j+1] == 1) {
+                                // 111
+                                // x1x
+                                bRenderer::log("START hor-down");
+                                x = i;
+                                z = j+1;
+                                angle = 3*M_PI/2;
+                            } else if (matr[i-1][j+1] == 1) {
+                                // x1x
+                                // 111
+                                bRenderer::log("START hor-up");
+                                x = i;
+                                z = j+1;
+                                angle = M_PI/2;
+                            }
+                        } else if (up == 1 && upup == 1) {
+                            if (matr[i+1][j+1] == 1) {
+                                // 1x
+                                // 11
+                                // 1x
+                                bRenderer::log("START vert-right");
+                                x = i + 1;
+                                z = j;
+                                angle = M_PI;
+                            } else if (matr[i+1][j-1] == 1){
+                                // x1
+                                // 11
+                                // x1
+                                bRenderer::log("START vert-left");
+                                x = i + 1;
+                                z = j;
+                                angle = 0.0;
+                            }
+                        }
+                        if (x != 0 || z != 0) {
+                            bRenderer::log("START");
+                             bRenderer::log("MAP z:" + std::to_string(z) + " x:" + std::to_string(x));
+                            player.setX(x*4-100);
+                            player.setZ(z*4-100);
+                            bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
+                            player.setComAngle(angle);
+                            bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, angle+M_PI, 0.0f);
+                            player.setCollisionHandler(&collisionHandler);
+                            startDefined = true;
+                            break;
+                        }
+                    }
                     break;
                 }
-                case 2: {
+                case 4: {
                     std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
                     ent.push_back(p);
                     break;
                 }
-                case 5: {
-                    bRenderer::log("START");
-                    player.setZ(i*4-100);
-                    player.setX(j*4-100);
-                    player.setCollisionHandler(&collisionHandler);
+                case 6: {
+                    std::shared_ptr<Entity> p( new Ramp((i*4-100),0,(j*4-100),1,2,5,true, Entity::Type::RAMP));
+                    ent.push_back(p);
                     break;
                 }
                 case 7: {
-                    std::shared_ptr<Entity> p( new Ramp((i*4-100),0,(j*4-100),1,2,5,true, Entity::Type::RAMP));
+                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
                     ent.push_back(p);
                     break;
                 }

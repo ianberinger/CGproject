@@ -1,0 +1,20 @@
+A map is a text file with m lines and n values each.
+Start and checkpoints are defined like this:
+xx1xx	direction of checkpoint
+x111x	line
+xxxxx
+
+Possible values
+
+0: empty field
+
+1: start
+2: checkpoint
+
+3: track
+
+4: barrier 
+5: barrier round
+
+6: ramp
+7: tree
