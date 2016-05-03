@@ -66,7 +66,6 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     
     
-    
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
     bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, M_PI_F, 0.0f);
@@ -94,16 +93,24 @@ void Game::initFunction()
     
     for(int i=0; i<50;i++){
         for(int j=0;j<50;j++){
-            if(matr[i][j]==2){
-                std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true) );
-                ent.push_back(p);
-            } else if (matr[i][j]==1){
-                std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true) );
-                ent.push_back(p);
-            } else if (matr[i][j]==5){
-                bRenderer::log("START");
-                player.setZ(i*4-100);
-                player.setX(j*4-100);
+            
+            switch (matr[i][j]) {
+                case 1: {
+                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::BARRIER) );
+                    ent.push_back(p);
+                    break;
+                }
+                case 2: {
+                    std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::BARRIER) );
+                    ent.push_back(p);
+                    break;
+                }
+                case 5: {
+                    bRenderer::log("START");
+                    player.setZ(i*4-100);
+                    player.setX(j*4-100);
+                    break;
+                }
             }
         }
     

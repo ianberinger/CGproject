@@ -14,7 +14,7 @@
 class Wheel : public Entity{
 public:
     Wheel();
-    Wheel(float x, float y, float z, float w, float h, float l, bool col);
+    Wheel(float x, float y, float z, float w, float h, float l, bool col, Type type);
     
     virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
     virtual void update(Renderer &r, const vmml::Vector3f &collisionForce);

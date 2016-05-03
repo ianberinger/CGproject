@@ -8,13 +8,13 @@
 
 #include "Wheel.h"
 
-Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true){
+Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::WHEEL){
     
     
 }
 
 
-Wheel::Wheel(float x, float y, float z, float w, float h, float l, bool col):Entity(x, y, z, w, h, l, col){
+Wheel::Wheel(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
   
     
 }

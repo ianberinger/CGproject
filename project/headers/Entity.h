@@ -21,7 +21,10 @@
 class Entity{
     
 public:
-    Entity(float x, float y, float z, float w, float h, float l, bool col){
+    
+    enum Type {PLAYER, BARRIER, RAMP, WHEEL};
+    
+    Entity(float x, float y, float z, float w, float h, float l, bool col, Type type){
         setX(x);
         setY(y);
         setZ(z);
@@ -29,8 +32,7 @@ public:
         setHeight(h);
         setLength(l);
         setCollision(col);
-        
-        
+        setType(type);
     }
     
     
@@ -49,6 +51,8 @@ public:
     void setHeight(float h){height=h;}
     void setLength(float l){length=l;}
     
+    void setType(Type t){ type = t; };
+    
     void setCollision(bool col){collision=col;}
     
     float getX() const {return x;}
@@ -65,6 +69,8 @@ public:
     virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix)=0;
     virtual void update(Renderer &r, const vmml::Vector3f &collisionForce)=0;
     
+    Type getType() const { return type; };
+    
 private:
    float x;
    float y;
@@ -72,7 +78,7 @@ private:
     float width;
     float height;
     float length;
-    
+    Type type;
 
     bool collision;
     

@@ -11,26 +11,22 @@
 
 Helper h;
 
-Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true){
+Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::PLAYER){
    
     //wheels for the car
-    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true) );
-    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true) );
-    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true) );
-    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true) );
+    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true, Entity::Type::WHEEL) );
+    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true, Entity::Type::WHEEL) );
+    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true, Entity::Type::WHEEL) );
+    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true,Entity::Type::WHEEL) );
     
     wheels.push_back(w1);
     wheels.push_back(w2);
     wheels.push_back(w3);
     wheels.push_back(w4);
-
-
-
-
     
 }
 
-Player::Player(float x, float y, float z, float w, float h, float l, bool col):Entity(x, y, z, w, h, l, col){
+Player::Player(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     setVelocity(0);
     setAcceleration(0.2);
     

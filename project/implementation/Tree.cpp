@@ -9,7 +9,7 @@
 #include "Tree.h"
 
 
-Tree::Tree(float x, float y, float z, float w, float h, float l, bool col):Entity(x, y, z, w, h, l, col){
+Tree::Tree(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     
 }
 
