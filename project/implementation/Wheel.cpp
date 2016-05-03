@@ -8,7 +8,7 @@
 
 #include "Wheel.h"
 
-Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::WHEEL){
+Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCOLLIDABLE){
     
     
 }

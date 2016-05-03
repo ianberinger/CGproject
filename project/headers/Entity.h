@@ -22,7 +22,7 @@ class Entity{
     
 public:
     
-    enum Type {PLAYER, BARRIER, RAMP, WHEEL};
+    enum Type {NOTCOLLIDABLE, COLLIDABLE, RAMP};
     
     Entity(float x, float y, float z, float w, float h, float l, bool col, Type type){
         setX(x);

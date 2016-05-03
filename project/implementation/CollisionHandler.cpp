@@ -64,7 +64,7 @@ void Collisionhandler::handleCollision(float max_x, float min_x, float max_z, fl
             }
             break;
         }
-        case Entity::BARRIER: {
+        case Entity::COLLIDABLE: {
             if ((x_left >= min_x || x_right <= max_x) && (z_up <= min_z || z_down >= max_z)) {
                 if (a.getZ() < 0) {
                     if (z_up <= min_z) {

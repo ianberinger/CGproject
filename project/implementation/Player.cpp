@@ -11,13 +11,13 @@
 
 Helper h;
 
-Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::PLAYER){
+Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCOLLIDABLE){
     
     //wheels for the car
-    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true, Entity::Type::WHEEL) );
-    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true, Entity::Type::WHEEL) );
-    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true, Entity::Type::WHEEL) );
-    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true,Entity::Type::WHEEL) );
+    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true,Entity::Type::NOTCOLLIDABLE) );
     
     wheels.push_back(w1);
     wheels.push_back(w2);

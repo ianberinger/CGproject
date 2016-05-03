@@ -100,12 +100,12 @@ void Game::initFunction()
             
             switch (matr[i][j]) {
                 case 1: {
-                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::BARRIER) );
+                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
                     ent.push_back(p);
                     break;
                 }
                 case 2: {
-                    std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::BARRIER) );
+                    std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
                     ent.push_back(p);
                     break;
                 }
