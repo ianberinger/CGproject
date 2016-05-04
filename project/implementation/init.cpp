@@ -110,6 +110,20 @@ void Game::initFunction()
                     }
                     break;
                 }
+                case 2: {
+                    marker checkpoint = identifyMarker(matr, i, j);
+                    if (checkpoint.isValid) {
+                        bool isCollected = false;
+                        for(auto c: checkpoints) {
+                            if (c.x == checkpoint.x && c.z == checkpoint.z){
+                                // don't use this checkpoint
+                                isCollected = true;
+                                break;
+                            }
+                        }
+                        if (!isCollected) {checkpoints.push_back(checkpoint);}
+                    }
+                }
                 case 4: {
                     std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
                     ent.push_back(p);

@@ -73,7 +73,7 @@ private:
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
     std::vector<std::shared_ptr<Entity>> ent;
-
+    std::vector<marker> checkpoints;
 };
 
 #endif /* defined(PROJECT_MAIN_H) */
