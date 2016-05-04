@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Ramp.h"
 #include "CollisionHandler.hpp"
+#include "MapLoader.hpp"
 
 class Game : public IRenderProject
 {

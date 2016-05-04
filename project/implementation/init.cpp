@@ -1,8 +1,6 @@
 #include "Game.h"
 /* Initialize the Game */
 
-
-
 void Game::init()
 {
     bRenderer::loadConfigFile("config.json");	// load custom configurations replacing the default values in Configuration.cpp
@@ -97,60 +95,17 @@ void Game::initFunction()
             switch (matr[i][j]) {
                 case 1: {
                     if (!startDefined) {
-                        int right = matr[i][j+1];
-                        int rightright = matr[i][j+2];
-                        int up = matr[i+1][j];
-                        int upup = matr[i+2][j];
-                        
-                        int z, x;
-                        float angle;
-                        // pi/2 = 90°
-                        if (right == 1 && rightright == 1) {
-                            if (matr[i+1][j+1] == 1) {
-                                // 111
-                                // x1x
-                                bRenderer::log("START hor-down");
-                                x = i;
-                                z = j+1;
-                                angle = 3*M_PI/2;
-                            } else if (matr[i-1][j+1] == 1) {
-                                // x1x
-                                // 111
-                                bRenderer::log("START hor-up");
-                                x = i;
-                                z = j+1;
-                                angle = M_PI/2;
-                            }
-                        } else if (up == 1 && upup == 1) {
-                            if (matr[i+1][j+1] == 1) {
-                                // 1x
-                                // 11
-                                // 1x
-                                bRenderer::log("START vert-right");
-                                x = i + 1;
-                                z = j;
-                                angle = M_PI;
-                            } else if (matr[i+1][j-1] == 1){
-                                // x1
-                                // 11
-                                // x1
-                                bRenderer::log("START vert-left");
-                                x = i + 1;
-                                z = j;
-                                angle = 0.0;
-                            }
-                        }
-                        if (x != 0 || z != 0) {
+                        marker start = identifyMarker(matr, i, j);
+                        if (start.isValid) {
                             bRenderer::log("START");
-                             bRenderer::log("MAP z:" + std::to_string(z) + " x:" + std::to_string(x));
-                            player.setX(x*4-100);
-                            player.setZ(z*4-100);
+                            bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
+                            player.setX(start.x*4-100);
+                            player.setZ(start.z*4-100);
                             bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
-                            player.setComAngle(angle);
-                            bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, angle+M_PI, 0.0f);
+                            player.setComAngle(start.angle);
+                            bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
                             player.setCollisionHandler(&collisionHandler);
                             startDefined = true;
-                            break;
                         }
                     }
                     break;
@@ -172,19 +127,15 @@ void Game::initFunction()
                 }
             }
         }
-    
     }
     
-    
-    
+    if (!startDefined) {
+        bRenderer::log("ERROR::NO START FOUND");
+    }
     // load materials and shaders before loading the model
     // Update render queue
     updateRenderQueue("camera", 0.0f);
 }
 
 /* This function is executed when terminating the renderer */
-void Game::terminateFunction()
-{
-    bRenderer::log("I totally terminated this Renderer :-)");
-}
-
+void Game::terminateFunction() { bRenderer::log("I totally terminated this Renderer :-)");}
