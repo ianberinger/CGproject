@@ -55,14 +55,11 @@
 		64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD661CD7E55B00E15EA6 /* ramp.vert */; };
 		B44186971BA331E300604D7F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44186961BA331E300604D7F /* Game.cpp */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
-		B4794A2A1BA6743D00B5E9DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B47949C41BA6743D00B5E9DC /* LICENSE.txt */; };
 		B4794A2B1BA6743D00B5E9DC /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C61BA6743D00B5E9DC /* platform.c */; };
 		B4794A2C1BA6743D00B5E9DC /* texture-atlas.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C81BA6743D00B5E9DC /* texture-atlas.c */; };
 		B4794A2D1BA6743D00B5E9DC /* texture-font.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949CA1BA6743D00B5E9DC /* texture-font.c */; };
 		B4794A2E1BA6743D00B5E9DC /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949CD1BA6743D00B5E9DC /* vector.c */; };
 		B4794A2F1BA6743D00B5E9DC /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47949D21BA6743D00B5E9DC /* jsoncpp.cpp */; };
-		B4794A301BA6743D00B5E9DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B47949D31BA6743D00B5E9DC /* LICENSE.txt */; };
-		B4794A311BA6743D00B5E9DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B47949D51BA6743D00B5E9DC /* LICENSE.txt */; };
 		B4794A321BA6743D00B5E9DC /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47949D61BA6743D00B5E9DC /* obj.cpp */; };
 		B4794A331BA6743D00B5E9DC /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47949D81BA6743D00B5E9DC /* obj_parser.cpp */; };
 		B4794A341BA6743D00B5E9DC /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4794A021BA6743D00B5E9DC /* Camera.cpp */; };
@@ -800,7 +797,6 @@
 			files = (
 				228594FD1CD106ED0063E8A6 /* car.png in Resources */,
 				64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */,
-				B4794A311BA6743D00B5E9DC /* LICENSE.txt in Resources */,
 				22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */,
 				22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */,
 				22F2E8F81CC8024A00C2AEE9 /* guy.frag in Resources */,
@@ -810,7 +806,6 @@
 				22F2E8FD1CC8024A00C2AEE9 /* terrain.mtl in Resources */,
 				3C1763891CD8C41300097387 /* ramp.obj in Resources */,
 				229DF8E21CC93F1000262F16 /* cube.mtl in Resources */,
-				B4794A2A1BA6743D00B5E9DC /* LICENSE.txt in Resources */,
 				22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */,
 				22A4CA721CD748D9009AB514 /* wheel.png in Resources */,
 				22F2E8FF1CC8024A00C2AEE9 /* terrain.vert in Resources */,
@@ -828,7 +823,6 @@
 				228595011CD108B20063E8A6 /* car.vert in Resources */,
 				B47949AF1BA6742B00B5E9DC /* config.json in Resources */,
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
-				B4794A301BA6743D00B5E9DC /* LICENSE.txt in Resources */,
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
@@ -974,6 +968,7 @@
 					DARWIN_NO_CARBON,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/bRenderer,
 					"$SRCROOT/externalLibraries/boost-library",
@@ -1014,6 +1009,7 @@
 					DARWIN_NO_CARBON,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/bRenderer,
 					"$SRCROOT/externalLibraries/boost-library",

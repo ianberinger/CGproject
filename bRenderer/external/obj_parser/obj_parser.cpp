@@ -132,9 +132,9 @@ bool obj::obj_parser::parse(std::istream& istream)
                         }
                         return false;
                     }
-                    if (((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1))
-                        || ((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2))
-                        || ((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3))) {
+                    if ((((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1)))
+                        || (((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2)))
+                        || (((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3)))) {
                         if (error_callback_) {
                             error_callback_(line_number, "index out of bounds (f/fo)");
                         }
@@ -298,12 +298,12 @@ bool obj::obj_parser::parse(std::istream& istream)
                                 }
                                 return false;
                             }
-                            if (((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1))
-                                || ((vt1 < -index_type(number_of_texture_vertices)) || (-1 < vt1)) && ((vt1 < 1) || (index_type(number_of_texture_vertices) < vt1))
-                                || ((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2))
-                                || ((vt2 < -index_type(number_of_texture_vertices)) || (-1 < vt2)) && ((vt2 < 1) || (index_type(number_of_texture_vertices) < vt2))
-                                || ((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3))
-                                || ((vt3 < -index_type(number_of_texture_vertices)) || (-1 < vt3)) && ((vt3 < 1) || (index_type(number_of_texture_vertices) < vt3))) {
+                            if ((((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1)))
+                                || (((vt1 < -index_type(number_of_texture_vertices)) || (-1 < vt1)) && ((vt1 < 1) || (index_type(number_of_texture_vertices) < vt1)))
+                                || (((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2)))
+                                || (((vt2 < -index_type(number_of_texture_vertices)) || (-1 < vt2)) && ((vt2 < 1) || (index_type(number_of_texture_vertices) < vt2)))
+                                || (((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3)))
+                                || (((vt3 < -index_type(number_of_texture_vertices)) || (-1 < vt3)) && ((vt3 < 1) || (index_type(number_of_texture_vertices) < vt3)))) {
                                 if (error_callback_) {
                                     error_callback_(line_number, "index out of bounds (f/fo)");
                                 }
@@ -349,8 +349,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                     }
                                     return false;
                                 }
-                                if (((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4))
-                                    || ((vt4 < -index_type(number_of_texture_vertices)) || (-1 < vt4)) && ((vt4 < 1) || (index_type(number_of_texture_vertices) < vt4))) {
+                                if ((((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4)))
+                                    || (((vt4 < -index_type(number_of_texture_vertices)) || (-1 < vt4)) && ((vt4 < 1) || (index_type(number_of_texture_vertices) < vt4)))) {
                                     if (error_callback_) {
                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                     }
@@ -389,8 +389,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                                 stringstream >> whitespace_vt_v >> std::ws;
                                             }
                                             if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && std::isspace(whitespace_vt_v)) {
-                                                if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                    || ((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt))) {
+                                                if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                    || (((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt)))) {
                                                     if (error_callback_) {
                                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                                     }
@@ -435,8 +435,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                                 stringstream >> whitespace_vt_v >> std::ws;
                                             }
                                             if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && std::isspace(whitespace_vt_v)) {
-                                                if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                    || ((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt))) {
+                                                if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                    || (((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt)))) {
                                                     if (error_callback_) {
                                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                                     }
@@ -485,15 +485,15 @@ bool obj::obj_parser::parse(std::istream& istream)
                                 }
                                 return false;
                             }
-                            if (((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1))
-                                || ((vt1 < -index_type(number_of_texture_vertices)) || (-1 < vt1)) && ((vt1 < 1) || (index_type(number_of_texture_vertices) < vt1))
-                                || ((vn1 < -index_type(number_of_vertex_normals)) || (-1 < vn1)) && ((vn1 < 1) || (index_type(number_of_vertex_normals) < vn1))
-                                || ((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2))
-                                || ((vt2 < -index_type(number_of_texture_vertices)) || (-1 < vt2)) && ((vt2 < 1) || (index_type(number_of_texture_vertices) < vt2))
-                                || ((vn2 < -index_type(number_of_vertex_normals)) || (-1 < vn2)) && ((vn2 < 1) || (index_type(number_of_vertex_normals) < vn2))
-                                || ((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3))
-                                || ((vt3 < -index_type(number_of_texture_vertices)) || (-1 < vt3)) && ((vt3 < 1) || (index_type(number_of_texture_vertices) < vt3))
-                                || ((vn3 < -index_type(number_of_vertex_normals)) || (-1 < vn3)) && ((vn3 < 1) || (index_type(number_of_vertex_normals) < vn3))) {
+                            if ((((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1)))
+                                || (((vt1 < -index_type(number_of_texture_vertices)) || (-1 < vt1)) && ((vt1 < 1) || (index_type(number_of_texture_vertices) < vt1)))
+                                || (((vn1 < -index_type(number_of_vertex_normals)) || (-1 < vn1)) && ((vn1 < 1) || (index_type(number_of_vertex_normals) < vn1)))
+                                || (((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2)))
+                                || (((vt2 < -index_type(number_of_texture_vertices)) || (-1 < vt2)) && ((vt2 < 1) || (index_type(number_of_texture_vertices) < vt2)))
+                                || (((vn2 < -index_type(number_of_vertex_normals)) || (-1 < vn2)) && ((vn2 < 1) || (index_type(number_of_vertex_normals) < vn2)))
+                                || (((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3)))
+                                || (((vt3 < -index_type(number_of_texture_vertices)) || (-1 < vt3)) && ((vt3 < 1) || (index_type(number_of_texture_vertices) < vt3)))
+                                || (((vn3 < -index_type(number_of_vertex_normals)) || (-1 < vn3)) && ((vn3 < 1) || (index_type(number_of_vertex_normals) < vn3)))) {
                                 if (error_callback_) {
                                     error_callback_(line_number, "index out of bounds (f/fo)");
                                 }
@@ -548,9 +548,9 @@ bool obj::obj_parser::parse(std::istream& istream)
                                     }
                                     return false;
                                 }
-                                if (((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4))
-                                    || ((vt4 < -index_type(number_of_texture_vertices)) || (-1 < vt4)) && ((vt4 < 1) || (index_type(number_of_texture_vertices) < vt4))
-                                    || ((vn4 < -index_type(number_of_vertex_normals)) || (-1 < vn4)) && ((vn4 < 1) || (index_type(number_of_vertex_normals) < vn4))) {
+                                if ((((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4)))
+                                    || (((vt4 < -index_type(number_of_texture_vertices)) || (-1 < vt4)) && ((vt4 < 1) || (index_type(number_of_texture_vertices) < vt4)))
+                                    || (((vn4 < -index_type(number_of_vertex_normals)) || (-1 < vn4)) && ((vn4 < 1) || (index_type(number_of_vertex_normals) < vn4)))) {
                                     if (error_callback_) {
                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                     }
@@ -592,9 +592,9 @@ bool obj::obj_parser::parse(std::istream& istream)
                                                 stringstream >> whitespace_vn_v >> std::ws;
                                             }
                                             if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && (slash_vt_vn == '/') && std::isspace(whitespace_vn_v)) {
-                                                if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                    || ((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt))
-                                                    || ((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn))) {
+                                                if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                    || (((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt)))
+                                                    || (((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn)))) {
                                                     if (error_callback_) {
                                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                                     }
@@ -642,9 +642,9 @@ bool obj::obj_parser::parse(std::istream& istream)
                                                 stringstream >> whitespace_vn_v >> std::ws;
                                             }
                                             if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && (slash_vt_vn == '/') && std::isspace(whitespace_vn_v)) {
-                                                if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                    || ((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt))
-                                                    || ((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn))) {
+                                                if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                    || (((vt < -index_type(number_of_texture_vertices)) || (-1 < vt)) && ((vt < 1) || (index_type(number_of_texture_vertices) < vt)))
+                                                    || (((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn)))) {
                                                     if (error_callback_) {
                                                         error_callback_(line_number, "index out of bounds (f/fo)");
                                                     }
@@ -697,12 +697,12 @@ bool obj::obj_parser::parse(std::istream& istream)
                             }
                             return false;
                         }
-                        if (((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1))
-                            || ((vn1 < -index_type(number_of_vertex_normals)) || (-1 < vn1)) && ((vn1 < 1) || (index_type(number_of_vertex_normals) < vn1))
-                            || ((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2))
-                            || ((vn2 < -index_type(number_of_vertex_normals)) || (-1 < vn2)) && ((vn2 < 1) || (index_type(number_of_vertex_normals) < vn2))
-                            || ((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3))
-                            || ((vn3 < -index_type(number_of_vertex_normals)) || (-1 < vn3)) && ((vn3 < 1) || (index_type(number_of_vertex_normals) < vn3))) {
+                        if ((((v1 < -index_type(number_of_geometric_vertices)) || (-1 < v1)) && ((v1 < 1) || (index_type(number_of_geometric_vertices) < v1)))
+                            || (((vn1 < -index_type(number_of_vertex_normals)) || (-1 < vn1)) && ((vn1 < 1) || (index_type(number_of_vertex_normals) < vn1)))
+                            || (((v2 < -index_type(number_of_geometric_vertices)) || (-1 < v2)) && ((v2 < 1) || (index_type(number_of_geometric_vertices) < v2)))
+                            || (((vn2 < -index_type(number_of_vertex_normals)) || (-1 < vn2)) && ((vn2 < 1) || (index_type(number_of_vertex_normals) < vn2)))
+                            || (((v3 < -index_type(number_of_geometric_vertices)) || (-1 < v3)) && ((v3 < 1) || (index_type(number_of_geometric_vertices) < v3)))
+                            || (((vn3 < -index_type(number_of_vertex_normals)) || (-1 < vn3)) && ((vn3 < 1) || (index_type(number_of_vertex_normals) < vn3)))) {
                             if (error_callback_) {
                                 error_callback_(line_number, "index out of bounds (f/fo)");
                             }
@@ -748,8 +748,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                 }
                                 return false;
                             }
-                            if (((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4))
-                                || ((vn4 < -index_type(number_of_vertex_normals)) || (-1 < vn4)) && ((vn4 < 1) || (index_type(number_of_vertex_normals) < vn4))) {
+                            if ((((v4 < -index_type(number_of_geometric_vertices)) || (-1 < v4)) && ((v4 < 1) || (index_type(number_of_geometric_vertices) < v4)))
+                                || (((vn4 < -index_type(number_of_vertex_normals)) || (-1 < vn4)) && ((vn4 < 1) || (index_type(number_of_vertex_normals) < vn4)))) {
                                 if (error_callback_) {
                                     error_callback_(line_number, "index out of bounds (f/fo)");
                                 }
@@ -788,8 +788,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                             stringstream >> whitespace_vn_v >> std::ws;
                                         }
                                         if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && (slash_vt_vn == '/') && std::isspace(whitespace_vn_v)) {
-                                            if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                || ((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn))) {
+                                            if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                || (((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn)))) {
                                                 if (error_callback_) {
                                                     error_callback_(line_number, "index out of bounds (f/fo)");
                                                 }
@@ -834,8 +834,8 @@ bool obj::obj_parser::parse(std::istream& istream)
                                             stringstream >> whitespace_vn_v >> std::ws;
                                         }
                                         if (stringstream && (slash_geometric_vertices_texture_vertices == '/') && (slash_vt_vn == '/') && std::isspace(whitespace_vn_v)) {
-                                            if (((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v))
-                                                || ((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn))) {
+                                            if ((((v < -index_type(number_of_geometric_vertices)) || (-1 < v)) && ((v < 1) || (index_type(number_of_geometric_vertices) < v)))
+                                                || (((vn < -index_type(number_of_vertex_normals)) || (-1 < vn)) && ((vn < 1) || (index_type(number_of_vertex_normals) < vn)))) {
                                                 if (error_callback_) {
                                                     error_callback_(line_number, "index out of bounds (f/fo)");
                                                 }

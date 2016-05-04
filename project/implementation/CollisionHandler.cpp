@@ -96,6 +96,10 @@ void Collisionhandler::handleCollision(float max_x, float min_x, float max_z, fl
             }
             break;
         }
+        case Entity::NOTCOLLIDABLE: {
+            // don't do anything
+            break;
+        }
     }
     
 }

@@ -47,7 +47,7 @@ public:
   typedef std::function<void (const std::string&)> material_name_callback_type;
   typedef std::function<void (const std::string&)> comment_callback_type;
   typedef int flags_type;
-  typedef enum {
+  enum {
     parse_blank_lines_as_comment = 1 << 0,
     triangulate_faces = 1 << 1,
     translate_negative_indices = 1 << 2

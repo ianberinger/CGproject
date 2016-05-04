@@ -112,7 +112,8 @@ texture_atlas_set_region( texture_atlas_t * self,
     size_t i, j;
     size_t depth;
     size_t charsize;
-	unsigned char *row, *src;
+    unsigned char *row;
+    const unsigned char *src;
 
     assert( self );
     assert( x > 0);

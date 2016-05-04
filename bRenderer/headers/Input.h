@@ -72,8 +72,8 @@ namespace bRenderer
 	const GLint KEY_Y = 89;
 	const GLint KEY_Z = 90;
 	const GLint KEY_LEFT_BRACKET = 91;		// [
-	const GLint KEY_BACKSLASH = 92;			// \ 
-	const GLint KEY_RIGHT_BRACKET = 93;		// ]
+	const GLint KEY_BACKSLASH = 92;			// \\
+    const GLint KEY_RIGHT_BRACKET = 93;		// ]
 	const GLint KEY_GRAVE_ACCENT = 96;		// `
 	const GLint KEY_WORLD_1 = 161;			// non-US #1 
 	const GLint KEY_WORLD_2 = 162;			// non-US #2
