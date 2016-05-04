@@ -89,25 +89,11 @@ void Game::initFunction()
 
     }
     
-    bool startDefined = false;
     for(int i=0; i<50;i++){
         for(int j=0;j<50;j++){
             switch (matr[i][j]) {
                 case 1: {
-                    if (!startDefined) {
-                        marker start = identifyMarker(matr, i, j);
-                        if (start.isValid) {
-                            bRenderer::log("START");
-                            bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
-                            player.setX(start.x*4-100);
-                            player.setZ(start.z*4-100);
-                            bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
-                            player.setComAngle(start.angle);
-                            bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
-                            player.setCollisionHandler(&collisionHandler);
-                            startDefined = true;
-                        }
-                    }
+                    if (!start.isValid) {start = identifyMarker(matr, i, j);}
                     break;
                 }
                 case 2: {
@@ -123,6 +109,7 @@ void Game::initFunction()
                         }
                         if (!isCollected) {checkpoints.push_back(checkpoint);}
                     }
+                    break;
                 }
                 case 4: {
                     std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
@@ -143,7 +130,16 @@ void Game::initFunction()
         }
     }
     
-    if (!startDefined) {
+    if (start.isValid) {
+        bRenderer::log("START");
+        bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
+        player.setX(start.x*4-100);
+        player.setZ(start.z*4-100);
+        bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
+        player.setComAngle(start.angle);
+        bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
+        player.setCollisionHandler(&collisionHandler);
+    } else {
         bRenderer::log("ERROR::NO START FOUND");
     }
     // load materials and shaders before loading the model
