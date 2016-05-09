@@ -19,20 +19,7 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 /* Update render queue */
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
-    if (bRenderer().getInput()->doubleTapRecognized()) {
-        bRenderer::log("DOUBLE");
-        player.toggleBirdsEye();
-        CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
-        if (player.birdsEye()) {
-            cameraPtr->rotateCamera(M_PI*0.25,0.0f,0.0f);
-        } else {
-            cameraPtr->rotateCamera(M_PI*1.75,0.0f,0.0f);
-        }
-        
-    } else if (bRenderer().getInput()->singleTapRecognized()) {
-        bRenderer::log("SINGLE");
-        player.togglePause();
-    }
+    handleDebuggingInput(camera);
     
     vmml::Matrix4f modelMatrix;
     player.update(bRenderer());

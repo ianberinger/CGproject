@@ -37,6 +37,7 @@
 		22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F51CC8024A00C2AEE9 /* tree.mtl */; };
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
+		3C00FEDD1CE12BAF00DFEFF5 /* Debugging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */; };
 		3C1763881CD8C41300097387 /* ramp.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763861CD8C41300097387 /* ramp.mtl */; };
 		3C1763891CD8C41300097387 /* ramp.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763871CD8C41300097387 /* ramp.obj */; };
 		3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C17638A1CD8D48900097387 /* mapDefinition.txt */; };
@@ -184,6 +185,7 @@
 		22F2E8F51CC8024A00C2AEE9 /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
+		3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debugging.cpp; sourceTree = "<group>"; };
 		3C1763861CD8C41300097387 /* ramp.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.mtl; sourceTree = "<group>"; };
 		3C1763871CD8C41300097387 /* ramp.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.obj; sourceTree = "<group>"; };
 		3C17638A1CD8D48900097387 /* mapDefinition.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mapDefinition.txt; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				226397911CCD2B9200A2553C /* Player.cpp */,
 				3C4E3E871CD80B8900B01D9D /* Tree.cpp */,
 				3C357E4B1CDA740D0029D6A0 /* MapLoader.cpp */,
+				3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C00FEDD1CE12BAF00DFEFF5 /* Debugging.cpp in Sources */,
 				B47AD6E11B827F0F00AFC632 /* type1.c in Sources */,
 				B4794A3C1BA6743D00B5E9DC /* Material.cpp in Sources */,
 				B47AD7051B8280A900AFC632 /* ftsystem.c in Sources */,

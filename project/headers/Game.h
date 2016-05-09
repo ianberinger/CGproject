@@ -57,6 +57,9 @@ private:
 
 	/* Camera movement */
     void updateCamera(const std::string &camera, const double &deltaTime);
+    
+    /* Debugging */
+    void handleDebuggingInput(const std::string &camera);
 
     /* Constants */
     const vmml::Vector4f fogColor = vmml::Vector4f(0.5, 0.5, 0.5, 1);
