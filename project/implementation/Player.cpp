@@ -40,7 +40,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     collisionHandler->applyGravity();
     
     vmml::Matrix4f transformationMatrix{modelMatrix};
-    transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(_collisionForce.y(), vmml::Vector3f::UNIT_X)*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));
+    transformationMatrix *= vmml::create_translation(vmml::Vector3f(getX(),getY(),getZ()))*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));
     
     for(auto e : wheels){
         e->draw(r, transformationMatrix);
@@ -51,10 +51,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
 }
 
-void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
-    
-    _collisionForce = collisionForce;
-    
+void Player::update(Renderer &r){
     //Getting the inputs from the gyro sensor
     float roll = r.getInput()->getGyroscopeRoll(); // tilt
     float pitch = r.getInput()->getGyroscopePitch(); // left / right
@@ -73,7 +70,7 @@ void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
     float velocityz= (pitch*4*M_PI_F)/180;
     
     for(auto e : wheels){
-        e->update(r, collisionForce);
+        e->update(r);
         
     }
     
@@ -89,7 +86,7 @@ void Player::update(Renderer &r, const vmml::Vector3f &collisionForce){
         bRenderer::log("COLLISION");
         setCollision(false);
         
-        vmml::Vector3f newVelocity {getXYZ() + collisionForce};
+        vmml::Vector3f newVelocity {getXYZ() + collisionHandler->getCollisionForce()};
         
         setX(newVelocity.x());
         setZ(newVelocity.z());

@@ -35,7 +35,7 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     }
     
     vmml::Matrix4f modelMatrix;
-    player.update(bRenderer(), collisionHandler.getCollisionForce());
+    player.update(bRenderer());
     updateCamera(camera, deltaTime);
         
     for(auto e: ent) {

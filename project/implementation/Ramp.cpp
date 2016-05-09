@@ -20,7 +20,7 @@ void Ramp::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
     r.getModelRenderer()->drawModel("ramp", "camera", modelMatrix*vmml::create_translation(getXYZ()), std::vector<std::string>({ }));
 }
 
-void Ramp::update(Renderer &r, const vmml::Vector3f &collisionForce){
+void Ramp::update(Renderer &r){
     //do something
     
 }

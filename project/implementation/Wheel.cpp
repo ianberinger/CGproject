@@ -30,7 +30,7 @@ Wheel::Wheel(float x, float y, float z, float w, float h, float l, bool col, Typ
 
 }
 
-void Wheel::update(Renderer &r, const vmml::Vector3f &collisionForce){
+void Wheel::update(Renderer &r){
     float roll = r.getInput()->getGyroscopeRoll();
     float pitch = r.getInput()->getGyroscopePitch();
     

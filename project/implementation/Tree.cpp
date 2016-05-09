@@ -22,7 +22,7 @@ void Tree::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
     
 }
 
-void Tree::update(Renderer &r, const vmml::Vector3f &collisionForce){
+void Tree::update(Renderer &r){
     //do something
     
 }
