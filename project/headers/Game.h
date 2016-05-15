@@ -9,6 +9,13 @@
 #include "CollisionHandler.hpp"
 #include "MapLoader.hpp"
 
+struct positionInTime {
+    float time;
+    float comAngle;
+    float addAngle;
+    vmml::Vector3f position;
+};
+
 class Game : public IRenderProject
 {
 public:
@@ -59,6 +66,7 @@ private:
     void updateCamera(const std::string &camera, const double &deltaTime);
     
     void updateTime(const double &deltaTime){if(!isPaused||time<0.0){time+=deltaTime;}}
+    void recordPosition(){if(!isPaused){pastPositions.push_back(positionInTime{time, player.getComAngle(), player.getAddAngle(), player.getXYZ()});}}
     
     /* Debugging */
     void handleDebuggingInput(const std::string &camera);
@@ -67,7 +75,6 @@ private:
 
     /* Constants */
     const vmml::Vector4f fogColor = vmml::Vector4f(0.5, 0.5, 0.5, 1);
-    
 	/* Variables */
 	GLfloat _randomOffset;
 	GLfloat _offset;
@@ -82,6 +89,7 @@ private:
     std::vector<std::shared_ptr<Entity>> ent;
     marker start;
     std::vector<marker> checkpoints;
+    std::vector<positionInTime> pastPositions;
     const float countdown = 3.0;
     float time = 0.0;
     
