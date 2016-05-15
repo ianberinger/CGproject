@@ -19,6 +19,7 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 /* Update render queue */
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
+    updateTime(deltaTime);
     handleDebuggingInput(camera);
     
     vmml::Matrix4f modelMatrix;
@@ -43,19 +44,23 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     player.draw(bRenderer(),modelMatrix);
     
     
-    if (countdown > 0.0) {
+    char timeBuffer [5];
+    if (time < 0.0) {
         // render countdown
-        char buffer [5];
-        sprintf(buffer, "%.0f...", countdown);
+        sprintf(timeBuffer, "%.0f...", fabs(time));
         
-        bRenderer().getObjects()->getTextSprite("countdown")->setText(buffer);
+        bRenderer().getObjects()->getTextSprite("countdown")->setText(timeBuffer);
         bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
-        countdown -= deltaTime;
-    } else if (countdown > -1.0) {
-        countdown -= deltaTime;
-        isPaused = false;
-        bRenderer().getObjects()->getTextSprite("countdown")->setText("GO!");
-        bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+    } else  {
+        if (time < 1.0) {
+            isPaused = false;
+            bRenderer().getObjects()->getTextSprite("countdown")->setText("GO!");
+            bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+        }
+        sprintf(timeBuffer, "%.3fs", time);
+        bRenderer().getObjects()->getTextSprite("time")->setText(timeBuffer);
+        
+        bRenderer().getModelRenderer()->drawText("time", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX(), player.getY()+10, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(1.0f)), std::vector<std::string>({ }));
     }
 
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
@@ -67,7 +72,6 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
     CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
-    
     float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*sinf(player.getComAngle());
     float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 

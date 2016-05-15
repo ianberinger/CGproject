@@ -58,6 +58,8 @@ private:
 	/* Camera movement */
     void updateCamera(const std::string &camera, const double &deltaTime);
     
+    void updateTime(const double &deltaTime){if(!isPaused||time<0.0){time+=deltaTime;}}
+    
     /* Debugging */
     void handleDebuggingInput(const std::string &camera);
     void togglePause(){isPaused=!isPaused;}
@@ -80,7 +82,8 @@ private:
     std::vector<std::shared_ptr<Entity>> ent;
     marker start;
     std::vector<marker> checkpoints;
-    float countdown = 3.0;
+    const float countdown = 3.0;
+    float time = 0.0;
     
     bool isPaused = true;
     bool isBirdsEye = false;

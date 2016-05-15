@@ -71,6 +71,7 @@ void Game::initFunction()
     
     // create text sprites
     bRenderer().getObjects()->createTextSprite("countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+    bRenderer().getObjects()->createTextSprite("time", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
 
     
     // create camera
@@ -145,6 +146,7 @@ void Game::initFunction()
         player.setComAngle(start.angle);
         bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
         player.setCollisionHandler(&collisionHandler);
+        time -= countdown;
     } else {
         bRenderer::log("ERROR::NO START FOUND");
     }
