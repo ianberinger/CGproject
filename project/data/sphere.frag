@@ -3,14 +3,17 @@
 uniform mediump vec4 EyePos;
 uniform mediump vec4 fogColor;
 
-varying lowp vec4 colorVarying;
 varying mediump vec4 posVarying;
 
 void main()
 {
-    // TODO: change output color
-    mediump float dist= length((EyePos-posVarying).xyz);
-    mediump float fogCo=1.0/(pow(2.71828,(dist*0.005)));
+    // other color variation
+    //mediump vec4 bottom = vec4(0.607, 0.892, 0.949, 1.0);
+    //mediump vec4 top = vec4(0.121, 0.572, 0.794, 1.0);
+    mediump vec4 bottom = vec4(0.99, 0.95, 0.69, 0.5);
+    mediump vec4 top = vec4(0.18, 0.59, 0.72, 1.0);
     
-    gl_FragColor = mix(fogColor,colorVarying,fogCo);
+    mediump float co = abs(posVarying.y+0.01)*10.0;
+    
+    gl_FragColor = mix(bottom, top, co);
 }
