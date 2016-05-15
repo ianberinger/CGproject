@@ -43,7 +43,6 @@ void Game::initFunction()
     ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
     ShaderPtr rampShader = bRenderer().getObjects()->loadShaderFile("ramp", 0, false, false, false, false, false);
 
-
     globalShaders.push_back(sphereShader);
     globalShaders.push_back(terrainShader);
     
@@ -57,7 +56,7 @@ void Game::initFunction()
     PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
     PropertiesPtr rampProperties = bRenderer().getObjects()->createProperties("rampProperties");
     
-    // load model
+    // load models
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4, true, false);    
@@ -67,9 +66,16 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     bRenderer().getObjects()->loadObjModel("ramp.obj", true, true, false, 4, true, false);
     
+    // load fonts
+    FontPtr comicSans = bRenderer().getObjects()->loadFont("Comic Sans MS.ttf", 500);
+    
+    // create text sprites
+    bRenderer().getObjects()->createTextSprite("countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+
+    
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
-    
+
     //loading the the map
     std::string currLine;
     std::ifstream file (bRenderer::getFilePath("map2.txt"));

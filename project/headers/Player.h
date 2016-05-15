@@ -19,7 +19,7 @@ public:
     Player(float x, float y, float z, float w, float h, float l, bool col, Type type);
     
     virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
-    virtual void update(Renderer &r);
+    virtual void update(Renderer &r, bool isPaused);
     void setRotAngle(float ang){rotAngle=ang;}
     float getRotAngle(){return rotAngle;}
     
@@ -40,9 +40,7 @@ public:
     
     void setCollisionHandler(Collisionhandler *handler) {collisionHandler = handler;}
     
-    void togglePause(){isPaused=!isPaused;}
-    void toggleBirdsEye(){isBirdsEye=!isBirdsEye;}
-    bool birdsEye(){return isBirdsEye;}
+    
     
 private:
     const float minSpeed=-0.2;
@@ -53,8 +51,6 @@ private:
     float velocity;
     float acceleration;
     float offSetCam[3];
-    bool isPaused = false;
-    bool isBirdsEye = false;
     std::vector<std::shared_ptr<Wheel>> wheels;
     Collisionhandler *collisionHandler;
 };

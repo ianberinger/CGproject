@@ -22,9 +22,10 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     handleDebuggingInput(camera);
     
     vmml::Matrix4f modelMatrix;
-    player.update(bRenderer());
+    
+    player.update(bRenderer(), isPaused);
     updateCamera(camera, deltaTime);
-        
+    
     for(auto e: ent) {
         if (collisionHandler.testAABBOverlap(player, *e)) {
             player.setCollision(true);
@@ -40,6 +41,22 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     
     // draw stuff
     player.draw(bRenderer(),modelMatrix);
+    
+    
+    if (countdown > 0.0) {
+        // render countdown
+        char buffer [5];
+        sprintf(buffer, "%.0f...", countdown);
+        
+        bRenderer().getObjects()->getTextSprite("countdown")->setText(buffer);
+        bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+        countdown -= deltaTime;
+    } else if (countdown > -1.0) {
+        countdown -= deltaTime;
+        isPaused = false;
+        bRenderer().getObjects()->getTextSprite("countdown")->setText("GO!");
+        bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
+    }
 
     bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
     bRenderer().getModelRenderer()->queueModelInstance("sphere", "sphere_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(200.0f)), std::vector<std::string>({ }));
@@ -55,7 +72,7 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
     float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 
     float height = -10.0f;
-    if (player.birdsEye()) {
+    if (isBirdsEye) {
         height = -70.0f;
     }
     

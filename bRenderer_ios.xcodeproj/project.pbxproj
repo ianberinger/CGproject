@@ -38,6 +38,7 @@
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
 		3C00FEDD1CE12BAF00DFEFF5 /* Debugging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */; };
+		3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */; };
 		3C1763881CD8C41300097387 /* ramp.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763861CD8C41300097387 /* ramp.mtl */; };
 		3C1763891CD8C41300097387 /* ramp.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763871CD8C41300097387 /* ramp.obj */; };
 		3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C17638A1CD8D48900097387 /* mapDefinition.txt */; };
@@ -186,6 +187,7 @@
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
 		3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debugging.cpp; sourceTree = "<group>"; };
+		3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		3C1763861CD8C41300097387 /* ramp.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.mtl; sourceTree = "<group>"; };
 		3C1763871CD8C41300097387 /* ramp.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.obj; sourceTree = "<group>"; };
 		3C17638A1CD8D48900097387 /* mapDefinition.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mapDefinition.txt; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 		B47949841BA6742B00B5E9DC /* data */ = {
 			isa = PBXGroup;
 			children = (
+				3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */,
 				3C17638A1CD8D48900097387 /* mapDefinition.txt */,
 				3C1763861CD8C41300097387 /* ramp.mtl */,
 				3C1763871CD8C41300097387 /* ramp.obj */,
@@ -828,6 +831,7 @@
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
+				3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,

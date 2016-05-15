@@ -22,7 +22,7 @@ void Tree::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
     
 }
 
-void Tree::update(Renderer &r){
+void Tree::update(Renderer &r, bool isPaused){
     //do something
     
 }

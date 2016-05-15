@@ -12,9 +12,9 @@ void Game::handleDebuggingInput(const std::string &camera)
 {
     if (bRenderer().getInput()->doubleTapRecognized()) {
         bRenderer::log("DOUBLE");
-        player.toggleBirdsEye();
+        toggleBirdsEye();
         CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
-        if (player.birdsEye()) {
+        if (isBirdsEye) {
             cameraPtr->rotateCamera(M_PI*0.25,0.0f,0.0f);
         } else {
             cameraPtr->rotateCamera(M_PI*1.75,0.0f,0.0f);
@@ -22,6 +22,6 @@ void Game::handleDebuggingInput(const std::string &camera)
         
     } else if (bRenderer().getInput()->singleTapRecognized()) {
         bRenderer::log("SINGLE");
-        player.togglePause();
+        togglePause();
     }
 }

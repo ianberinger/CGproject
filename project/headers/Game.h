@@ -60,6 +60,8 @@ private:
     
     /* Debugging */
     void handleDebuggingInput(const std::string &camera);
+    void togglePause(){isPaused=!isPaused;}
+    void toggleBirdsEye(){isBirdsEye=!isBirdsEye;}
 
     /* Constants */
     const vmml::Vector4f fogColor = vmml::Vector4f(0.5, 0.5, 0.5, 1);
@@ -78,6 +80,10 @@ private:
     std::vector<std::shared_ptr<Entity>> ent;
     marker start;
     std::vector<marker> checkpoints;
+    float countdown = 3.0;
+    
+    bool isPaused = true;
+    bool isBirdsEye = false;
 };
 
 #endif /* defined(PROJECT_MAIN_H) */
