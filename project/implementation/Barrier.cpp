@@ -17,11 +17,11 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col,
 }
 
  void Barrier::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
-     ShaderPtr cubeShader = r.getObjects()->getShader("cube");
-     cubeShader->setUniform("fogColor", fogColor);
+     ShaderPtr barrierShader = r.getObjects()->getShader("barrier");
+     barrierShader->setUniform("fogColor", fogColor);
 
      
-     r.getModelRenderer()->drawModel("cube", "camera", modelMatrix*vmml::create_translation(getXYZ())*vmml::create_scaling(vmml::Vector3f(2.0f, 1.0f, 2.0f)), std::vector<std::string>({ }));
+     r.getModelRenderer()->drawModel("barrier", "camera", modelMatrix*vmml::create_translation(getXYZ())*vmml::create_scaling(vmml::Vector3f(2.0f, 1.0f, 2.0f)), std::vector<std::string>({ }));
 
 }
 

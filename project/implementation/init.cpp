@@ -38,7 +38,7 @@ void Game::initFunction()
     ShaderPtr terrainShader = bRenderer().getObjects()->loadShaderFile("terrain", 0, false, true, true, false, false);
     ShaderPtr sphereShader = bRenderer().getObjects()->loadShaderFile("sphere", 0, false, true, true, false, false);
     ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile("tree", 0, false, true, true, false, false);
-    ShaderPtr cubeShader = bRenderer().getObjects()->loadShaderFile("cube", 0, false, true, true, false, false);
+    ShaderPtr barrierShader = bRenderer().getObjects()->loadShaderFile("barrier", 0, false, true, true, false, false);
     ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
     ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
     ShaderPtr rampShader = bRenderer().getObjects()->loadShaderFile("ramp", 0, false, false, false, false, false);
@@ -51,7 +51,7 @@ void Game::initFunction()
     PropertiesPtr terrainProperties = bRenderer().getObjects()->createProperties("terrainProperties");
     PropertiesPtr sphereProperties = bRenderer().getObjects()->createProperties("sphereProperties");
     PropertiesPtr treeProperties = bRenderer().getObjects()->createProperties("treeProperties");
-    PropertiesPtr cubeProperties = bRenderer().getObjects()->createProperties("cubeProperties");
+    PropertiesPtr barrierProperties = bRenderer().getObjects()->createProperties("barrierProperties");
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
     PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
     PropertiesPtr rampProperties = bRenderer().getObjects()->createProperties("rampProperties");
@@ -61,7 +61,7 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4, true, false);    
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
-    bRenderer().getObjects()->loadObjModel("cube.obj", true, true, false, 4, true, false);
+    bRenderer().getObjects()->loadObjModel("barrier.obj", false, true, barrierShader, barrierProperties);
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     bRenderer().getObjects()->loadObjModel("ramp.obj", true, true, false, 4, true, false);
