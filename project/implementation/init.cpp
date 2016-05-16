@@ -42,6 +42,8 @@ void Game::initFunction()
     ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile("car", 0, false, false, false, false, false);
     ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
     ShaderPtr rampShader = bRenderer().getObjects()->loadShaderFile("ramp", 0, false, false, false, false, false);
+    ShaderPtr particlesShader = bRenderer().getObjects()->loadShaderFile("particles", 0, false, false, false, false, false);
+
 
     globalShaders.push_back(sphereShader);
     globalShaders.push_back(terrainShader);

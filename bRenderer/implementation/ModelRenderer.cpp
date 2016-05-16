@@ -67,7 +67,7 @@ void ModelRenderer::drawModel(ModelPtr model, const vmml::Matrix4f &modelMatrix,
 
 				// Only pass Uniforms if the shader of the current geometry differs from the one of the last
 				if (shader && compareShader != shader->getProgramID())
-				{
+                {
 					compareShader = shader->getProgramID();
 
 					shader->setUniform(bRenderer::DEFAULT_SHADER_UNIFORM_PROJECTION_MATRIX(), projectionMatrix);

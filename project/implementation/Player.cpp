@@ -19,6 +19,9 @@ Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCO
     std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
     std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true,Entity::Type::NOTCOLLIDABLE) );
     
+    emitterObj = std::make_shared<EmitterObject>(-1.9,0.5,-2.5);
+
+    
     wheels.push_back(w1);
     wheels.push_back(w2);
     wheels.push_back(w3);
@@ -47,11 +50,13 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
         
     }
     
+    emitterObj->draw(r, modelMatrix);
+    
     r.getModelRenderer()->drawModel("car", "camera", transformationMatrix, std::vector<std::string>({ }));
     
 }
 
-void Player::update(Renderer &r, bool isPaused){
+void Player::update(Renderer &r, bool isPaused, const double &deltaTime){
     //Getting the inputs from the gyro sensor
     float roll = r.getInput()->getGyroscopeRoll(); // tilt
     float pitch = r.getInput()->getGyroscopePitch(); // left / right
@@ -70,7 +75,7 @@ void Player::update(Renderer &r, bool isPaused){
     float velocityz= (pitch*4*M_PI_F)/180;
     
     for(auto e : wheels){
-        e->update(r, isPaused);
+        e->update(r, isPaused, deltaTime);
     }
     
     
@@ -82,7 +87,6 @@ void Player::update(Renderer &r, bool isPaused){
     setZ(getZ()-getVelocity()*cosf(getComAngle()));
     
     if (hasCollision()){
-        bRenderer::log("COLLISION");
         setCollision(false);
         
         vmml::Vector3f newVelocity {getXYZ() + collisionHandler->getCollisionForce()};
@@ -90,5 +94,7 @@ void Player::update(Renderer &r, bool isPaused){
         setX(newVelocity.x());
         setZ(newVelocity.z());
     }
+    
+    emitterObj->update(r,isPaused,deltaTime);
 }
 

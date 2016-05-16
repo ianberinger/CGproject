@@ -24,7 +24,7 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
     
     vmml::Matrix4f modelMatrix;
     
-    player.update(bRenderer(), isPaused);
+    player.update(bRenderer(), isPaused, deltaTime);
     recordPosition();
     updateCamera(camera, deltaTime);
     

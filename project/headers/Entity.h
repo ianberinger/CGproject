@@ -67,7 +67,7 @@ public:
     bool hasCollision(){return collision;}
 
     virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix)=0;
-    virtual void update(Renderer &r, bool isPaused)=0;
+    virtual void update(Renderer &r, bool isPaused, const double &deltaTime)=0;
     
     Type getType() const { return type; };
     

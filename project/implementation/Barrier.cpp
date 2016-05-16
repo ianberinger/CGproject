@@ -25,7 +25,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col,
 
 }
 
-void Barrier::update(Renderer &r, bool isPaused){
+void Barrier::update(Renderer &r, bool isPaused, const double &deltaTime){
 //do something
 
 }

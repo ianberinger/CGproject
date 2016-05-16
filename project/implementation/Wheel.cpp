@@ -30,7 +30,7 @@ Wheel::Wheel(float x, float y, float z, float w, float h, float l, bool col, Typ
 
 }
 
-void Wheel::update(Renderer &r, bool isPaused){
+void Wheel::update(Renderer &r, bool isPaused, const double &deltaTime){
     float roll = r.getInput()->getGyroscopeRoll();
     float pitch = r.getInput()->getGyroscopePitch();
     
