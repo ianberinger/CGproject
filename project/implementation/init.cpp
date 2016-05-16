@@ -1,6 +1,8 @@
 #include "Game.h"
 /* Initialize the Game */
 
+int Game::_map[50][50] = {0};
+
 void Game::init()
 {
     bRenderer::loadConfigFile("config.json");	// load custom configurations replacing the default values in Configuration.cpp
@@ -43,7 +45,7 @@ void Game::initFunction()
     ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile("wheel", 0, false, false, false, false, false);
     ShaderPtr rampShader = bRenderer().getObjects()->loadShaderFile("ramp", 0, false, false, false, false, false);
     ShaderPtr particlesShader = bRenderer().getObjects()->loadShaderFile("particles", 0, false, false, false, false, false);
-
+    ShaderPtr roadShader = bRenderer().getObjects()->loadShaderFile("road", 0, false, true, true, false, false);
 
     globalShaders.push_back(sphereShader);
     globalShaders.push_back(terrainShader);
@@ -57,6 +59,7 @@ void Game::initFunction()
     PropertiesPtr carProperties = bRenderer().getObjects()->createProperties("carProperties");
     PropertiesPtr wheelProperties = bRenderer().getObjects()->createProperties("wheelProperties");
     PropertiesPtr rampProperties = bRenderer().getObjects()->createProperties("rampProperties");
+    PropertiesPtr roadProperties = bRenderer().getObjects()->createProperties("roadProperties");
     
     // load models
     bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true, false);
@@ -67,6 +70,7 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     bRenderer().getObjects()->loadObjModel("ramp.obj", true, true, false, 4, true, false);
+    bRenderer().getObjects()->loadObjModel("Plate.obj", false, true, roadShader, roadProperties);
     
     // load fonts
     FontPtr comicSans = bRenderer().getObjects()->loadFont("Comic Sans MS.ttf", 500);
@@ -83,13 +87,12 @@ void Game::initFunction()
     std::string currLine;
     std::ifstream file (bRenderer::getFilePath("map2.txt"));
     int count=0;
-    int matr[50][50];
     if (file.is_open())
     {
         while ( getline (file,currLine) )
         {
             for(int i=0;i<currLine.length();i++){
-                matr[count][i]=currLine[i]-'0';
+                Game::_map[count][i]=currLine[i]-'0';
             }
             count++;
         }
@@ -100,13 +103,13 @@ void Game::initFunction()
     
     for(int i=0; i<50;i++){
         for(int j=0;j<50;j++){
-            switch (matr[i][j]) {
+            switch (Game::_map[i][j]) {
                 case 1: {
-                    if (!start.isValid) {start = identifyMarker(matr, i, j);}
+                    if (!start.isValid) {start = identifyMarker(Game::_map, i, j);}
                     break;
                 }
                 case 2: {
-                    marker checkpoint = identifyMarker(matr, i, j);
+                    marker checkpoint = identifyMarker(Game::_map, i, j);
                     if (checkpoint.isValid) {
                         bool isCollected = false;
                         for(auto c: checkpoints) {
@@ -118,6 +121,11 @@ void Game::initFunction()
                         }
                         if (!isCollected) {checkpoints.push_back(checkpoint);}
                     }
+                    break;
+                }
+                case 3: {
+                    std::shared_ptr<Entity> p( new Road((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+                    environment.push_back(p);
                     break;
                 }
                 case 4: {

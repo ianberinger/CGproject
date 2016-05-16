@@ -55,6 +55,13 @@
 		643342741CE90D1A00C4F165 /* DiffuseBarrier.png in Resources */ = {isa = PBXBuildFile; fileRef = 643342711CE90D1A00C4F165 /* DiffuseBarrier.png */; };
 		643342751CE90D1A00C4F165 /* barrier.obj in Resources */ = {isa = PBXBuildFile; fileRef = 643342721CE90D1A00C4F165 /* barrier.obj */; };
 		643342761CE90D1A00C4F165 /* barrier.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 643342731CE90D1A00C4F165 /* barrier.mtl */; };
+		6461B4811CEA185600375ADD /* road.vert in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4801CEA185600375ADD /* road.vert */; };
+		6461B4831CEA186100375ADD /* road.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4821CEA186100375ADD /* road.frag */; };
+		6461B4861CEA18E500375ADD /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6461B4841CEA18E500375ADD /* Road.cpp */; };
+		6461B48E1CEA2FB500375ADD /* asphalt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B48D1CEA2FB500375ADD /* asphalt.jpg */; };
+		6461B4921CEA313700375ADD /* Plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4901CEA313700375ADD /* Plate.obj */; };
+		6461B4931CEA313700375ADD /* Plate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4911CEA313700375ADD /* Plate.mtl */; };
+		6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */; };
 		646BFB141CCE95690081924B /* CollisionHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 646BFB121CCE95690081924B /* CollisionHandler.cpp */; };
 		64D7AD631CD7E33700E15EA6 /* Ramp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64D7AD611CD7E33700E15EA6 /* Ramp.cpp */; };
 		64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD641CD7E55100E15EA6 /* ramp.frag */; };
@@ -212,6 +219,14 @@
 		643342711CE90D1A00C4F165 /* DiffuseBarrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiffuseBarrier.png; sourceTree = "<group>"; };
 		643342721CE90D1A00C4F165 /* barrier.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.obj; sourceTree = "<group>"; };
 		643342731CE90D1A00C4F165 /* barrier.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.mtl; sourceTree = "<group>"; };
+		6461B4801CEA185600375ADD /* road.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.vert; sourceTree = "<group>"; };
+		6461B4821CEA186100375ADD /* road.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.frag; sourceTree = "<group>"; };
+		6461B4841CEA18E500375ADD /* Road.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Road.cpp; path = project/implementation/Road.cpp; sourceTree = SOURCE_ROOT; };
+		6461B4851CEA18E500375ADD /* Road.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Road.hpp; path = project/implementation/Road.hpp; sourceTree = SOURCE_ROOT; };
+		6461B48D1CEA2FB500375ADD /* asphalt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asphalt.jpg; sourceTree = "<group>"; };
+		6461B4901CEA313700375ADD /* Plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.obj; sourceTree = "<group>"; };
+		6461B4911CEA313700375ADD /* Plate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.mtl; sourceTree = "<group>"; };
+		6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seamless_Asphalt_Texture.jpg; sourceTree = "<group>"; };
 		646BFB121CCE95690081924B /* CollisionHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionHandler.cpp; sourceTree = "<group>"; };
 		646BFB131CCE95690081924B /* CollisionHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CollisionHandler.hpp; path = ../implementation/CollisionHandler.hpp; sourceTree = "<group>"; };
 		6486CAF11CD878070027EDDB /* Ramp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ramp.h; sourceTree = "<group>"; };
@@ -495,13 +510,26 @@
 		643342771CE90D3500C4F165 /* Barrier */ = {
 			isa = PBXGroup;
 			children = (
-				22C25B071CCC060B00CF3265 /* barrier.frag */,
 				22C25B081CCC060B00CF3265 /* barrier.vert */,
+				22C25B071CCC060B00CF3265 /* barrier.frag */,
 				643342711CE90D1A00C4F165 /* DiffuseBarrier.png */,
 				643342721CE90D1A00C4F165 /* barrier.obj */,
 				643342731CE90D1A00C4F165 /* barrier.mtl */,
 			);
 			name = Barrier;
+			sourceTree = "<group>";
+		};
+		6461B4791CEA180E00375ADD /* Road */ = {
+			isa = PBXGroup;
+			children = (
+				6461B4901CEA313700375ADD /* Plate.obj */,
+				6461B4911CEA313700375ADD /* Plate.mtl */,
+				6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */,
+				6461B48D1CEA2FB500375ADD /* asphalt.jpg */,
+				6461B4801CEA185600375ADD /* road.vert */,
+				6461B4821CEA186100375ADD /* road.frag */,
+			);
+			name = Road;
 			sourceTree = "<group>";
 		};
 		B44186931BA331E300604D7F /* headers */ = {
@@ -517,6 +545,7 @@
 				646BFB131CCE95690081924B /* CollisionHandler.hpp */,
 				3CA595DC1CD0A5CC0023AF5B /* Helper.h */,
 				3C4E3E861CD80B3800B01D9D /* Tree.h */,
+				6461B4851CEA18E500375ADD /* Road.hpp */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -538,6 +567,7 @@
 				3C00FEDC1CE12BAF00DFEFF5 /* Debugging.cpp */,
 				2288C7A51CE9CE5300D23B8B /* Emitter.cpp */,
 				2288C7A61CE9CE5300D23B8B /* Emitter.h */,
+				6461B4841CEA18E500375ADD /* Road.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -545,6 +575,7 @@
 		B47949841BA6742B00B5E9DC /* data */ = {
 			isa = PBXGroup;
 			children = (
+				6461B4791CEA180E00375ADD /* Road */,
 				3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */,
 				6433426A1CE90CD100C4F165 /* Map */,
 				6433426B1CE90CDD00C4F165 /* Ramp */,
@@ -900,21 +931,27 @@
 				22A4CA751CD7493A009AB514 /* wheel.frag in Resources */,
 				22F2E8FE1CC8024A00C2AEE9 /* terrain.obj in Resources */,
 				22C25B091CCC060B00CF3265 /* barrier.frag in Resources */,
+				6461B4921CEA313700375ADD /* Plate.obj in Resources */,
 				3C1763881CD8C41300097387 /* ramp.mtl in Resources */,
 				228595001CD108B20063E8A6 /* car.frag in Resources */,
 				643342751CE90D1A00C4F165 /* barrier.obj in Resources */,
+				6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */,
 				3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */,
 				22F2E9001CC8024A00C2AEE9 /* tree.frag in Resources */,
 				228595011CD108B20063E8A6 /* car.vert in Resources */,
 				B47949AF1BA6742B00B5E9DC /* config.json in Resources */,
+				6461B48E1CEA2FB500375ADD /* asphalt.jpg in Resources */,
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
+				6461B4811CEA185600375ADD /* road.vert in Resources */,
 				643342761CE90D1A00C4F165 /* barrier.mtl in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
+				6461B4931CEA313700375ADD /* Plate.mtl in Resources */,
 				3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
+				6461B4831CEA186100375ADD /* road.frag in Resources */,
 				22C25B0A1CCC060B00CF3265 /* barrier.vert in Resources */,
 				229B06431CC912F500EDFF9C /* map2.txt in Resources */,
 				22F2E8FC1CC8024A00C2AEE9 /* terrain.frag in Resources */,
@@ -931,6 +968,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6461B4861CEA18E500375ADD /* Road.cpp in Sources */,
 				3C00FEDD1CE12BAF00DFEFF5 /* Debugging.cpp in Sources */,
 				B47AD6E11B827F0F00AFC632 /* type1.c in Sources */,
 				B4794A3C1BA6743D00B5E9DC /* Material.cpp in Sources */,

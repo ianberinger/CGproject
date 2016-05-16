@@ -8,6 +8,7 @@
 #include "Ramp.h"
 #include "CollisionHandler.hpp"
 #include "MapLoader.hpp"
+#include "Road.hpp"
 
 struct positionInTime {
     float time;
@@ -19,6 +20,7 @@ struct positionInTime {
 class Game : public IRenderProject
 {
 public:
+    static int _map[50][50];
 	/* Constructor and Destructor */
 	Game() : IRenderProject(){}
     virtual ~Game(){bRenderer::log("game deleted");}
@@ -87,6 +89,7 @@ private:
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
     std::vector<std::shared_ptr<Entity>> ent;
+    std::vector<std::shared_ptr<Entity>> environment;
     marker start;
     std::vector<marker> checkpoints;
     std::vector<positionInTime> pastPositions;

@@ -24,3 +24,4 @@ void Ramp::update(Renderer &r, bool isPaused, const double &deltaTime){
     //do something
     
 }
+
