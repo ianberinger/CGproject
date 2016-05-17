@@ -65,6 +65,8 @@
 		6461B4921CEA313700375ADD /* Plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4901CEA313700375ADD /* Plate.obj */; };
 		6461B4931CEA313700375ADD /* Plate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4911CEA313700375ADD /* Plate.mtl */; };
 		6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */; };
+		64B34C4E1CEB52E600622DE7 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B34C4C1CEB52E600622DE7 /* MenuViewController.m */; };
+		64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */; };
 		64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD641CD7E55100E15EA6 /* ramp.frag */; };
 		64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD661CD7E55B00E15EA6 /* ramp.vert */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
@@ -233,6 +235,9 @@
 		6461B4901CEA313700375ADD /* Plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.obj; sourceTree = "<group>"; };
 		6461B4911CEA313700375ADD /* Plate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.mtl; sourceTree = "<group>"; };
 		6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seamless_Asphalt_Texture.jpg; sourceTree = "<group>"; };
+		64B34C4B1CEB52E600622DE7 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		64B34C4C1CEB52E600622DE7 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		64D7AD641CD7E55100E15EA6 /* ramp.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.frag; sourceTree = "<group>"; };
 		64D7AD661CD7E55B00E15EA6 /* ramp.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.vert; sourceTree = "<group>"; };
 		B47949921BA6742B00B5E9DC /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
@@ -847,6 +852,9 @@
 				B4CB8CA61B72E43300FE041B /* Project-Prefix.pch */,
 				B4CB8CA71B72E43300FE041B /* ViewController.h */,
 				B4CB8CA81B72E43300FE041B /* ViewController.mm */,
+				64B34C4B1CEB52E600622DE7 /* MenuViewController.h */,
+				64B34C4C1CEB52E600622DE7 /* MenuViewController.m */,
+				64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */,
 			);
 			name = resources;
 			path = ios/resources;
@@ -922,6 +930,7 @@
 				22A4CA711CD748D9009AB514 /* wheel.obj in Resources */,
 				22F2E8FD1CC8024A00C2AEE9 /* terrain.mtl in Resources */,
 				3C1763891CD8C41300097387 /* ramp.obj in Resources */,
+				64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */,
 				22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */,
 				22A4CA721CD748D9009AB514 /* wheel.png in Resources */,
 				22F2E8FF1CC8024A00C2AEE9 /* terrain.vert in Resources */,
@@ -1027,6 +1036,7 @@
 				B4794A461BA6743D00B5E9DC /* ShaderDataFile.cpp in Sources */,
 				3C7FAADC1CEB1DB9007C2B20 /* Tree.cpp in Sources */,
 				B47AD6D71B827EC000AFC632 /* pshinter.c in Sources */,
+				64B34C4E1CEB52E600622DE7 /* MenuViewController.m in Sources */,
 				B47AD7071B8280B800AFC632 /* smooth.c in Sources */,
 				B47AD6D51B827EB300AFC632 /* psaux.c in Sources */,
 				B47AD6C51B827E1F00AFC632 /* ftotval.c in Sources */,
