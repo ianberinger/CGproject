@@ -51,7 +51,7 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
 
     
 
-    emitter.ePosition=vmml::Vector4f((44*4-100),0.5,(4*4-100));
+    emitter.ePosition=vmml::Vector4f(44*translateFactor,0.5,4*translateFactor);
     
     ShaderPtr pShader = r.getObjects()->getShader("particles");
     pShader->setUniform("u_ProjectionMatrix", r.getObjects()->getCamera("camera")->getProjectionMatrix());

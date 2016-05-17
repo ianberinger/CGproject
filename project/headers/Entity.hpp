@@ -7,6 +7,7 @@
 #include "Renderer.h"
 
 enum Direction {UP, LEFT, RIGHT, DOWN = 4};
+const float translateFactor = 4.0;
 
 class Entity{
     
@@ -14,9 +15,9 @@ public:
     enum Type {NOTCOLLIDABLE, COLLIDABLE, RAMP};
     
     Entity(float x, float y, float z, float w, float h, float l, bool col, Type type){
-        setX(x);
+        setX(x*translateFactor);
         setY(y);
-        setZ(z);
+        setZ(z*translateFactor);
         setWidth(w);
         setHeight(h);
         setLength(l);

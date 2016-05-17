@@ -88,8 +88,8 @@ void Game::initFunction()
         if (start.isValid) {
         bRenderer::log("START");
         bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
-        player.setX(start.x*4-100);
-        player.setZ(start.z*4-100);
+        player.setX(start.x*translateFactor);
+        player.setZ(start.z*translateFactor);
         bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
         player.setComAngle(start.angle);
         bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);

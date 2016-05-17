@@ -27,7 +27,7 @@ void Road::update(Renderer &r, bool isPaused, const double &deltaTime){
 }
 
 bool Road::isPartOfRoad(int x, int z) {
-    if (Game::_map[(int)(x + 100)/4][(int)(z + 100)/4] != 4) {
+    if (Game::_map[(int)(x/translateFactor)][(int)(z/translateFactor)] != 4) {
         return true;
     } else {
         return false;
