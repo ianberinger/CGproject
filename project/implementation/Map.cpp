@@ -49,8 +49,8 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
                     break;
                 }
                 case 4: {
-                    std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE, UP) );
-                    entities.push_back(p);
+                    //std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE, UP) );
+                    //entities.push_back(p);
                     break;
                 }
                 case 6: {
@@ -66,6 +66,8 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
             }
         }
     }
+    
+    defineTracks(m, start, entities);
     return start;
 }
 
@@ -175,33 +177,33 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
     switch (direction) {
         case UP: {
             for (int i = 0; i < length; i++) {
-                //TODO
-                //std::shared_ptr<Entity> p(new Barrier(((x-i)*4-100),0,(z*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
-                //entities.push_back(p);
+                //TODO curves
+                std::shared_ptr<Entity> p(new Barrier(((x-i)*4-100),0,(z*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                entities.push_back(p);
             }
             break;
         }
         case DOWN: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                //std::shared_ptr<Entity> p(new Barrier(((x+i)*4-100),0,(z*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
-                //entities.push_back(p);
+                std::shared_ptr<Entity> p(new Barrier(((x+i)*4-100),0,(z*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                entities.push_back(p);
             }
             break;
         }
         case LEFT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                //std::shared_ptr<Entity> p(new Barrier((x*4-100),0,((z-i)*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
-                //entities.push_back(p);
+                std::shared_ptr<Entity> p(new Barrier((x*4-100),0,((z-i)*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                entities.push_back(p);
             }
             break;
         }
         case RIGHT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                //std::shared_ptr<Entity> p(new Barrier((x*4-100),0,((z+i)*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
-                //entities.push_back(p);
+                std::shared_ptr<Entity> p(new Barrier((x*4-100),0,((z+i)*4-100),1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                entities.push_back(p);
             }
             break;
         }
