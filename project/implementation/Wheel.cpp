@@ -35,7 +35,7 @@ void Wheel::update(Renderer &r, bool isPaused, const double &deltaTime){
     
     
     
-    setComAngle(roll);
+    setComAngle(getComAngle()-(roll+0.75));
 
 
 }
