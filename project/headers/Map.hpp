@@ -28,7 +28,9 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
 struct marker identifyMarker(map &m, int i,int j);
 
 void defineTracks(map &m, marker start, std::vector<std::shared_ptr<Entity>> &entities);
-void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities);
+void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities, bool generateRoad);
+void addRoad(map &m, int x, int z, std::vector<std::shared_ptr<Entity>> &entities);
+void addBarrier(int x, int z, int length, Direction direction, std::vector<std::shared_ptr<Entity>> &entities);
 
 #endif /* Map_hpp */
 

@@ -135,13 +135,13 @@ void defineTracks(map &m, marker start, std::vector<std::shared_ptr<Entity>> &en
             int rightTrackZ = start.z + 2;
             
             if (m[leftTrackX][leftTrackZ] == 5) {
-                defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities);
+                defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities, true);
             } else {
                 printf("LeftTrack missaligned at X:%d Z:%d\n", leftTrackX, leftTrackZ);
             }
             
             if (m[rightTrackX][rightTrackZ] == 5) {
-                defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities);
+                defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities, false);
             } else {
                 printf("RightTrack missaligned at X:%d Z:%d\n", rightTrackX, rightTrackZ);
             }
@@ -157,19 +157,167 @@ void defineTracks(map &m, marker start, std::vector<std::shared_ptr<Entity>> &en
             int rightTrackZ = start.z;
             
             if (m[leftTrackX][leftTrackZ] == 5) {
-                defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities);
+                defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities, true);
             } else {
                 printf("LeftTrack missaligned at X:%d Z:%d\n", leftTrackX, leftTrackZ);
             }
             
             if (m[rightTrackX][rightTrackZ] == 5) {
-                defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities);
+                defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities, false);
             } else {
                 printf("RightTrack missaligned at X:%d Z:%d\n", rightTrackX, rightTrackZ);
             }
             
             break;
         }
+    }
+}
+
+void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities,bool generateRoad) {
+    if (generateRoad){addRoad(m, startX, startZ, entities);}
+    int length = 1;
+    switch (direction) {
+        case UP: {
+            // up
+            // vvv
+            //  4
+            printf("UP\n");
+            
+            int nextXv2 = m[startX-length][startZ];
+            
+            while (nextXv2 == 4) {
+                if (generateRoad) {
+                    addRoad(m, nextXv2, startZ, entities);
+                }
+                length++;
+                nextXv2 = m[startX-length][startZ];
+            }
+            
+            // make entity with length, direction up
+            printf("New barrier at X:%d Z:%d length:%d direction:UP\n", startX, startZ, length);
+            addBarrier(startX, startZ, length, direction, entities);
+            
+            int nextXv1 = m[startX-length][startZ-1];
+            int nextXv3 = m[startX-length][startZ+1];
+            if (nextXv1 == 4) {
+                // go left
+                defineTrack(m, startX-length, startZ-1, LEFT, entities, generateRoad);
+            } else if (nextXv3 == 4) {
+                // go right
+                defineTrack(m, startX-length, startZ+1, RIGHT, entities, generateRoad);
+            } else {
+                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX-length, startZ, nextXv1, nextXv2, nextXv3);
+            }
+            
+            break;
+        }
+        case DOWN: {
+            // down
+            //  4
+            // vvv
+            printf("DOWN\n");
+            
+            int nextXv2 = m[startX+length][startZ];
+            
+            while (nextXv2 == 4) {
+                length++;
+                nextXv2 = m[startX+length][startZ];
+            }
+            
+            // make entity with length, direction up
+            printf("New barrier at X:%d Z:%d length:%d direction:DOWN\n", startX, startZ, length);
+            addBarrier(startX, startZ, length, direction, entities);
+            
+            int nextXv1 = m[startX+length][startZ-1];
+            int nextXv3 = m[startX+length][startZ+1];
+            if (nextXv1 == 4) {
+                // go left
+                defineTrack(m, startX+length, startZ-1, LEFT, entities, generateRoad);
+            } else if (nextXv3 == 4) {
+                // go right
+                defineTrack(m, startX+length, startZ+1, RIGHT, entities, generateRoad);
+            } else {
+                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX+length, startZ, nextXv1, nextXv2, nextXv3);
+            }
+            
+            break;
+        }
+        case RIGHT: {
+            // right
+            //  v
+            // 4v
+            //  v
+            printf("RIGHT\n");
+            
+            int nextXv2 = m[startX][startZ+length];
+            
+            while (nextXv2 == 4) {
+                length++;
+                nextXv2 = m[startX][startZ+length];
+            }
+            
+            // make entity with length, direction up
+            printf("New barrier at X:%d Z:%d length:%d direction:RIGHT\n", startX, startZ, length);
+            addBarrier(startX, startZ, length, direction, entities);
+            
+            int nextXv1 = m[startX-1][startZ+length];
+            int nextXv3 = m[startX+1][startZ+length];
+            if (nextXv1 == 4) {
+                // go left
+                defineTrack(m, startX-1, startZ+length, UP, entities, generateRoad);
+            } else if (nextXv3 == 4) {
+                // go right
+                defineTrack(m, startX+1, startZ+length, DOWN, entities, generateRoad);
+            } else {
+                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ+length, nextXv1, nextXv2, nextXv3);
+            }
+            
+            break;
+        }
+        case LEFT: {
+            // left
+            // v
+            // v4
+            // v
+            printf("LEFT\n");
+            
+            int nextXv2 = m[startX][startZ-length];
+            
+            while (nextXv2 == 4) {
+                length++;
+                nextXv2 = m[startX][startZ-length];
+            }
+            
+            // make entity with length, direction up
+            printf("New barrier at X:%d Z:%d length:%d direction:LEFT\n", startX, startZ, length);
+            addBarrier(startX, startZ, length, direction, entities);
+            
+            int nextXv1 = m[startX-1][startZ-length];
+            int nextXv3 = m[startX+1][startZ-length];
+            if (nextXv1 == 4) {
+                // go left
+                defineTrack(m, startX-1, startZ-length, UP, entities, generateRoad);
+            } else if (nextXv3 == 4) {
+                // go right
+                defineTrack(m, startX+1, startZ-length, DOWN, entities, generateRoad);
+            } else {
+                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ-length, nextXv1, nextXv2, nextXv3);
+            }
+            
+            break;
+        }
+    }
+}
+
+void addRoad(map &m, int x, int z, std::vector<std::shared_ptr<Entity>> &entities){
+    int endZ = z + 1;
+    int length = 0;
+    for (;m[x][endZ] != 4;endZ++) {
+        length++;
+    }
+    if(length > 0) {
+        std::shared_ptr<Entity> p(new Road(x,0,z,1,1,length,true, Entity::Type::NOTCOLLIDABLE));
+        entities.push_back(p);
     }
 }
 
@@ -210,137 +358,3 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
     }
 }
 
-void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities) {
-    switch (direction) {
-        case UP: {
-            // up
-            // vvv
-            //  4
-            printf("UP\n");
-            int length = 1;
-            
-            int nextXv2 = m[startX-length][startZ];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX-length][startZ];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:UP\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-length][startZ-1];
-            int nextXv3 = m[startX-length][startZ+1];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-length, startZ-1, LEFT, entities);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX-length, startZ+1, RIGHT, entities);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX-length, startZ, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case DOWN: {
-            // down
-            //  4
-            // vvv
-            printf("DOWN\n");
-            int length = 1;
-            
-            int nextXv2 = m[startX+length][startZ];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX+length][startZ];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:DOWN\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX+length][startZ-1];
-            int nextXv3 = m[startX+length][startZ+1];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX+length, startZ-1, LEFT, entities);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+length, startZ+1, RIGHT, entities);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX+length, startZ, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case RIGHT: {
-            // right
-            //  v
-            // 4v
-            //  v
-            printf("RIGHT\n");
-            int length = 1;
-            
-            int nextXv2 = m[startX][startZ+length];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX][startZ+length];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:RIGHT\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-1][startZ+length];
-            int nextXv3 = m[startX+1][startZ+length];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-1, startZ+length, UP, entities);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+1, startZ+length, DOWN, entities);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ+length, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case LEFT: {
-            // left
-            // v
-            // v4
-            // v
-            printf("LEFT\n");
-            int length = 1;
-            
-            int nextXv2 = m[startX][startZ-length];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX][startZ-length];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:LEFT\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-1][startZ-length];
-            int nextXv3 = m[startX+1][startZ-length];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-1, startZ-length, UP, entities);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+1, startZ-length, DOWN, entities);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ-length, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-    }
-}
