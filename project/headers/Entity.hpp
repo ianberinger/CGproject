@@ -62,8 +62,8 @@ public:
     Type getType() const { return type; };
     
 private:
-   float x;
-   float y;
+    float x;
+    float y;
     float z;
     float width;
     float height;
