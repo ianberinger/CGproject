@@ -13,5 +13,5 @@
     color.rgb = clamp(color.rgb, vec3(0.0), vec3(1.0));
     
     // Required OpenGL ES 2.0 outputs
-    gl_FragColor = color;
+    gl_FragColor = vec4(1.0,0.0,0.0,1.0);
 }

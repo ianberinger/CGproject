@@ -39,6 +39,7 @@ public:
     float life;
     float time;
     Emitter emitter;
+    GLuint partBuff;
 private:
     float randomFloatBetween(float a, float b){
         float range = b - a;

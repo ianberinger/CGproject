@@ -40,18 +40,23 @@ EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,
     
         emitter=newEmitter;
     
-    GLuint particleBuffer = 0;
-    glGenBuffers(1, &particleBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, particleBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(emitter.eParticles), emitter.eParticles, GL_STATIC_DRAW);
-    
+
+
+
 }
 
 void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
 
+
+    GLuint particleBuffer=1;
+    glGenBuffers(1, &particleBuffer);
     
 
-    emitter.ePosition=vmml::Vector4f(44*translateFactor,0.5,4*translateFactor);
+    glBindBuffer(GL_ARRAY_BUFFER, particleBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(emitter.eParticles), emitter.eParticles, GL_STATIC_DRAW);
+    partBuff=particleBuffer;
+
+    emitter.ePosition=vmml::Vector4f(164.0,1.0,16.0,1.0);
     
     ShaderPtr pShader = r.getObjects()->getShader("particles");
     pShader->setUniform("u_ProjectionMatrix", r.getObjects()->getCamera("camera")->getProjectionMatrix());
@@ -72,9 +77,9 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     pShader->registerAttrib("a_pColorOffset", 3, GL_FLOAT, sizeof(Particle), offsetof(Particle, pColorOffset));
     pShader->registerAttrib("a_position", 4, GL_FLOAT, sizeof(Particle), offsetof(Emitter, ePosition));
     
-
+    glBindBuffer(GL_ARRAY_BUFFER, partBuff);
     pShader->bind();
-    //glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
+    glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
 
     
     

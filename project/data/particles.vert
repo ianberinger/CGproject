@@ -28,7 +28,6 @@ uniform mat4 u_ModelViewMatrix;
     float y = sin(a_pID);
     float r = u_eRadius * a_pRadiusOffset;
     
-   vec4 pos=u_ModelViewMatrix*vec4(1.0);
     
     
     // 2
@@ -54,10 +53,12 @@ uniform mat4 u_ModelViewMatrix;
         y = (y * r) + (u_Gravity.y * time);
     }
     
+    vec4 pos=u_ModelViewMatrix*vec4(164.0,1.0,16.0,1.0);
+
     // 5
     // Required OpenGLES 2.0 outputs
-    gl_Position = u_ProjectionMatrix * vec4(x, y, 1.0, 1.0)*pos;
-    gl_PointSize = max(0.0, (u_eSize + a_pSizeOffset));
+    gl_Position = u_ProjectionMatrix *pos;
+    gl_PointSize = float(10);
     
     // Fragment Shader outputs
     v_pColorOffset = a_pColorOffset;

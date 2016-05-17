@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2200EAA51CEB6EAE00D49343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200EAA41CEB6EAE00D49343 /* AudioToolbox.framework */; };
+		2200EAA71CEB6EB700D49343 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200EAA61CEB6EB700D49343 /* OpenAL.framework */; };
 		228594FB1CD106ED0063E8A6 /* car.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 228594F81CD106ED0063E8A6 /* car.mtl */; };
 		228594FC1CD106ED0063E8A6 /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = 228594F91CD106ED0063E8A6 /* car.obj */; };
 		228594FD1CD106ED0063E8A6 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 228594FA1CD106ED0063E8A6 /* car.png */; };
@@ -166,6 +168,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2200EAA41CEB6EAE00D49343 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2200EAA61CEB6EB700D49343 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		228594F81CD106ED0063E8A6 /* car.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.mtl; sourceTree = "<group>"; };
 		228594F91CD106ED0063E8A6 /* car.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.obj; sourceTree = "<group>"; };
 		228594FA1CD106ED0063E8A6 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2200EAA71CEB6EB700D49343 /* OpenAL.framework in Frameworks */,
+				2200EAA51CEB6EAE00D49343 /* AudioToolbox.framework in Frameworks */,
 				B508EAA71B5486B40031B783 /* CoreMotion.framework in Frameworks */,
 				B59A679D1ACC9A0400E3EB9B /* QuartzCore.framework in Frameworks */,
 				B59A679B1ACC99F900E3EB9B /* CoreGraphics.framework in Frameworks */,
@@ -426,6 +432,8 @@
 		29B97323FDCFA39411CA2CEA /* externalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				2200EAA61CEB6EB700D49343 /* OpenAL.framework */,
+				2200EAA41CEB6EAE00D49343 /* AudioToolbox.framework */,
 				B47AD6B81B827D4900AFC632 /* freetype-2.6 */,
 				B508EAA61B5486B40031B783 /* CoreMotion.framework */,
 				B59A679C1ACC9A0400E3EB9B /* QuartzCore.framework */,

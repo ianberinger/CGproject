@@ -49,8 +49,8 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
                     break;
                 }
                 case 4: {
-                    //std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,true, Entity::Type::COLLIDABLE, UP) );
-                    //entities.push_back(p);
+                    std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,true, Entity::Type::COLLIDABLE, UP) );
+                    entities.push_back(p);
                     break;
                 }
                 case 6: {
@@ -67,7 +67,7 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
         }
     }
     
-    defineTracks(m, start, entities);
+    //defineTracks(m, start, entities);
     return start;
 }
 
