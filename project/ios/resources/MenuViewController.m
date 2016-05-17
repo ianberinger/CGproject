@@ -1,11 +1,3 @@
-//
-//  MenuViewController.m
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 17/05/16.
-//
-//
-
 #import "MenuViewController.h"
 #import "ViewController.h"
 

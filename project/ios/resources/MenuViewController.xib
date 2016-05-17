@@ -15,8 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menubackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7FL-iM-zAe">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtC-fa-R2L">
-                    <rect key="frame" x="283" y="285" width="34" height="30"/>
+                    <rect key="frame" x="283" y="85" width="34" height="30"/>
                     <state key="normal" title="Start"/>
                     <connections>
                         <action selector="startGame:" destination="-1" eventType="touchUpInside" id="n5o-oy-H8W"/>
@@ -25,9 +28,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="EtC-fa-R2L" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="atw-Qt-1o5"/>
-                <constraint firstItem="EtC-fa-R2L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oaO-fX-YjO"/>
+                <constraint firstItem="7FL-iM-zAe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="70c-Gg-M32"/>
+                <constraint firstItem="EtC-fa-R2L" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="85" id="ScX-Vi-u2b"/>
+                <constraint firstItem="7FL-iM-zAe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VgM-td-21d"/>
+                <constraint firstItem="EtC-fa-R2L" firstAttribute="centerX" secondItem="7FL-iM-zAe" secondAttribute="centerX" id="fpg-Ji-Fgk"/>
+                <constraint firstAttribute="bottom" secondItem="7FL-iM-zAe" secondAttribute="bottom" id="pTe-ee-q43"/>
+                <constraint firstAttribute="trailing" secondItem="7FL-iM-zAe" secondAttribute="trailing" id="roX-Ln-CkH"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="menubackground.jpg" width="3196" height="1812"/>
+    </resources>
 </document>
