@@ -1,6 +1,6 @@
 #ifndef Emitter_hpp
 #define Emitter_hpp
-#define NUM_PARTICLES 180
+#define NUM_PARTICLES 1440
 
 
 #include "Entity.hpp"

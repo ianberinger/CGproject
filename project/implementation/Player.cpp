@@ -42,7 +42,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
         
     }
     
-    emitterObj->draw(r, modelMatrix);
+    emitterObj->draw(r, transformationMatrix);
     
     r.getModelRenderer()->drawModel("car", "camera", transformationMatrix, std::vector<std::string>({ }));
     

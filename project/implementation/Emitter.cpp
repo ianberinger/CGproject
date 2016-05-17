@@ -4,11 +4,11 @@ EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,
     
         Emitter newEmitter = {0.0f};
     
-    float oRadius = 0.10f;
+    float oRadius = 0.20f;
     float oVelocity = 0.50f;
     float oDecay = 0.25f;
     float oSize = 8.00f;
-    float oColor = 0.25f;
+    float oColor = 0.5f;
     
     
     for(int i=0; i<NUM_PARTICLES; i++)
@@ -23,12 +23,12 @@ EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,
         newEmitter.eParticles[i].pColorOffset = vmml::Vector3f(r,r,r);
     }
     
-    
-    newEmitter.eRadius = 0.75f;
-    newEmitter.eVelocity = 0.50f;
-    newEmitter.eDecay = 2.00f;
-    newEmitter.eSize = 2.00f;
-    newEmitter.eColor = vmml::Vector3f(1.00f, 0.50f, 0.00f);
+
+    newEmitter.eRadius = 0.20f;
+    newEmitter.eVelocity = 2.00f;
+    newEmitter.eDecay = 0.50f;
+    newEmitter.eSize = 1.00f;
+    newEmitter.eColor = vmml::Vector3f(1.0f, 1.0f, 1.0f);
     
     // 6
     // Set global factors
@@ -36,8 +36,8 @@ EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,
     life = growth + newEmitter.eDecay + oDecay;
     
     float drag = 1.00f;
-    gravity = vmml::Vector3f(0.00f, -0.81f*(1.0f/drag),0.0f);
-    
+    gravity = vmml::Vector3f(0.00f, 0.3f*(1.0f/drag),1.0f);
+
         emitter=newEmitter;
     
 
@@ -56,18 +56,22 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     glBufferData(GL_ARRAY_BUFFER, sizeof(emitter.eParticles), emitter.eParticles, GL_STATIC_DRAW);
     partBuff=particleBuffer;
 
+    
     emitter.ePosition=vmml::Vector4f(164.0,1.0,16.0,1.0);
+
     
     ShaderPtr pShader = r.getObjects()->getShader("particles");
     pShader->setUniform("u_ProjectionMatrix", r.getObjects()->getCamera("camera")->getProjectionMatrix());
     pShader->setUniform("u_ModelViewMatrix", r.getObjects()->getCamera("camera")->getViewMatrix()*modelMatrix);
     pShader->setUniform("u_Gravity", gravity);
     pShader->setUniform("u_Time", time);
+    pShader->setUniform("u_Life", life);
     pShader->setUniform("u_eRadius", emitter.eRadius);
     pShader->setUniform("u_eVelocity", emitter.eVelocity);
     pShader->setUniform("u_eDecay", emitter.eDecay);
     pShader->setUniform("u_eSize", emitter.eSize);
     pShader->setUniform("u_eColor", emitter.eColor);
+    pShader->setUniform("u_position", emitter.ePosition);
 
     pShader->registerAttrib("a_pID", 1, GL_FLOAT, sizeof(Particle), offsetof(Particle, pID));
     pShader->registerAttrib("a_pRadiusOffset", 1, GL_FLOAT, sizeof(Particle), offsetof(Particle, pRadiusOffset));
@@ -75,7 +79,6 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     pShader->registerAttrib("a_pDecayOffset", 1, GL_FLOAT, sizeof(Particle), offsetof(Particle, pDecayOffset));
     pShader->registerAttrib("a_pSizeOffset", 1, GL_FLOAT, sizeof(Particle), offsetof(Particle, pSizeOffset));
     pShader->registerAttrib("a_pColorOffset", 3, GL_FLOAT, sizeof(Particle), offsetof(Particle, pColorOffset));
-    pShader->registerAttrib("a_position", 4, GL_FLOAT, sizeof(Particle), offsetof(Emitter, ePosition));
     
     glBindBuffer(GL_ARRAY_BUFFER, partBuff);
     pShader->bind();

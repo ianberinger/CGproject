@@ -5,7 +5,6 @@
  attribute float a_pDecayOffset;
  attribute float a_pSizeOffset;
  attribute vec3 a_pColorOffset;
- attribute vec4 a_position;
 
  
  // Uniforms
@@ -13,10 +12,13 @@
 uniform mat4 u_ModelViewMatrix;
  uniform vec3 u_Gravity;
  uniform float u_Time;
+uniform float u_Life;
  uniform float u_eRadius;
  uniform float u_eVelocity;
  uniform float u_eDecay;
  uniform float u_eSize;
+ uniform vec4 u_position;
+
  
  // Varying
  varying vec3        v_pColorOffset;
@@ -35,6 +37,8 @@ uniform mat4 u_ModelViewMatrix;
     float growth = r / (u_eVelocity + a_pVelocityOffset);
     float decay = u_eDecay + a_pDecayOffset;
     
+    
+    
     // 3
     // If blast is growing
     if(u_Time < growth)
@@ -52,13 +56,14 @@ uniform mat4 u_ModelViewMatrix;
         x = (x * r) + (u_Gravity.x * time);
         y = (y * r) + (u_Gravity.y * time);
     }
-    
-    vec4 pos=u_ModelViewMatrix*vec4(164.0,1.0,16.0,1.0);
+
+//    vec4 pos=u_ModelViewMatrix*vec4(164.0+x,1.0+y,16.0,1.0);
+    vec4 pos=u_ModelViewMatrix*vec4(0.3+x,1.5+y,5.5,1.0);
 
     // 5
     // Required OpenGLES 2.0 outputs
     gl_Position = u_ProjectionMatrix *pos;
-    gl_PointSize = float(10);
+    gl_PointSize = 0.75;
     
     // Fragment Shader outputs
     v_pColorOffset = a_pColorOffset;
