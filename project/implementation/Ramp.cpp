@@ -1,12 +1,4 @@
-//
-//  Ramp.cpp
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 02/05/16.
-//
-//
-
-#include "Ramp.h"
+#include "Ramp.hpp"
 
 Ramp::Ramp(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     

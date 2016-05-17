@@ -1,13 +1,3 @@
-//
-//  Enitity.h
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 20.04.16.
-//
-//
-
-
-
 #ifndef Enitity_h
 #define Enitity_h
 

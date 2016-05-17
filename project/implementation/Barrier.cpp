@@ -1,15 +1,4 @@
-//
-//  Barrier.cpp
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 21.04.16.
-//
-//
-
-#include "Barrier.h"
-
-
-
+#include "Barrier.hpp"
 
 Barrier::Barrier(float x, float y, float z, float w, float h, float l, bool col, Type type, Direction dir):Entity(x, y, z, w, h, l, col, type){
     direction = dir;

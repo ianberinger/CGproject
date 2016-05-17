@@ -1,15 +1,7 @@
-//
-//  Road.hpp
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 16/05/16.
-//
-//
-
 #ifndef Road_hpp
 #define Road_hpp
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 class Road : public Entity{
     

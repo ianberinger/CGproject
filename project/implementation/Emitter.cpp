@@ -1,14 +1,4 @@
-//
-//  Emitter.cpp
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 16.05.16.
-//
-//
-
-#include "Emitter.h"
-
-
+#include "Emitter.hpp"
 
 EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,0.1,false,Entity::Type::NOTCOLLIDABLE){
     

@@ -2,7 +2,7 @@
 #define PROJECT_MAIN_H
 
 #include "bRenderer.h"
-#include "Player.h"
+#include "Player.hpp"
 #include "Map.hpp"
 #include "CollisionHandler.hpp"
 

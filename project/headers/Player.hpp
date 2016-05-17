@@ -1,17 +1,9 @@
-//
-//  Player.h
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 21.04.16.
-//
-//
-
 #ifndef Player_h
 #define Player_h
 
-#include "Entity.h"
-#include "Wheel.h"
-#include "Emitter.h"
+#include "Entity.hpp"
+#include "Wheel.hpp"
+#include "Emitter.hpp"
 #include "CollisionHandler.hpp"
 
 class Player : public Entity{

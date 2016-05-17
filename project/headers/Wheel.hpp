@@ -1,15 +1,7 @@
-//
-//  Wheel.h
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 21.04.16.
-//
-//
-
 #ifndef Wheel_h
 #define Wheel_h
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 class Wheel : public Entity{
 public:

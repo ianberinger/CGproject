@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 int Game::_map[50][50] = {0};
 /* Initialize the Game */

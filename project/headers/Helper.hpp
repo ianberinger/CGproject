@@ -1,11 +1,3 @@
-//
-//  Helper.h
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 4/27/16.
-//
-//
-
 #ifndef Helper_h
 #define Helper_h
 

@@ -1,11 +1,3 @@
-//
-//  Map.hpp
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 5/17/16.
-//
-//
-
 #ifndef Map_hpp
 #define Map_hpp
 
@@ -15,11 +7,11 @@
 #include <string>
 #include <vector>
 
-#include "Tree.h"
-#include "Barrier.h"
-#include "Ramp.h"
+#include "Tree.hpp"
+#include "Barrier.hpp"
+#include "Ramp.hpp"
 #include "Road.hpp"
-#include "Entity.h"
+#include "Entity.hpp"
 
 typedef int map[50][50];
 

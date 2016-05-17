@@ -1,13 +1,5 @@
-//
-//  Player.cpp
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 24.04.16.
-//
-//
-
-#include "Player.h"
-#include "Helper.h"
+#include "Player.hpp"
+#include "Helper.hpp"
 
 Helper h;
 

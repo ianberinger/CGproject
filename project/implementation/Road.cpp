@@ -1,14 +1,6 @@
-//
-//  Road.cpp
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 16/05/16.
-//
-//
-
 #include "Road.hpp"
-#include "Barrier.h"
-#include "Game.h"
+#include "Barrier.hpp"
+#include "Game.hpp"
 
 Road::Road(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     

@@ -1,15 +1,7 @@
-//
-//  Ramp.h
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 03/05/16.
-//
-//
-
 #ifndef Ramp_h
 #define Ramp_h
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 
 class Ramp : public Entity{

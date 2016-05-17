@@ -1,13 +1,4 @@
-//
-//  Tree.cpp
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 5/3/16.
-//
-//
-
-#include "Tree.h"
-
+#include "Tree.hpp"
 
 Tree::Tree(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
     

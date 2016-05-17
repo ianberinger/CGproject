@@ -1,16 +1,8 @@
-//
-//  Barrier.h
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 21.04.16.
-//
-//
-
 #ifndef Barrier_h
 #define Barrier_h
 
-#include "Entity.h"
-#include "Helper.h"
+#include "Entity.hpp"
+#include "Helper.hpp"
 
 class Barrier : public Entity{
     

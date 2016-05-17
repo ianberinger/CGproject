@@ -1,16 +1,8 @@
-//
-//  CollisionHandler.hpp
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 25/04/16.
-//
-//
-
 #ifndef CollisionHandler_hpp
 #define CollisionHandler_hpp
 
 #include <iostream>
-#include "Entity.h"
+#include "Entity.hpp"
 #include "vmmlib/util.hpp"
 
 class Collisionhandler {

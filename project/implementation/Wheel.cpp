@@ -1,12 +1,4 @@
-//
-//  Wheel.cpp
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 21.04.16.
-//
-//
-
-#include "Wheel.h"
+#include "Wheel.hpp"
 
 Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCOLLIDABLE){
     

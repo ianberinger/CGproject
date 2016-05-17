@@ -1,12 +1,4 @@
-//
-//  Debugging.cpp
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 5/9/16.
-//
-//
-
-#include "Game.h"
+#include "Game.hpp"
 
 void Game::handleDebuggingInput(const std::string &camera)
 {

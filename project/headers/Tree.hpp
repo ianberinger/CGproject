@@ -1,15 +1,7 @@
-//
-//  Tree.h
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 5/3/16.
-//
-//
-
 #ifndef Tree_h
 #define Tree_h
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 
 class Tree : public Entity{

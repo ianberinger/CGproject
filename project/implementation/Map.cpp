@@ -1,14 +1,4 @@
-//
-//  Map.cpp
-//  bRenderer_ios
-//
-//  Created by Ian Beringer on 5/17/16.
-//
-//
-
 #include "Map.hpp"
-
-
 
 marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>> &entities, std::vector<marker> &checkpoints){
     marker start;

@@ -1,6 +1,6 @@
 
 #import "ViewController.h"
-#include "Game.h"
+#include "Game.hpp"
 
 
 @interface ViewController () {

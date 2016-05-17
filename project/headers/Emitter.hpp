@@ -1,17 +1,9 @@
-//
-//  Emitter.hpp
-//  bRenderer_ios
-//
-//  Created by Timothée Wildhaber on 16.05.16.
-//
-//
-
 #ifndef Emitter_hpp
 #define Emitter_hpp
 #define NUM_PARTICLES 180
 
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 
 typedef struct Particle

@@ -1,4 +1,4 @@
-#include "Helper.h"
+#include "Helper.hpp"
 
 /* Helper functions */
 float Helper::randomNumber(float min, float max){

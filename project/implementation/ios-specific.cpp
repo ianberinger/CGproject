@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 /* For iOS only: Handle device rotation */
 void Game::deviceRotated()

@@ -1,11 +1,3 @@
-//
-//  CollisionHandler.cpp
-//  bRenderer_ios
-//
-//  Created by Lukas Vollenweider on 25/04/16.
-//
-//
-
 #include "CollisionHandler.hpp"
 
 Collisionhandler::Collisionhandler() {
