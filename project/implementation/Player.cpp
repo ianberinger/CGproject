@@ -6,10 +6,10 @@ Helper h;
 Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCOLLIDABLE){
     
     //wheels for the car
-    std::shared_ptr<Wheel> w1( new Wheel(2.1,1.5,3.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w2( new Wheel(-1.9,1.5,3.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w3( new Wheel(2.1,1.5,-1.5,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w4( new Wheel(-1.9,1.5,-1.5,1,1,1,true,Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w1( new Wheel(0.55,1.4,1.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w2( new Wheel(-0.5,1.4,1.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w3( new Wheel(0.525,1.4,-0.68,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w4( new Wheel(-0.475,1.4,-0.68,1,1,1,true,Entity::Type::NOTCOLLIDABLE) );
     
     emitterObj = std::make_shared<EmitterObject>(-1.9,0.5,-2.5);
 
@@ -66,8 +66,10 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime){
     setAddAngle(pitch);
     float velocityz= (pitch*4*M_PI_F)/180;
     
+    double i=0.0;
     for(auto e : wheels){
-        e->update(r, isPaused, deltaTime);
+        e->update(r, isPaused, i);
+        i++;
     }
     
     
