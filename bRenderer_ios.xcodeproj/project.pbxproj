@@ -34,6 +34,7 @@
 		22F2E9011CC8024A00C2AEE9 /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F51CC8024A00C2AEE9 /* tree.mtl */; };
 		22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F61CC8024A00C2AEE9 /* tree.obj */; };
 		22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */ = {isa = PBXBuildFile; fileRef = 22F2E8F71CC8024A00C2AEE9 /* tree.vert */; };
+		22F7ABE21CEB597E00CA84E5 /* menubackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F7ABE11CEB597E00CA84E5 /* menubackground.png */; };
 		3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */; };
 		3C1763881CD8C41300097387 /* ramp.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763861CD8C41300097387 /* ramp.mtl */; };
 		3C1763891CD8C41300097387 /* ramp.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C1763871CD8C41300097387 /* ramp.obj */; };
@@ -67,7 +68,6 @@
 		6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */; };
 		64B34C4E1CEB52E600622DE7 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B34C4C1CEB52E600622DE7 /* MenuViewController.m */; };
 		64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */; };
-		64B34C511CEB550E00622DE7 /* menubackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64B34C501CEB550E00622DE7 /* menubackground.jpg */; };
 		64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD641CD7E55100E15EA6 /* ramp.frag */; };
 		64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD661CD7E55B00E15EA6 /* ramp.vert */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
@@ -193,6 +193,7 @@
 		22F2E8F51CC8024A00C2AEE9 /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
 		22F2E8F61CC8024A00C2AEE9 /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
 		22F2E8F71CC8024A00C2AEE9 /* tree.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tree.vert; sourceTree = "<group>"; };
+		22F7ABE11CEB597E00CA84E5 /* menubackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubackground.png; sourceTree = "<group>"; };
 		3C00FEDE1CE133FA00DFEFF5 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		3C1763861CD8C41300097387 /* ramp.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.mtl; sourceTree = "<group>"; };
 		3C1763871CD8C41300097387 /* ramp.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ramp.obj; sourceTree = "<group>"; };
@@ -239,7 +240,6 @@
 		64B34C4B1CEB52E600622DE7 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		64B34C4C1CEB52E600622DE7 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
-		64B34C501CEB550E00622DE7 /* menubackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menubackground.jpg; sourceTree = "<group>"; };
 		64D7AD641CD7E55100E15EA6 /* ramp.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.frag; sourceTree = "<group>"; };
 		64D7AD661CD7E55B00E15EA6 /* ramp.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.vert; sourceTree = "<group>"; };
 		B47949921BA6742B00B5E9DC /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
@@ -847,7 +847,7 @@
 		B4CB8CA11B72E43300FE041B /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				64B34C501CEB550E00622DE7 /* menubackground.jpg */,
+				22F7ABE11CEB597E00CA84E5 /* menubackground.png */,
 				B4CB8CA21B72E43300FE041B /* AppDelegate.h */,
 				B4CB8CA31B72E43300FE041B /* AppDelegate.m */,
 				B4CB8CA41B72E43300FE041B /* main.m */,
@@ -927,7 +927,6 @@
 				2288C7A91CE9D71500D23B8B /* particles.vert in Resources */,
 				22F2E9031CC8024A00C2AEE9 /* tree.vert in Resources */,
 				22F2E9021CC8024A00C2AEE9 /* tree.obj in Resources */,
-				64B34C511CEB550E00622DE7 /* menubackground.jpg in Resources */,
 				22F2E8F81CC8024A00C2AEE9 /* guy.frag in Resources */,
 				22F2E8F91CC8024A00C2AEE9 /* guy.mtl in Resources */,
 				3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */,
@@ -965,6 +964,7 @@
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
 				6461B4831CEA186100375ADD /* road.frag in Resources */,
+				22F7ABE21CEB597E00CA84E5 /* menubackground.png in Resources */,
 				22C25B0A1CCC060B00CF3265 /* barrier.vert in Resources */,
 				229B06431CC912F500EDFF9C /* map2.txt in Resources */,
 				22F2E8FC1CC8024A00C2AEE9 /* terrain.frag in Resources */,
