@@ -64,8 +64,8 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
         bRenderer().getModelRenderer()->drawText("time", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX(), player.getY()+10, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(1.0f)), std::vector<std::string>({ }));
     }
 
-    bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
-    bRenderer().getModelRenderer()->queueModelInstance("sphere", "sphere_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(200.0f)), std::vector<std::string>({ }));
+    bRenderer().getModelRenderer()->queueModelInstance("terrain", "terrain_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(4.0f)), std::vector<std::string>({ }));
+    bRenderer().getModelRenderer()->queueModelInstance("sphere", "sphere_instance", camera, modelMatrix*vmml::create_scaling(vmml::Vector3f(400.0f)), std::vector<std::string>({ }));
 }
 
 
