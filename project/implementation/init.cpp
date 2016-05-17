@@ -82,7 +82,6 @@ void Game::initFunction()
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
     
-    //std::ifstream file std::ifstream(bRenderer::getFilePath("map2.txt"));
     start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
 
     //loading the the map
