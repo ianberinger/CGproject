@@ -16,6 +16,10 @@ Collisionhandler::Collisionhandler() {
 
 bool Collisionhandler::testAABBOverlap(const Entity &a, const Entity &b) {
     
+    if (b.getType() != Entity::COLLIDABLE) {
+        return false;
+    }
+    
     boundingBoxA = getBoundingBox(a);
     boundingBoxB = getBoundingBox(b);
     

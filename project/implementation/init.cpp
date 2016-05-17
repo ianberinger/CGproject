@@ -1,8 +1,7 @@
 #include "Game.h"
-/* Initialize the Game */
 
 int Game::_map[50][50] = {0};
-
+/* Initialize the Game */
 void Game::init()
 {
     bRenderer::loadConfigFile("config.json");	// load custom configurations replacing the default values in Configuration.cpp
@@ -82,72 +81,12 @@ void Game::initFunction()
     
     // create camera
     bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
+    
+    //std::ifstream file std::ifstream(bRenderer::getFilePath("map2.txt"));
+    start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
 
     //loading the the map
-    std::string currLine;
-    std::ifstream file (bRenderer::getFilePath("map2.txt"));
-    int count=0;
-    if (file.is_open())
-    {
-        while ( getline (file,currLine) )
-        {
-            for(int i=0;i<currLine.length();i++){
-                Game::_map[count][i]=currLine[i]-'0';
-            }
-            count++;
-        }
-        file.close();
-    }else{
-
-    }
-    
-    for(int i=0; i<50;i++){
-        for(int j=0;j<50;j++){
-            switch (Game::_map[i][j]) {
-                case 1: {
-                    if (!start.isValid) {start = identifyMarker(Game::_map, i, j);}
-                    break;
-                }
-                case 2: {
-                    marker checkpoint = identifyMarker(Game::_map, i, j);
-                    if (checkpoint.isValid) {
-                        bool isCollected = false;
-                        for(auto c: checkpoints) {
-                            if (c.x == checkpoint.x && c.z == checkpoint.z){
-                                // don't use this checkpoint
-                                isCollected = true;
-                                break;
-                            }
-                        }
-                        if (!isCollected) {checkpoints.push_back(checkpoint);}
-                    }
-                    break;
-                }
-                case 3: {
-                    std::shared_ptr<Entity> p( new Road((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-                    environment.push_back(p);
-                    break;
-                }
-                case 4: {
-                    std::shared_ptr<Entity> p( new Barrier((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
-                    ent.push_back(p);
-                    break;
-                }
-                case 6: {
-                    std::shared_ptr<Entity> p( new Ramp((i*4-100),0,(j*4-100),1,2,5,true, Entity::Type::RAMP));
-                    ent.push_back(p);
-                    break;
-                }
-                case 7: {
-                    std::shared_ptr<Entity> p( new Tree((i*4-100),0,(j*4-100),1,1,1,true, Entity::Type::COLLIDABLE) );
-                    ent.push_back(p);
-                    break;
-                }
-            }
-        }
-    }
-    
-    if (start.isValid) {
+        if (start.isValid) {
         bRenderer::log("START");
         bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
         player.setX(start.x*4-100);

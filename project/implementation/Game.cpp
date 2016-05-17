@@ -37,12 +37,6 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
         }
     }
     
-    for(auto e: environment) {
-        if(std::abs(player.getX()-e->getX())<40||std::abs(player.getZ()-e->getZ())<40){
-            e->draw(bRenderer(),modelMatrix);
-        }
-    }
-    
     for (auto s: globalShaders) {
         s->setUniform("fogColor", this->fogColor);
     }
