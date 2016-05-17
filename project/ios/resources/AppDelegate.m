@@ -1,10 +1,12 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate () {
 @private
     ViewController *viewController;
+    MenuViewController *menuViewController;
 }
 
 @end
@@ -20,9 +22,9 @@
     self.window.backgroundColor = [UIColor blackColor];
     
     // create view controller
-    viewController = [[ViewController alloc] init];
+    menuViewController = [[MenuViewController alloc] init];
     
-    [self.window setRootViewController:viewController];
+    [self.window setRootViewController:menuViewController];
     [self.window makeKeyAndVisible];
     
     return YES;
