@@ -1,16 +1,45 @@
 #include "Game.hpp"
 
+void Game::startRun(){
+    bRenderer().getObjects()->getCamera("camera")->setPosition(vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]));
+    bRenderer().getObjects()->getCamera("camera")->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
+    
+    if (start.isValid) {
+        bRenderer::log("START");
+        bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
+        player.setX(start.x*translateFactor);
+        player.setZ(start.z*translateFactor);
+        bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
+        player.setComAngle(start.angle);
+        bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
+        player.setCollisionHandler(&collisionHandler);
+    } else {
+        bRenderer::log("ERROR::NO START FOUND");
+    }
+    time = 0.0 - countdown;
+    running = true;
+    isPaused = true;
+}
 
 /* Draw your scene here */
 void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 {
-    /// Draw scene ///
-    bRenderer().getModelRenderer()->drawQueue(/*GL_LINES*/);
-    bRenderer().getModelRenderer()->clearQueue();
-    
-    /// Update render queue ///
-    updateRenderQueue("camera", deltaTime);
-    
+    if (running) {
+        /// Draw scene ///
+        bRenderer().getModelRenderer()->drawQueue(/*GL_LINES*/);
+        bRenderer().getModelRenderer()->clearQueue();
+        
+        /// Update render queue ///
+        updateRenderQueue("camera", deltaTime);
+        
+        if (DEBUG && time > 100.0) { // return to menu
+            bRenderer().stopRenderer();
+            runCompleteCallbackFunc();
+        }
+    }else {
+        bRenderer().stopRenderer(); //bRenderer just doesn't want to stop :o
+    }
+
     // Quit renderer when escape is pressed ///
     if (bRenderer().getInput()->getKeyState(bRenderer::KEY_ESCAPE) == bRenderer::INPUT_PRESS)
         bRenderer().terminateRenderer();
@@ -20,7 +49,7 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime)
 void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 {
     updateTime(deltaTime);
-    handleDebuggingInput(camera);
+    if (DEBUG){handleDebuggingInput(camera);}
     
     vmml::Matrix4f modelMatrix;
     

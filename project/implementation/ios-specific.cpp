@@ -15,7 +15,7 @@ void Game::appWillResignActive()
 {
     if (bRenderer().isInitialized()){
         // stop the renderer when the app isn't active
-        bRenderer().stopRenderer();
+        running = false;
     }
 }
 

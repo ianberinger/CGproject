@@ -34,6 +34,16 @@ public:
 
 	/* This function is executed when terminating the renderer */
 	void terminateFunction();
+    
+    
+    //// gameControl for parent eg. ViewController ////
+    
+    void runCompleteCallback(void (*f)()){runCompleteCallbackFunc = f;}
+    //void callback(void (*f)()){bRenderer().setTerminateFunction(f);};
+    float getTime() {return time;}
+    std::vector<positionInTime> getPositions() {return pastPositions;}
+    void startRun();
+    //void stop(){bRenderer().stopRenderer();}
 
 	//// iOS specific ////
 
@@ -54,6 +64,8 @@ public:
     {
         return bRenderer();
     }
+    
+    bool DEBUG = false;
     
 private:
     
@@ -81,7 +93,6 @@ private:
     Player player;
     Collisionhandler collisionHandler;
     std::vector<ShaderPtr> globalShaders;
-	bool _running = false;
 	GLint _lastStateSpaceKey = 0;
 	vmml::Matrix4f _viewMatrixHUD;
     std::vector<std::shared_ptr<Entity>> ent;
@@ -90,9 +101,11 @@ private:
     std::vector<positionInTime> pastPositions;
     const float countdown = 3.0;
     float time = 0.0;
-    
-    bool isPaused = true;
+
+    bool isPaused = true; // used for signaling a paused game, while still rendering
     bool isBirdsEye = false;
+    bool running = false; // used for signaling that game isn't running at all (no rendering)
+    void (*runCompleteCallbackFunc)();
 };
 
 #endif /* defined(PROJECT_MAIN_H) */

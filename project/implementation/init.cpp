@@ -12,24 +12,20 @@ void Game::init()
     else
         bRenderer().initRenderer(1920, 1080, false, "Game on Desktop TODO");		// windowed mode on desktop
     //bRenderer().initRenderer(View::getScreenWidth(), View::getScreenHeight(), true);		// full screen using full width and height of the screen
-    
-    // start main loop
-    bRenderer().runRenderer();
 }
 
 /* This function is executed when initializing the renderer */
 void Game::initFunction()
 {
-    
     _offset = 0.0f;
     _randomOffset = 0.0f;
     _cameraSpeed = 40.0f;
-    _running = true; _lastStateSpaceKey = bRenderer::INPUT_UNDEFINED;
+    _lastStateSpaceKey = bRenderer::INPUT_UNDEFINED;
     _viewMatrixHUD = Camera::lookAt(vmml::Vector3f(0.0f, 0.0f, 0.25f), vmml::Vector3f::ZERO, vmml::Vector3f::UP);
     
     float off[3]={0.0f,-5.0f,-18.0f};
     player.setOffSetCam(off);
-    
+
     // set shader versions (optional)
     bRenderer().getObjects()->setShaderVersionDesktop("#version 120");
     bRenderer().getObjects()->setShaderVersionES("#version 100");
@@ -78,29 +74,11 @@ void Game::initFunction()
     bRenderer().getObjects()->createTextSprite("countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
     bRenderer().getObjects()->createTextSprite("time", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
 
-    
     // create camera
-    bRenderer().getObjects()->createCamera("camera", vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]), vmml::Vector3f(-0.5f, 0.0f, 0.f));
+    bRenderer().getObjects()->createCamera("camera");
     
-    start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
-
     //loading the the map
-        if (start.isValid) {
-        bRenderer::log("START");
-        bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" + std::to_string(start.x));
-        player.setX(start.x*translateFactor);
-        player.setZ(start.z*translateFactor);
-        bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
-        player.setComAngle(start.angle);
-        bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
-        player.setCollisionHandler(&collisionHandler);
-        time -= countdown;
-    } else {
-        bRenderer::log("ERROR::NO START FOUND");
-    }
-    // load materials and shaders before loading the model
-    // Update render queue
-    updateRenderQueue("camera", 0.0f);
+    start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
 }
 
 /* This function is executed when terminating the renderer */

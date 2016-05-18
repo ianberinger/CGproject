@@ -1,11 +1,9 @@
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import "MenuViewController.h"
 
 @interface AppDelegate () {
 @private
-    ViewController *viewController;
     MenuViewController *menuViewController;
 }
 
@@ -33,19 +31,19 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // pass event to view controller holding the c++ application
-    [viewController appWillResignActive];
+    [menuViewController appWillResignActive];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // pass event to view controller holding the c++ application
-    [viewController appDidBecomeActive];
+    [menuViewController appDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // pass event to view controller holding the c++ application
-    [viewController appWillTerminate];
+    [menuViewController appWillTerminate];
 }
 
 @end
