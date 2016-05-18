@@ -18,7 +18,7 @@ void Road::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
         z_cord += 1;
         stretchvalue += 1;
     }
-    bRenderer::log("Stretch:" + std::to_string(stretchvalue) + " length:" + std::to_string(getLength()));
+    //bRenderer::log("Stretch:" + std::to_string(stretchvalue) + " length:" + std::to_string(getLength()));
 
     r.getModelRenderer()->drawModel("Plate", "camera", modelMatrix*vmml::create_translation(vmml::Vector3f(getX(), getY(), getZ()+stretchvalue/2-1))*vmml::create_scaling(vmml::Vector3f(1.1f, 0.1f, stretchvalue/2+2)), std::vector<std::string>({ }));
 }
