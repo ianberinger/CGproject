@@ -22,9 +22,6 @@ public:
     void setComAngle(float ang){comAngle=ang;}
     float getComAngle(){return comAngle;}
     
-    void setOffSetCam(float * off){offSetCam[0]=off[0];offSetCam[1]=off[1];offSetCam[2]=off[2];}
-    float * getOffSetCam(){return offSetCam;}
-    
     void setVelocity(float vel){velocity=vel;}
     float getVelocity(){return velocity;}
     
@@ -43,7 +40,6 @@ private:
     float comAngle;
     float velocity;
     float acceleration;
-    float offSetCam[3];
     std::vector<std::shared_ptr<Wheel>> wheels;
     Collisionhandler *collisionHandler;
     std::shared_ptr<EmitterObject> emitterObj;

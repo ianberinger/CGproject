@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 void Game::startRun(){
-    bRenderer().getObjects()->getCamera("camera")->setPosition(vmml::Vector3f(0.0f, player.getOffSetCam()[1], player.getOffSetCam()[2]));
+    bRenderer().getObjects()->getCamera("camera")->setPosition(cameraOffset);
     bRenderer().getObjects()->getCamera("camera")->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
     
     if (start.isValid) {
@@ -12,10 +12,10 @@ void Game::startRun(){
         bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
         player.setComAngle(start.angle);
         bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
-        player.setCollisionHandler(&collisionHandler);
     } else {
         bRenderer::log("ERROR::NO START FOUND");
     }
+
     time = 0.0 - countdown;
     running = true;
     isPaused = true;

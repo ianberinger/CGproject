@@ -17,15 +17,6 @@ void Game::init()
 /* This function is executed when initializing the renderer */
 void Game::initFunction()
 {
-    _offset = 0.0f;
-    _randomOffset = 0.0f;
-    _cameraSpeed = 40.0f;
-    _lastStateSpaceKey = bRenderer::INPUT_UNDEFINED;
-    _viewMatrixHUD = Camera::lookAt(vmml::Vector3f(0.0f, 0.0f, 0.25f), vmml::Vector3f::ZERO, vmml::Vector3f::UP);
-    
-    float off[3]={0.0f,-5.0f,-18.0f};
-    player.setOffSetCam(off);
-
     // set shader versions (optional)
     bRenderer().getObjects()->setShaderVersionDesktop("#version 120");
     bRenderer().getObjects()->setShaderVersionES("#version 100");
@@ -79,6 +70,8 @@ void Game::initFunction()
     
     //loading the the map
     start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
+    
+    player.setCollisionHandler(&collisionHandler);
 }
 
 /* This function is executed when terminating the renderer */
