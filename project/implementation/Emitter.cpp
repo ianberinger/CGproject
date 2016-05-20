@@ -1,6 +1,6 @@
 #include "Emitter.hpp"
 
-EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,0.1,false,Entity::Type::NOTCOLLIDABLE){
+EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,0.1,0.0,false,Entity::Type::NOTCOLLIDABLE){
     
         Emitter newEmitter = {0.0f};
     

@@ -44,22 +44,27 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
                     break;
                 }
                 case 3: {
-                    std::shared_ptr<Entity> p( new Road(i,0,j,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
+                    std::shared_ptr<Entity> p( new Road(i,0,j,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
                     entities.push_back(p);
                     break;
                 }
                 case 4: {
-                    std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,true, Entity::Type::COLLIDABLE, UP) );
+                    std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,0.0,true, Entity::Type::COLLIDABLE, UP) );
                     entities.push_back(p);
                     break;
                 }
                 case 6: {
-                    std::shared_ptr<Entity> p( new Ramp(i,0,j,1,2,5,true, Entity::Type::RAMP));
+                    std::shared_ptr<Entity> p( new Ramp(i,0,j,1,2,5,0.0,true, Entity::Type::RAMP));
                     entities.push_back(p);
                     break;
                 }
                 case 7: {
-                    std::shared_ptr<Entity> p( new Tree(i,0,j,1,1,1,true, Entity::Type::COLLIDABLE) );
+                    std::shared_ptr<Entity> p( new Tree(i,0,j,1,1,1,0.0,true, Entity::Type::COLLIDABLE) );
+                    entities.push_back(p);
+                    break;
+                }
+                case 9: {
+                    std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,0.0,true, Entity::Type::COLLIDABLE, UP) );
                     entities.push_back(p);
                     break;
                 }
@@ -316,7 +321,7 @@ void addRoad(map &m, int x, int z, std::vector<std::shared_ptr<Entity>> &entitie
         length++;
     }
     if(length > 0) {
-        std::shared_ptr<Entity> p(new Road(x,0,z,1,1,length,true, Entity::Type::NOTCOLLIDABLE));
+        std::shared_ptr<Entity> p(new Road(x,0,z,1,1,length,0.0,true, Entity::Type::NOTCOLLIDABLE));
         entities.push_back(p);
     }
 }
@@ -326,7 +331,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case UP: {
             for (int i = 0; i < length; i++) {
                 //TODO curves
-                std::shared_ptr<Entity> p(new Barrier(x-i,0,z,1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x-i,0,z,1,1,1,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -334,7 +339,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case DOWN: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x+i,0,z,1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x+i,0,z,1,1,1,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -342,7 +347,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case LEFT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x,0,z-i,1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x,0,z-i,1,1,1,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -350,7 +355,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case RIGHT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x,0,z+i,1,1,1,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x,0,z+i,1,1,1,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;

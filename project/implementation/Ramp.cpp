@@ -1,6 +1,6 @@
 #include "Ramp.hpp"
 
-Ramp::Ramp(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
+Ramp::Ramp(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l, r, col, type){
     
     
 }

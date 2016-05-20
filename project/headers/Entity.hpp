@@ -14,13 +14,14 @@ class Entity{
 public:
     enum Type {NOTCOLLIDABLE, COLLIDABLE, RAMP};
     
-    Entity(float x, float y, float z, float w, float h, float l, bool col, Type type){
+    Entity(float x, float y, float z, float w, float h, float l, float r, bool col, Type type){
         setX(x*translateFactor);
         setY(y);
         setZ(z*translateFactor);
         setWidth(w);
         setHeight(h);
         setLength(l);
+        setRotation(r);
         setCollision(col);
         setType(type);
     }
@@ -41,6 +42,8 @@ public:
     void setHeight(float h){height=h;}
     void setLength(float l){length=l;}
     
+    void setRotation(float r) {rotation = r;};
+    
     void setType(Type t){ type = t; };
     
     void setCollision(bool col){collision=col;}
@@ -53,6 +56,8 @@ public:
     float getWidth() const {return width;}
     float getHeight() const {return height;}
     float getLength() const {return length;}
+    
+    float getRotation() const {return rotation;}
     
     bool hasCollision(){return collision;}
 
@@ -68,6 +73,8 @@ private:
     float width;
     float height;
     float length;
+    //in radian
+    float rotation;
     Type type;
 
     bool collision;

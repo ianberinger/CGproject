@@ -3,13 +3,13 @@
 
 Helper h;
 
-Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCOLLIDABLE){
+Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.0, 1, 2.0, 0.0, true, Entity::Type::NOTCOLLIDABLE){
     
     //wheels for the car
-    std::shared_ptr<Wheel> w1( new Wheel(0.55,1.4,1.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w2( new Wheel(-0.5,1.4,1.0,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w3( new Wheel(0.525,1.4,-0.68,1,1,1,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w4( new Wheel(-0.475,1.4,-0.68,1,1,1,true,Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w1( new Wheel(0.55,1.4,1.0,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w2( new Wheel(-0.5,1.4,1.0,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w3( new Wheel(0.525,1.4,-0.68,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w4( new Wheel(-0.475,1.4,-0.68,1,1,1,0.0,true,Entity::Type::NOTCOLLIDABLE) );
     
     emitterObj = std::make_shared<EmitterObject>(-1.9,0.5,-2.5);
 
@@ -21,7 +21,7 @@ Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, true, Entity::Type::NOTCO
     
 }
 
-Player::Player(float x, float y, float z, float w, float h, float l, bool col, Type type):Entity(x, y, z, w, h, l, col, type){
+Player::Player(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l,r, col, type){
     setVelocity(0);
     setAcceleration(0);
     
@@ -77,16 +77,15 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime){
     setComAngle(getComAngle()+velocityz);
     setRotAngle(velocityz);
     
-    setX(getX()-getVelocity()*sinf(getComAngle()));
-    setZ(getZ()-getVelocity()*cosf(getComAngle()));
+    std::cout << "Com Angle: " << comAngle << " rot Angle: " << rotAngle << std::endl;
+    
+    setRotation(velocityz);
     
     if (hasCollision()){
         setCollision(false);
-        
-        vmml::Vector3f newVelocity {getXYZ() + collisionHandler->getCollisionForce()};
-        
-        setX(newVelocity.x());
-        setZ(newVelocity.z());
+    } else {
+        setX(getX()-getVelocity()*sinf(getComAngle()));
+        setZ(getZ()-getVelocity()*cosf(getComAngle()));
     }
     
     emitterObj->update(r,isPaused,deltaTime);

@@ -5,28 +5,49 @@ Collisionhandler::Collisionhandler() {
 }
 
 #pragma mark Collision Test
-
-bool Collisionhandler::testAABBOverlap(const Entity &a, const Entity &b) {
-    
-    if (b.getType() != Entity::COLLIDABLE) {
+bool Collisionhandler::testOBBOverlap(const Entity &a, const Entity &b) {
+    if (b.getType() == Entity::NOTCOLLIDABLE) {
         return false;
     }
     
-    boundingBoxA = getBoundingBox(a);
-    boundingBoxB = getBoundingBox(b);
+    vmml::Vector2f axis1(std::cos(a.getRotation()), std::sin(a.getRotation()));
+    vmml::Vector2f axis2(-std::sin(a.getRotation()), std::cos(a.getRotation()));
+    vmml::Vector2f axis3(std::cos(b.getRotation()), std::sin(b.getRotation()));
+    vmml::Vector2f axis4(-std::sin(b.getRotation()), std::cos(b.getRotation()));
     
-    float d1x = boundingBoxB.at(0, 0) - boundingBoxA.at(0, 1);
-    float d1z = boundingBoxB.at(1,0) - boundingBoxA.at(1, 1);
-    float d2x = boundingBoxA.at(0, 0) - boundingBoxB.at(0, 1);
-    float d2z = boundingBoxA.at(1,0) - boundingBoxB.at(1, 1);
+    vmml::Vector2f distance = vmml::Vector2f(a.getX(), a.getZ()) - vmml::Vector2f(b.getX(), b.getZ());
     
-    //Checks if there are overlapping sides of entity a and b
-    if (d1x > 0.0f || d1z > 0.0f || d2x > 0.0f || d2z > 0.0f) {
-        return false;
-    } else {
-        handleCollision(a, b);
-        return true;
-    }
+    float r1, r2, r3, r4;
+    
+    //projection on axis 1
+    r1 = a.getLength() * std::fabs(axis1.dot(axis1));
+    r2 = a.getWidth() * std::fabs(axis2.dot(axis1));
+    r3 = b.getLength() * std::fabs(axis3.dot(axis1));
+    r4 = b.getWidth() * std::fabs(axis4.dot(axis1));
+    if (r1 + r2 + r3 + r4 <= std::fabs(distance.dot(axis1))) {return false;};
+    
+    //projection on axis 2
+    r1 = a.getLength() * std::fabs(axis1.dot(axis2));
+    r2 = a.getWidth() * std::fabs(axis2.dot(axis2));
+    r3 = b.getLength() * std::fabs(axis3.dot(axis2));
+    r4 = b.getWidth() * std::fabs(axis4.dot(axis2));
+    if (r1 + r2 + r3 + r4 <= std::fabs(distance.dot(axis2))) {return false;};
+    
+    //projection on axis 3
+    r1 = a.getLength() * std::fabs(axis1.dot(axis3));
+    r2 = a.getWidth() * std::fabs(axis2.dot(axis3));
+    r3 = b.getLength() * std::fabs(axis3.dot(axis3));
+    r4 = b.getWidth() * std::fabs(axis4.dot(axis3));
+    if (r1 + r2 + r3 + r4 <= std::fabs(distance.dot(axis3))) {return false;};
+    
+    //projection on axis 4
+    r1 = a.getLength() * std::fabs(axis1.dot(axis4));
+    r2 = a.getWidth() * std::fabs(axis2.dot(axis4));
+    r3 = b.getLength() * std::fabs(axis3.dot(axis4));
+    r4 = b.getWidth() * std::fabs(axis4.dot(axis4));
+    if (r1 + r2 + r3 + r4 <= std::fabs(distance.dot(axis4))) {return false;};
+    
+    return true;
 }
 
 #pragma mark Collision Handling

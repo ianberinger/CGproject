@@ -7,7 +7,7 @@
 class Barrier : public Entity{
     
 public:
-    Barrier(float x, float y, float z, float w, float h, float l, bool col, Type type, Direction direction);
+    Barrier(float x, float y, float z, float w, float h, float l, float r, bool col, Type type, Direction direction);
     virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix);
     virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
     

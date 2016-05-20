@@ -18,6 +18,8 @@ public:
      */
     bool testAABBOverlap(const Entity &a, const Entity &b);
     
+    bool testOBBOverlap(const Entity &a, const Entity &b);
+    
     /**
      *  Returns the collision force which affects the direction when a player collides with a collidable object
      *
