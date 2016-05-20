@@ -3,8 +3,8 @@
 #import "MenuViewController.h"
 
 @interface AppDelegate () {
-@private
-    MenuViewController *menuViewController;
+ @private
+  MenuViewController *menuViewController;
 }
 
 @end
@@ -13,37 +13,34 @@
 
 @synthesize window;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // create window
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor blackColor];
-    
-    // create view controller
-    menuViewController = [[MenuViewController alloc] init];
-    
-    [self.window setRootViewController:menuViewController];
-    [self.window makeKeyAndVisible];
-    
-    return YES;
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // create window
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  self.window.backgroundColor = [UIColor blackColor];
+
+  // create view controller
+  menuViewController = [[MenuViewController alloc] init];
+
+  [self.window setRootViewController:menuViewController];
+  [self.window makeKeyAndVisible];
+
+  return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // pass event to view controller holding the c++ application
-    [menuViewController appWillResignActive];
+- (void)applicationWillResignActive:(UIApplication *)application {
+  // pass event to view controller holding the c++ application
+  [menuViewController appWillResignActive];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // pass event to view controller holding the c++ application
-    [menuViewController appDidBecomeActive];
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  // pass event to view controller holding the c++ application
+  [menuViewController appDidBecomeActive];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // pass event to view controller holding the c++ application
-    [menuViewController appWillTerminate];
+- (void)applicationWillTerminate:(UIApplication *)application {
+  // pass event to view controller holding the c++ application
+  [menuViewController appWillTerminate];
 }
 
 @end
