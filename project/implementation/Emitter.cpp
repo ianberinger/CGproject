@@ -46,15 +46,11 @@ EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,
 }
 
 void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
-
-
-    GLuint particleBuffer=1;
-    glGenBuffers(1, &particleBuffer);
+    glGenBuffers(1, &partBuff);
     
 
-    glBindBuffer(GL_ARRAY_BUFFER, particleBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, partBuff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(emitter.eParticles), emitter.eParticles, GL_STATIC_DRAW);
-    partBuff=particleBuffer;
 
     
     emitter.ePosition=vmml::Vector4f(164.0,1.0,16.0,1.0);
@@ -83,6 +79,7 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     glBindBuffer(GL_ARRAY_BUFFER, partBuff);
     pShader->bind();
     glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
+    glDeleteBuffers(1, &partBuff);
 }
 
 
