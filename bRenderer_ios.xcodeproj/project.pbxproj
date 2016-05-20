@@ -60,8 +60,6 @@
 		3C7FAAE21CEB1DB9007C2B20 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD41CEB1DB9007C2B20 /* init.cpp */; };
 		3C7FAAE31CEB1DB9007C2B20 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD51CEB1DB9007C2B20 /* Map.cpp */; };
 		643342741CE90D1A00C4F165 /* DiffuseBarrier.png in Resources */ = {isa = PBXBuildFile; fileRef = 643342711CE90D1A00C4F165 /* DiffuseBarrier.png */; };
-		643342751CE90D1A00C4F165 /* barrier.obj in Resources */ = {isa = PBXBuildFile; fileRef = 643342721CE90D1A00C4F165 /* barrier.obj */; };
-		643342761CE90D1A00C4F165 /* barrier.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 643342731CE90D1A00C4F165 /* barrier.mtl */; };
 		6461B4811CEA185600375ADD /* road.vert in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4801CEA185600375ADD /* road.vert */; };
 		6461B4831CEA186100375ADD /* road.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4821CEA186100375ADD /* road.frag */; };
 		6461B48E1CEA2FB500375ADD /* asphalt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B48D1CEA2FB500375ADD /* asphalt.jpg */; };
@@ -72,6 +70,8 @@
 		64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */; };
 		64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD641CD7E55100E15EA6 /* ramp.frag */; };
 		64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD661CD7E55B00E15EA6 /* ramp.vert */; };
+		64DEA1FD1CEE570300487247 /* Barrier.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 64DEA1FB1CEE570300487247 /* Barrier.mtl */; };
+		64DEA1FE1CEE570300487247 /* Barrier.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64DEA1FC1CEE570300487247 /* Barrier.obj */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
 		B4794A2B1BA6743D00B5E9DC /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C61BA6743D00B5E9DC /* platform.c */; };
 		B4794A2C1BA6743D00B5E9DC /* texture-atlas.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C81BA6743D00B5E9DC /* texture-atlas.c */; };
@@ -232,8 +232,6 @@
 		3C7FAAEE1CEB1DC2007C2B20 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		3C7FAAEF1CEB1DC2007C2B20 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
 		643342711CE90D1A00C4F165 /* DiffuseBarrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiffuseBarrier.png; sourceTree = "<group>"; };
-		643342721CE90D1A00C4F165 /* barrier.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.obj; sourceTree = "<group>"; };
-		643342731CE90D1A00C4F165 /* barrier.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.mtl; sourceTree = "<group>"; };
 		6461B4801CEA185600375ADD /* road.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.vert; sourceTree = "<group>"; };
 		6461B4821CEA186100375ADD /* road.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.frag; sourceTree = "<group>"; };
 		6461B48D1CEA2FB500375ADD /* asphalt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asphalt.jpg; sourceTree = "<group>"; };
@@ -245,6 +243,8 @@
 		64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		64D7AD641CD7E55100E15EA6 /* ramp.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.frag; sourceTree = "<group>"; };
 		64D7AD661CD7E55B00E15EA6 /* ramp.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.vert; sourceTree = "<group>"; };
+		64DEA1FB1CEE570300487247 /* Barrier.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Barrier.mtl; sourceTree = "<group>"; };
+		64DEA1FC1CEE570300487247 /* Barrier.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Barrier.obj; sourceTree = "<group>"; };
 		B47949921BA6742B00B5E9DC /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		B47949C01BA6743D00B5E9DC /* bRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bRenderer.h; sourceTree = "<group>"; };
 		B47949C31BA6743D00B5E9DC /* freetype-gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
@@ -525,8 +525,8 @@
 				22C25B081CCC060B00CF3265 /* barrier.vert */,
 				22C25B071CCC060B00CF3265 /* barrier.frag */,
 				643342711CE90D1A00C4F165 /* DiffuseBarrier.png */,
-				643342721CE90D1A00C4F165 /* barrier.obj */,
-				643342731CE90D1A00C4F165 /* barrier.mtl */,
+				64DEA1FB1CEE570300487247 /* Barrier.mtl */,
+				64DEA1FC1CEE570300487247 /* Barrier.obj */,
 			);
 			name = Barrier;
 			sourceTree = "<group>";
@@ -949,7 +949,6 @@
 				6461B4921CEA313700375ADD /* Plate.obj in Resources */,
 				3C1763881CD8C41300097387 /* ramp.mtl in Resources */,
 				228595001CD108B20063E8A6 /* car.frag in Resources */,
-				643342751CE90D1A00C4F165 /* barrier.obj in Resources */,
 				6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */,
 				3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */,
 				22F2E9001CC8024A00C2AEE9 /* tree.frag in Resources */,
@@ -959,17 +958,18 @@
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
 				6461B4811CEA185600375ADD /* road.vert in Resources */,
-				643342761CE90D1A00C4F165 /* barrier.mtl in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
 				6461B4931CEA313700375ADD /* Plate.mtl in Resources */,
 				3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
+				64DEA1FD1CEE570300487247 /* Barrier.mtl in Resources */,
 				6461B4831CEA186100375ADD /* road.frag in Resources */,
 				22F7ABE21CEB597E00CA84E5 /* menubackground.png in Resources */,
 				22C25B0A1CCC060B00CF3265 /* barrier.vert in Resources */,
 				229B06431CC912F500EDFF9C /* map2.txt in Resources */,
+				64DEA1FE1CEE570300487247 /* Barrier.obj in Resources */,
 				22F2E8FC1CC8024A00C2AEE9 /* terrain.frag in Resources */,
 				2288C7AB1CE9D72A00D23B8B /* particles.frag in Resources */,
 				228594FB1CD106ED0063E8A6 /* car.mtl in Resources */,

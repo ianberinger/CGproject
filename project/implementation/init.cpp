@@ -52,7 +52,7 @@ void Game::initFunction()
     bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4, true, false);
     bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4, true, false);    
     bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true, false);
-    bRenderer().getObjects()->loadObjModel("barrier.obj", false, true, barrierShader, barrierProperties);
+    bRenderer().getObjects()->loadObjModel("Barrier.obj", false, true, barrierShader, barrierProperties);
     bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader, carProperties);
     bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader, wheelProperties);
     bRenderer().getObjects()->loadObjModel("ramp.obj", true, true, false, 4, true, false);
