@@ -49,8 +49,8 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
                     break;
                 }
                 case 4: {
-                    std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, UP) );
-                    entities.push_back(p);
+                    //std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, UP) );
+                    //entities.push_back(p);
                     break;
                 }
                 case 7: {
@@ -62,7 +62,7 @@ marker loadMap(std::string filePath, map &m, std::vector<std::shared_ptr<Entity>
         }
     }
     
-    //defineTracks(m, start, entities);
+    defineTracks(m, start, entities);
     return start;
 }
 
@@ -168,151 +168,108 @@ void defineTracks(map &m, marker start, std::vector<std::shared_ptr<Entity>> &en
     }
 }
 
-void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities,bool generateRoad) {
-    if (generateRoad){addRoad(m, startX, startZ, entities);}
-    int length = 1;
-    switch (direction) {
-        case UP: {
-            // up
-            // vvv
-            //  4
-            printf("UP\n");
-            
-            int nextXv2 = m[startX-length][startZ];
-            
-            while (nextXv2 == 4) {
-                if (generateRoad) {
-                    addRoad(m, nextXv2, startZ, entities);
-                }
-                length++;
-                nextXv2 = m[startX-length][startZ];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:UP\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-length][startZ-1];
-            int nextXv3 = m[startX-length][startZ+1];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-length, startZ-1, LEFT, entities, generateRoad);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX-length, startZ+1, RIGHT, entities, generateRoad);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX-length, startZ, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case DOWN: {
-            // down
-            //  4
-            // vvv
-            printf("DOWN\n");
-            
-            int nextXv2 = m[startX+length][startZ];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX+length][startZ];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:DOWN\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX+length][startZ-1];
-            int nextXv3 = m[startX+length][startZ+1];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX+length, startZ-1, LEFT, entities, generateRoad);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+length, startZ+1, RIGHT, entities, generateRoad);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX+length, startZ, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case RIGHT: {
-            // right
-            //  v
-            // 4v
-            //  v
-            printf("RIGHT\n");
-            
-            int nextXv2 = m[startX][startZ+length];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX][startZ+length];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:RIGHT\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-1][startZ+length];
-            int nextXv3 = m[startX+1][startZ+length];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-1, startZ+length, UP, entities, generateRoad);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+1, startZ+length, DOWN, entities, generateRoad);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ+length, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
-        case LEFT: {
-            // left
-            // v
-            // v4
-            // v
-            printf("LEFT\n");
-            
-            int nextXv2 = m[startX][startZ-length];
-            
-            while (nextXv2 == 4) {
-                length++;
-                nextXv2 = m[startX][startZ-length];
-            }
-            
-            // make entity with length, direction up
-            printf("New barrier at X:%d Z:%d length:%d direction:LEFT\n", startX, startZ, length);
-            addBarrier(startX, startZ, length, direction, entities);
-            
-            int nextXv1 = m[startX-1][startZ-length];
-            int nextXv3 = m[startX+1][startZ-length];
-            if (nextXv1 == 4) {
-                // go left
-                defineTrack(m, startX-1, startZ-length, UP, entities, generateRoad);
-            } else if (nextXv3 == 4) {
-                // go right
-                defineTrack(m, startX+1, startZ-length, DOWN, entities, generateRoad);
-            } else {
-                printf("Map ambiguous at X:%d Z:%d nextXv1:%d nextXv2:%d nextXv3:%d\n", startX, startZ-length, nextXv1, nextXv2, nextXv3);
-            }
-            
-            break;
-        }
+//modifier upMod = {-1, 0};
+//modifier downMod = {1, 0};
+//modifier leftMod = {0, -1};
+//modifier rightMod = {0, 1};
+
+
+//mods[UP] = {-1, 0};
+//mods[DOWN] = {1, 0};
+//mods[LEFT] = {0, -1};
+//mods[RIGHT] = {0, 1};
+
+Direction nextDirection(Direction currentDirection, bool firstCase) {
+    if (firstCase) {
+        if (currentDirection == UP || currentDirection == DOWN) {return LEFT;}
+        return UP;
+    } else {
+        if (currentDirection == UP || currentDirection == DOWN) {return RIGHT;}
+        return DOWN;
     }
 }
 
-void addRoad(map &m, int x, int z, std::vector<std::shared_ptr<Entity>> &entities){
-    int endZ = z + 1;
-    int length = 0;
-    for (;m[x][endZ] != 4;endZ++) {
-        length++;
+bool recurse(map &m, int case1X, int case1Z, int case2X, int case2Z, Direction direction, std::vector<std::shared_ptr<Entity>> &entities, bool generateRoad)
+{
+    if (m[case1X][case1Z] == 4) {
+        defineTrack(m, case1X, case1Z, nextDirection(direction, true), entities, generateRoad);
+        return true;
+    } else if (m[case2X][case2Z] == 4) {
+        // go right
+        defineTrack(m, case2X, case2Z, nextDirection(direction, false), entities, generateRoad);
+        return true;
     }
+    
+    return false;
+}
+
+modifier mods[5] = {{-1, 0, "UP"}, {0, -1, "LEFT"}, {0, 1, "RIGHT"}, {0, 0, "FILLER"}, {1, 0, "DOWN"}};
+
+void defineTrack(map &m, int startX, int startZ, Direction direction, std::vector<std::shared_ptr<Entity>> &entities,bool generateRoad) {
+    int length = 1;
+    int xMod = mods[direction].x;
+    int zMod = mods[direction].z;
+    
+    int x = startX+(xMod*length);
+    int z = startZ+(zMod*length);
+    
+    for (int nextXv2 = m[x][z]; nextXv2 == 4; nextXv2 = m[x][z]) {
+        length++;
+        x = startX+(xMod*length);
+        z = startZ+(zMod*length);
+    }
+    
+    // make entity with length, direction up
+    printf("New barrier at X:%d Z:%d length:%d direction:%s\n", startX, startZ, length, mods[direction].name.c_str());
+    addBarrier(startX, startZ, length, direction, entities);
+    if (generateRoad){addRoad(m, startX, startZ, direction, entities);}
+    
+    // previous row
+    int case1X = x-xMod-abs(zMod);
+    int case1Z = z-zMod-abs(xMod);
+    
+    int case2X = x-xMod+abs(zMod);
+    int case2Z = z-zMod+abs(xMod);
+    
+    if(recurse(m, case1X, case1Z, case2X, case2Z, direction, entities, generateRoad)){return;}
+    
+    // current row
+    case1X = x-abs(zMod);
+    case1Z = z-abs(xMod);
+    
+    case2X = x+abs(zMod);
+    case2Z = z+abs(xMod);
+    
+    if(!recurse(m, case1X, case1Z, case2X, case2Z, direction, entities, generateRoad)){
+        printf("Map ambiguous at X:%d Z:%d case1X:%d case1Z:%d case2X:%d case2Z:%d\n", x, z, case1X, case1Z, case2X, case2Z);
+    }
+}
+
+Direction generalDirection = UP;
+void addRoad(map &m, int x, int z, Direction direction, std::vector<std::shared_ptr<Entity>> &entities){
+    if (direction != generalDirection && (direction == UP || direction == DOWN)){generalDirection = direction;}
+    
+    
+    int length = 0;
+    if (generalDirection == UP){
+        int endZ = z + 1;
+        for (;m[x][endZ] != 4;endZ++) {
+            length++;
+        }
+    } else {
+        int endZ = z - 1;
+        for (;m[x][endZ] != 4;endZ--) {
+            length++;
+        }
+        z -= length;
+    }
+    
     if(length > 0) {
-        std::shared_ptr<Entity> p(new Road(x,0,z,1,1,length,10.0,0.0,true, Entity::Type::NOTCOLLIDABLE));
+        std::shared_ptr<Entity> p( new Road(x,0,z,length,1,1,0.0,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+        //std::shared_ptr<Entity> p(new Road(x,0,z,length,1,1,true, Entity::Type::NOTCOLLIDABLE));
         entities.push_back(p);
+        //else{std::shared_ptr<Entity> p(new Road(x,0,z-length,length,1,1,true, Entity::Type::NOTCOLLIDABLE));}
+        //entities.push_back(std::shared_ptr<Entity>(new Road(x,0,z-length,length,1,1,true, Entity::Type::NOTCOLLIDABLE)));
     }
 }
 
@@ -321,7 +278,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case UP: {
             for (int i = 0; i < length; i++) {
                 //TODO curves
-                std::shared_ptr<Entity> p(new Barrier(x-i,0,z,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x-i,0,z,2,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -329,7 +286,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case DOWN: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x+i,0,z,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x+i,0,z,2,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -337,7 +294,7 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case LEFT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x,0,z-i,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x,0,z-i,2,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
@@ -345,11 +302,10 @@ void addBarrier(int x, int z, int length, Direction direction, std::vector<std::
         case RIGHT: {
             for (int i = 0; i < length; i++) {
                 //TODO
-                std::shared_ptr<Entity> p(new Barrier(x,0,z+i,1,1,1,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
+                std::shared_ptr<Entity> p(new Barrier(x,0,z+i,1,1,2,10.0,0.0,true, Entity::Type::COLLIDABLE, direction));
                 entities.push_back(p);
             }
             break;
         }
     }
 }
-
