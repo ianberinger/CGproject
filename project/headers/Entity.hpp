@@ -14,13 +14,14 @@ class Entity{
 public:
     enum Type {NOTCOLLIDABLE, COLLIDABLE, RAMP};
     
-    Entity(float x, float y, float z, float w, float h, float l, float r, bool col, Type type){
+    Entity(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type){
         setX(x*translateFactor);
         setY(y);
         setZ(z*translateFactor);
         setWidth(w);
         setHeight(h);
         setLength(l);
+        setWeight(weight);
         setRotation(r);
         setCollision(col);
         setType(type);
@@ -42,6 +43,7 @@ public:
     void setHeight(float h){height=h;}
     void setLength(float l){length=l;}
     
+    void setWeight(float weight) {this->weight = weight;};
     void setRotation(float r) {rotation = r;};
     
     void setType(Type t){ type = t; };
@@ -56,6 +58,7 @@ public:
     float getWidth() const {return width;}
     float getHeight() const {return height;}
     float getLength() const {return length;}
+    float getWeight() const {return weight;}
     
     float getRotation() const {return rotation;}
     
@@ -63,6 +66,14 @@ public:
 
     virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix)=0;
     virtual void update(Renderer &r, bool isPaused, const double &deltaTime)=0;
+    /**
+     *  Handles the collision with object b
+     *
+     *  @pre Collision happened
+     *
+     *  @param Entity Entity with which the object collided
+     */
+    virtual void handleCollision(Entity &b)=0;
     
     Type getType() const { return type; };
     
@@ -73,6 +84,7 @@ private:
     float width;
     float height;
     float length;
+    float weight;
     //in radian
     float rotation;
     Type type;

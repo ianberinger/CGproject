@@ -3,13 +3,13 @@
 
 Helper h;
 
-Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.0, 1, 2.0, 0.0, true, Entity::Type::NOTCOLLIDABLE){
+Player::Player():Entity(0.0f, 0.0f, 0.0f, 6.0, 1, 3.0, 5.0, 0.0, true, Entity::Type::NOTCOLLIDABLE){
     
     //wheels for the car
-    std::shared_ptr<Wheel> w1( new Wheel(0.55,1.4,1.0,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w2( new Wheel(-0.5,1.4,1.0,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w3( new Wheel(0.525,1.4,-0.68,1,1,1,0.0,true, Entity::Type::NOTCOLLIDABLE) );
-    std::shared_ptr<Wheel> w4( new Wheel(-0.475,1.4,-0.68,1,1,1,0.0,true,Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w1( new Wheel(0.55,1.4,1.0,1,1,1,0.0,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w2( new Wheel(-0.5,1.4,1.0,1,1,1,0.0,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w3( new Wheel(0.525,1.4,-0.68,1,1,1,0.0,0.0,true, Entity::Type::NOTCOLLIDABLE) );
+    std::shared_ptr<Wheel> w4( new Wheel(-0.475,1.4,-0.68,1,1,1,0.0,0.0,true,Entity::Type::NOTCOLLIDABLE) );
     
     emitterObj = std::make_shared<EmitterObject>(-1.9,0.5,-2.5);
 
@@ -21,7 +21,7 @@ Player::Player():Entity(0.0f, 0.0f, 0.0f, 1.0, 1, 2.0, 0.0, true, Entity::Type::
     
 }
 
-Player::Player(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l,r, col, type){
+Player::Player(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type):Entity(x, y, z, w, h, l, weight, r, col, type){
     setVelocity(0);
     setAcceleration(0);
     
@@ -31,9 +31,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     
     ShaderPtr guyShader = r.getObjects()->getShader("car");
     guyShader->setUniform("fogColor", this->fogColor);
-    
-    collisionHandler->applyGravity();
-    
+        
     vmml::Matrix4f transformationMatrix{modelMatrix};
     transformationMatrix *= vmml::create_translation(getXYZ())*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));
     
@@ -77,12 +75,17 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime){
     setComAngle(getComAngle()+velocityz);
     setRotAngle(velocityz);
     
-    std::cout << "Com Angle: " << comAngle << " rot Angle: " << rotAngle << std::endl;
+    setRotation(fmod(getComAngle(), 6.823)-1.532);
     
-    setRotation(velocityz);
+    std::cout << "rotation: " << getRotation() << std::endl;
+
     
     if (hasCollision()){
         setCollision(false);
+        if (getVelocity() < 0.0) {
+            setX(getX()-getVelocity()*sinf(getComAngle()));
+            setZ(getZ()-getVelocity()*cosf(getComAngle()));
+        }
     } else {
         setX(getX()-getVelocity()*sinf(getComAngle()));
         setZ(getZ()-getVelocity()*cosf(getComAngle()));
@@ -91,3 +94,12 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime){
     emitterObj->update(r,isPaused,deltaTime);
 }
 
+void Player::handleCollision(Entity &b){
+    if (getWeight() < b.getWeight()) {
+        if (getRotation() > 0) {
+            angleAdaption = 0.1;
+        } else {
+            angleAdaption = 0.1;
+        }
+    }
+}

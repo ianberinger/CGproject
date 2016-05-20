@@ -5,7 +5,6 @@ Collisionhandler::Collisionhandler() {
 }
 
 #pragma mark Collision Test
-
 bool Collisionhandler::testOBBOverlap(Entity &a, Entity &b) {
     if (b.getType() == Entity::NOTCOLLIDABLE) {
         return false;
@@ -14,7 +13,12 @@ bool Collisionhandler::testOBBOverlap(Entity &a, Entity &b) {
     OBB aOBB = createOBB(a);
     OBB bOBB = createOBB(b);
     
-    return overlaps(aOBB, bOBB) && overlaps(bOBB, aOBB);
+    bool didCollide = overlaps(aOBB, bOBB) && overlaps(bOBB, aOBB);
+    if (didCollide) {
+        a.handleCollision(b);
+        b.handleCollision(a);
+    }
+    return didCollide;
 }
 
 #pragma mark Helper functions

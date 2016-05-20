@@ -2,7 +2,7 @@
 #include "Barrier.hpp"
 #include "Game.hpp"
 
-Road::Road(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l, r, col, type){
+Road::Road(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type):Entity(x, y, z, w, h, l, weight, r, col, type){
     
     
 }
@@ -26,6 +26,10 @@ void Road::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
 void Road::update(Renderer &r, bool isPaused, const double &deltaTime){
     //do something
     
+}
+
+void Road::handleCollision(Entity &b){
+    //do something
 }
 
 bool Road::isPartOfRoad(int x, int z) {

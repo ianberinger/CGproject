@@ -1,6 +1,6 @@
 #include "Emitter.hpp"
 
-EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,0.1,0.0,false,Entity::Type::NOTCOLLIDABLE){
+EmitterObject::EmitterObject(float x, float y, float z):Entity(x, y, z, 0.1,0.1,0.1,0.0,0.0,false,Entity::Type::NOTCOLLIDABLE){
     
         Emitter newEmitter = {0.0f};
     
@@ -98,4 +98,8 @@ void EmitterObject::update(Renderer &r, bool isPaused, const double &deltaTime){
         time = 0.0f;
     }
 
+}
+
+void EmitterObject::handleCollision(Entity &b){
+    //do something
 }

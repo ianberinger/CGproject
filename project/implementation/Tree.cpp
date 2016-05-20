@@ -1,6 +1,6 @@
 #include "Tree.hpp"
 
-Tree::Tree(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l, r, col, type){
+Tree::Tree(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type):Entity(x, y, z, w, h, l, weight, r, col, type){
     
 }
 
@@ -15,5 +15,8 @@ void Tree::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
 
 void Tree::update(Renderer &r, bool isPaused, const double &deltaTime){
     //do something
-    
+}
+
+void Tree::handleCollision(Entity &b){
+    //do something
 }

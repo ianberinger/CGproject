@@ -1,12 +1,12 @@
 #include "Wheel.hpp"
 
-Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, 0.0, true, Entity::Type::NOTCOLLIDABLE){
+Wheel::Wheel():Entity(0.0f, 0.0f, 0.0f, 1.5, 1, 2.5, 0.0, 0.0, true, Entity::Type::NOTCOLLIDABLE){
     
     
 }
 
 
-Wheel::Wheel(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l, r, col, type){
+Wheel::Wheel(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type):Entity(x, y, z, w, h, l, weight, r, col, type){
   
     
 }
@@ -36,6 +36,8 @@ void Wheel::update(Renderer &r, bool isPaused, const double &deltaTime){
     
     
     setComAngle(getComAngle()-(roll+0.75));
+}
 
-
+void Wheel::handleCollision(Entity &b){
+    //do something
 }

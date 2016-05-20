@@ -1,6 +1,6 @@
 #include "Ramp.hpp"
 
-Ramp::Ramp(float x, float y, float z, float w, float h, float l, float r, bool col, Type type):Entity(x, y, z, w, h, l, r, col, type){
+Ramp::Ramp(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type):Entity(x, y, z, w, h, l, weight, r, col, type){
     
     
 }
@@ -17,3 +17,6 @@ void Ramp::update(Renderer &r, bool isPaused, const double &deltaTime){
     
 }
 
+void Ramp::handleCollision(Entity &b){
+    //do something
+}
