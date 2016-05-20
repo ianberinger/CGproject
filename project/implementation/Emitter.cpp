@@ -83,9 +83,6 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
     glBindBuffer(GL_ARRAY_BUFFER, partBuff);
     pShader->bind();
     glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
-
-    
-    
 }
 
 

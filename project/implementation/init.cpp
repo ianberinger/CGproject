@@ -62,11 +62,11 @@ void Game::initFunction()
     FontPtr comicSans = bRenderer().getObjects()->loadFont("Comic Sans MS.ttf", 500);
     
     // create text sprites
-    bRenderer().getObjects()->createTextSprite("countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
-    bRenderer().getObjects()->createTextSprite("time", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+    countdownText = bRenderer().getObjects()->createTextSprite("countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+    timeText = bRenderer().getObjects()->createTextSprite("time", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
 
     // create camera
-    bRenderer().getObjects()->createCamera("camera");
+    mainCamera = bRenderer().getObjects()->createCamera("camera");
     
     //loading the the map
     start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);

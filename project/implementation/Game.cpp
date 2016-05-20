@@ -1,8 +1,8 @@
 #include "Game.hpp"
 
 void Game::startRun(){
-    bRenderer().getObjects()->getCamera("camera")->setPosition(cameraOffset);
-    bRenderer().getObjects()->getCamera("camera")->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
+    mainCamera->setPosition(cameraOffset);
+    mainCamera->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
     
     if (start.isValid) {
         bRenderer::log("START");
@@ -11,7 +11,7 @@ void Game::startRun(){
         player.setZ(start.z*translateFactor);
         bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" + std::to_string(player.getX()));
         player.setComAngle(start.angle);
-        bRenderer().getObjects()->getCamera("camera")->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
+        mainCamera->rotateCamera(0.0f, start.angle+M_PI, 0.0f);
     } else {
         bRenderer::log("ERROR::NO START FOUND");
     }
@@ -80,16 +80,16 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
         // render countdown
         sprintf(timeBuffer, "%.0f...", fabs(time));
         
-        bRenderer().getObjects()->getTextSprite("countdown")->setText(timeBuffer);
+        countdownText->setText(timeBuffer);
         bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
     } else  {
         if (time < 1.0) {
             isPaused = false;
-            bRenderer().getObjects()->getTextSprite("countdown")->setText("GO!");
+            countdownText->setText("GO!");
             bRenderer().getModelRenderer()->drawText("countdown", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX()+5, player.getY()+4, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(2.0f)), std::vector<std::string>({ }));
         }
         sprintf(timeBuffer, "%.3fs", time);
-        bRenderer().getObjects()->getTextSprite("time")->setText(timeBuffer);
+        timeText->setText(timeBuffer);
         
         bRenderer().getModelRenderer()->drawText("time", camera, modelMatrix*vmml::create_translation(vmml::Vector3f(player.getX(), player.getY()+10, player.getZ()-2))*vmml::create_rotation(M_PI_F+player.getAddAngle()+player.getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(1.0f)), std::vector<std::string>({ }));
     }
@@ -102,7 +102,6 @@ void Game::updateRenderQueue(const std::string &camera, const double &deltaTime)
 /* Camera movement */
 void Game::updateCamera(const std::string &camera, const double &deltaTime)
 {
-    CameraPtr cameraPtr = bRenderer().getObjects()->getCamera(camera);
     float camdistx=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*sinf(player.getComAngle());
     float camdisty=std::abs(player.getVelocity())/player.getVelocity()*(std::abs(player.getVelocity())*4)*cosf(player.getComAngle());
 
@@ -112,7 +111,7 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime)
     }
     
     vmml::Vector3f cameraPosition = vmml::Vector3f(-player.getX()-17.0*sinf(player.getComAngle())-camdistx, height, -player.getZ()-17.0*cosf(player.getComAngle())-camdisty);
-    cameraPtr->setPosition(cameraPosition);
-    cameraPtr->rotateCamera(0.0f,player.getRotAngle(),0.0f);
+    mainCamera->setPosition(cameraPosition);
+    mainCamera->rotateCamera(0.0f,player.getRotAngle(),0.0f);
 }
 

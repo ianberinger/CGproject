@@ -8,8 +8,7 @@ Road::Road(float x, float y, float z, float w, float h, float l, float weight, f
 }
 
 void Road::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
-    ShaderPtr roadShader = r.getObjects()->getShader("road");
-    roadShader->setUniform("fogColor", fogColor);
+    r.getObjects()->getShader("road")->setUniform("fogColor", fogColor);
     
     int x_cord = getX();
     int z_cord = getZ();

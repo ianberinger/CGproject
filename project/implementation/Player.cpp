@@ -28,9 +28,7 @@ Player::Player(float x, float y, float z, float w, float h, float l, float weigh
 }
 
 void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix){
-    
-    ShaderPtr guyShader = r.getObjects()->getShader("car");
-    guyShader->setUniform("fogColor", this->fogColor);
+    r.getObjects()->getShader("car")->setUniform("fogColor", this->fogColor);
         
     vmml::Matrix4f transformationMatrix{modelMatrix};
     transformationMatrix *= vmml::create_translation(getXYZ())*vmml::create_rotation(getAddAngle()+getComAngle(), vmml::Vector3f::UNIT_Y)*vmml::create_scaling(vmml::Vector3f(0.75f));

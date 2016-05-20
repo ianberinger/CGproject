@@ -8,8 +8,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l, float wei
 }
 
  void Barrier::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
-     ShaderPtr barrierShader = r.getObjects()->getShader("barrier");
-     barrierShader->setUniform("fogColor", fogColor);
+     r.getObjects()->getShader("barrier")->setUniform("fogColor", fogColor);
      //bRenderer::log("turn: "+ std::to_string(direction*M_PI_F/2.0f));
      
      

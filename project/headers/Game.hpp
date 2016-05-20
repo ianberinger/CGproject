@@ -87,6 +87,9 @@ private:
     std::vector<positionInTime> pastPositions;
     
     Player player;
+    CameraPtr mainCamera;
+    TextSpritePtr countdownText;
+    TextSpritePtr timeText;
     std::vector<std::shared_ptr<Entity>> ent;
 
     Collisionhandler collisionHandler;

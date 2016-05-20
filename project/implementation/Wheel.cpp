@@ -12,10 +12,7 @@ Wheel::Wheel(float x, float y, float z, float w, float h, float l, float weight,
 }
 
  void Wheel::draw(Renderer &r,vmml::Matrix4f &modelMatrix){
-    ShaderPtr cubeShader = r.getObjects()->getShader("wheel");
-    cubeShader->setUniform("fogColor", fogColor);
-
-
+     r.getObjects()->getShader("wheel")->setUniform("fogColor", fogColor);
      
      r.getModelRenderer()->drawModel("wheel", "camera", modelMatrix*vmml::create_translation(getXYZ())*vmml::create_rotation(getRotAngle(),vmml::Vector3f::UNIT_Y)*vmml::create_rotation(getComAngle(),vmml::Vector3f::UNIT_X)*vmml::create_scaling(vmml::Vector3f(0.5f)), std::vector<std::string>({ }));
 
