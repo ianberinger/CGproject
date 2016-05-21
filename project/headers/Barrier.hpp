@@ -4,16 +4,16 @@
 #include "Entity.hpp"
 #include "Helper.hpp"
 
-class Barrier : public Entity{
-    
-public:
-    Barrier(float x, float y, float z, float w, float h, float l, float weight, float r, bool col, Type type, Direction direction);
-    virtual void draw(Renderer &r,vmml::Matrix4f &modelMatrix);
-    virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
-    virtual void handleCollision(Entity &b);
-    
-private:
-    Direction direction;
+class Barrier : public Entity {
+ public:
+  Barrier(float x, float y, float z, float w, float h, float l, float weight,
+          float r, bool col, Type type, Direction direction);
+  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
+  virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
+  virtual void handleCollision(Entity &b);
+
+ private:
+  Direction direction;
 };
 
 #endif /* Barrier_h */
