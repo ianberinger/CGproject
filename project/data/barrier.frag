@@ -28,5 +28,5 @@ void main()
   
   lowp vec4 color = texture2D(DiffuseMap, detailLevel * texCoordVarying.st);
   
-  gl_FragColor = color;
+  gl_FragColor = mix(fogColor,color,fogCo);
 }
