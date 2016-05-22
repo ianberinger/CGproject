@@ -59,19 +59,20 @@
 		3C7FAAE11CEB1DB9007C2B20 /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD31CEB1DB9007C2B20 /* Road.cpp */; };
 		3C7FAAE21CEB1DB9007C2B20 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD41CEB1DB9007C2B20 /* init.cpp */; };
 		3C7FAAE31CEB1DB9007C2B20 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD51CEB1DB9007C2B20 /* Map.cpp */; };
-		643342741CE90D1A00C4F165 /* DiffuseBarrier.png in Resources */ = {isa = PBXBuildFile; fileRef = 643342711CE90D1A00C4F165 /* DiffuseBarrier.png */; };
 		6461B4811CEA185600375ADD /* road.vert in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4801CEA185600375ADD /* road.vert */; };
 		6461B4831CEA186100375ADD /* road.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4821CEA186100375ADD /* road.frag */; };
 		6461B48E1CEA2FB500375ADD /* asphalt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B48D1CEA2FB500375ADD /* asphalt.jpg */; };
 		6461B4921CEA313700375ADD /* Plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4901CEA313700375ADD /* Plate.obj */; };
 		6461B4931CEA313700375ADD /* Plate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4911CEA313700375ADD /* Plate.mtl */; };
 		6461B4951CEA314800375ADD /* Seamless_Asphalt_Texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */; };
+		648DA9E41CF1EBE800078FBE /* barrier_xtoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 648DA9E31CF1EBE800078FBE /* barrier_xtoon.png */; };
+		64AB56641CF1D9AB00073384 /* barrier.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 64AB56621CF1D9AB00073384 /* barrier.mtl */; };
+		64AB56651CF1D9AB00073384 /* barrier.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64AB56631CF1D9AB00073384 /* barrier.obj */; };
+		64AB566D1CF1E55800073384 /* barrier_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB566C1CF1E55800073384 /* barrier_normal.png */; };
 		64B34C4E1CEB52E600622DE7 /* MenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64B34C4C1CEB52E600622DE7 /* MenuViewController.mm */; };
 		64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */; };
 		64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD641CD7E55100E15EA6 /* ramp.frag */; };
 		64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */ = {isa = PBXBuildFile; fileRef = 64D7AD661CD7E55B00E15EA6 /* ramp.vert */; };
-		64DEA1FD1CEE570300487247 /* Barrier.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 64DEA1FB1CEE570300487247 /* Barrier.mtl */; };
-		64DEA1FE1CEE570300487247 /* Barrier.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64DEA1FC1CEE570300487247 /* Barrier.obj */; };
 		B47949AF1BA6742B00B5E9DC /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B47949921BA6742B00B5E9DC /* config.json */; };
 		B4794A2B1BA6743D00B5E9DC /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C61BA6743D00B5E9DC /* platform.c */; };
 		B4794A2C1BA6743D00B5E9DC /* texture-atlas.c in Sources */ = {isa = PBXBuildFile; fileRef = B47949C81BA6743D00B5E9DC /* texture-atlas.c */; };
@@ -231,20 +232,21 @@
 		3C7FAAED1CEB1DC2007C2B20 /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		3C7FAAEE1CEB1DC2007C2B20 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		3C7FAAEF1CEB1DC2007C2B20 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
-		643342711CE90D1A00C4F165 /* DiffuseBarrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiffuseBarrier.png; sourceTree = "<group>"; };
 		6461B4801CEA185600375ADD /* road.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.vert; sourceTree = "<group>"; };
 		6461B4821CEA186100375ADD /* road.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.frag; sourceTree = "<group>"; };
 		6461B48D1CEA2FB500375ADD /* asphalt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asphalt.jpg; sourceTree = "<group>"; };
 		6461B4901CEA313700375ADD /* Plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.obj; sourceTree = "<group>"; };
 		6461B4911CEA313700375ADD /* Plate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Plate.mtl; sourceTree = "<group>"; };
 		6461B4941CEA314800375ADD /* Seamless_Asphalt_Texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seamless_Asphalt_Texture.jpg; sourceTree = "<group>"; };
+		648DA9E31CF1EBE800078FBE /* barrier_xtoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barrier_xtoon.png; sourceTree = "<group>"; };
+		64AB56621CF1D9AB00073384 /* barrier.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.mtl; sourceTree = "<group>"; };
+		64AB56631CF1D9AB00073384 /* barrier.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrier.obj; sourceTree = "<group>"; };
+		64AB566C1CF1E55800073384 /* barrier_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barrier_normal.png; sourceTree = "<group>"; };
 		64B34C4B1CEB52E600622DE7 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		64B34C4C1CEB52E600622DE7 /* MenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuViewController.mm; sourceTree = "<group>"; };
 		64B34C4D1CEB52E600622DE7 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		64D7AD641CD7E55100E15EA6 /* ramp.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.frag; sourceTree = "<group>"; };
 		64D7AD661CD7E55B00E15EA6 /* ramp.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ramp.vert; sourceTree = "<group>"; };
-		64DEA1FB1CEE570300487247 /* Barrier.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Barrier.mtl; sourceTree = "<group>"; };
-		64DEA1FC1CEE570300487247 /* Barrier.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Barrier.obj; sourceTree = "<group>"; };
 		B47949921BA6742B00B5E9DC /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		B47949C01BA6743D00B5E9DC /* bRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bRenderer.h; sourceTree = "<group>"; };
 		B47949C31BA6743D00B5E9DC /* freetype-gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
@@ -522,11 +524,12 @@
 		643342771CE90D3500C4F165 /* Barrier */ = {
 			isa = PBXGroup;
 			children = (
+				64AB566C1CF1E55800073384 /* barrier_normal.png */,
+				648DA9E31CF1EBE800078FBE /* barrier_xtoon.png */,
+				64AB56621CF1D9AB00073384 /* barrier.mtl */,
+				64AB56631CF1D9AB00073384 /* barrier.obj */,
 				22C25B081CCC060B00CF3265 /* barrier.vert */,
 				22C25B071CCC060B00CF3265 /* barrier.frag */,
-				643342711CE90D1A00C4F165 /* DiffuseBarrier.png */,
-				64DEA1FB1CEE570300487247 /* Barrier.mtl */,
-				64DEA1FC1CEE570300487247 /* Barrier.obj */,
 			);
 			name = Barrier;
 			sourceTree = "<group>";
@@ -924,7 +927,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643342741CE90D1A00C4F165 /* DiffuseBarrier.png in Resources */,
 				228594FD1CD106ED0063E8A6 /* car.png in Resources */,
 				64D7AD651CD7E55100E15EA6 /* ramp.frag in Resources */,
 				2288C7A91CE9D71500D23B8B /* particles.vert in Resources */,
@@ -938,6 +940,7 @@
 				3C1763891CD8C41300097387 /* ramp.obj in Resources */,
 				64B34C4F1CEB52E600622DE7 /* MenuViewController.xib in Resources */,
 				22A4CA701CD748D9009AB514 /* wheel.mtl in Resources */,
+				64AB566D1CF1E55800073384 /* barrier_normal.png in Resources */,
 				22A4CA721CD748D9009AB514 /* wheel.png in Resources */,
 				22F2E8FF1CC8024A00C2AEE9 /* terrain.vert in Resources */,
 				3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */,
@@ -954,6 +957,7 @@
 				22F2E9001CC8024A00C2AEE9 /* tree.frag in Resources */,
 				228595011CD108B20063E8A6 /* car.vert in Resources */,
 				B47949AF1BA6742B00B5E9DC /* config.json in Resources */,
+				64AB56641CF1D9AB00073384 /* barrier.mtl in Resources */,
 				6461B48E1CEA2FB500375ADD /* asphalt.jpg in Resources */,
 				22F2E8FA1CC8024A00C2AEE9 /* guy.obj in Resources */,
 				3C4E3E821CD7FB3300B01D9D /* sphere.vert in Resources */,
@@ -964,15 +968,15 @@
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				B4CB8CD01B72E43300FE041B /* Project-Info.plist in Resources */,
-				64DEA1FD1CEE570300487247 /* Barrier.mtl in Resources */,
+				648DA9E41CF1EBE800078FBE /* barrier_xtoon.png in Resources */,
 				6461B4831CEA186100375ADD /* road.frag in Resources */,
 				22F7ABE21CEB597E00CA84E5 /* menubackground.png in Resources */,
 				22C25B0A1CCC060B00CF3265 /* barrier.vert in Resources */,
 				229B06431CC912F500EDFF9C /* map2.txt in Resources */,
-				64DEA1FE1CEE570300487247 /* Barrier.obj in Resources */,
 				22F2E8FC1CC8024A00C2AEE9 /* terrain.frag in Resources */,
 				2288C7AB1CE9D72A00D23B8B /* particles.frag in Resources */,
 				228594FB1CD106ED0063E8A6 /* car.mtl in Resources */,
+				64AB56651CF1D9AB00073384 /* barrier.obj in Resources */,
 				64D7AD671CD7E55B00E15EA6 /* ramp.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
