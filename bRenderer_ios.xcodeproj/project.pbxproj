@@ -45,6 +45,7 @@
 		3C4E3E831CD7FB3300B01D9D /* sphere.frag in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */; };
 		3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E801CD7FB3300B01D9D /* sphere.mtl */; };
 		3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E3E811CD7FB3300B01D9D /* sphere.obj */; };
+		3C5C0CB41CF245E700759DC3 /* Marker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C0CB31CF245E700759DC3 /* Marker.cpp */; };
 		3C7FAAD61CEB1DB9007C2B20 /* ios-specific.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAC81CEB1DB9007C2B20 /* ios-specific.cpp */; };
 		3C7FAAD71CEB1DB9007C2B20 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAC91CEB1DB9007C2B20 /* Helper.cpp */; };
 		3C7FAAD81CEB1DB9007C2B20 /* Debugging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAACA1CEB1DB9007C2B20 /* Debugging.cpp */; };
@@ -206,6 +207,8 @@
 		3C4E3E7F1CD7FB3300B01D9D /* sphere.frag */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sphere.frag; sourceTree = "<group>"; };
 		3C4E3E801CD7FB3300B01D9D /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		3C4E3E811CD7FB3300B01D9D /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		3C5C0CB21CF245DD00759DC3 /* Marker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Marker.hpp; sourceTree = "<group>"; };
+		3C5C0CB31CF245E700759DC3 /* Marker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Marker.cpp; sourceTree = "<group>"; };
 		3C7FAAC81CEB1DB9007C2B20 /* ios-specific.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "ios-specific.cpp"; sourceTree = "<group>"; };
 		3C7FAAC91CEB1DB9007C2B20 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		3C7FAACA1CEB1DB9007C2B20 /* Debugging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debugging.cpp; sourceTree = "<group>"; };
@@ -550,6 +553,7 @@
 		B44186931BA331E300604D7F /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				3C5C0CB21CF245DD00759DC3 /* Marker.hpp */,
 				3C7FAAE41CEB1DC2007C2B20 /* CollisionHandler.hpp */,
 				3C7FAAE51CEB1DC2007C2B20 /* Helper.hpp */,
 				3C7FAAE61CEB1DC2007C2B20 /* Emitter.hpp */,
@@ -569,6 +573,7 @@
 		B44186951BA331E300604D7F /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				3C5C0CB31CF245E700759DC3 /* Marker.cpp */,
 				3C7FAAC81CEB1DB9007C2B20 /* ios-specific.cpp */,
 				3C7FAAC91CEB1DB9007C2B20 /* Helper.cpp */,
 				3C7FAACA1CEB1DB9007C2B20 /* Debugging.cpp */,
@@ -1017,6 +1022,7 @@
 				B47AD6F91B82803B00AFC632 /* ftgasp.c in Sources */,
 				B4794A411BA6743D00B5E9DC /* ObjectManager.cpp in Sources */,
 				B4794A361BA6743D00B5E9DC /* CubeMap.cpp in Sources */,
+				3C5C0CB41CF245E700759DC3 /* Marker.cpp in Sources */,
 				B4794A371BA6743D00B5E9DC /* DepthMap.cpp in Sources */,
 				B47AD6C11B827DF200AFC632 /* ftlcdfil.c in Sources */,
 				B47AD6E91B827FA900AFC632 /* autofit.c in Sources */,

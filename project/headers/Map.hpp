@@ -9,19 +9,12 @@
 
 #include "Barrier.hpp"
 #include "Entity.hpp"
+#include "Marker.hpp"
 #include "Ramp.hpp"
 #include "Road.hpp"
 #include "Tree.hpp"
 
 typedef int map[50][50];
-
-struct marker {
-  bool isValid;
-  int z;
-  int x;
-  float angle;
-  Direction direction;
-};
 
 struct modifier {
   int x;
@@ -29,13 +22,13 @@ struct modifier {
   std::string name;
 };
 
-marker loadMap(std::string filePath, map &m,
-               std::vector<std::shared_ptr<Entity>> &entities,
-               std::vector<marker> &checkpoints);
+bool loadMap(std::string filePath, map &m,
+             std::vector<std::shared_ptr<Entity>> &entities,
+             std::vector<std::shared_ptr<Marker>> &markers);
 
-struct marker identifyMarker(map &m, int i, int j);
+std::shared_ptr<Marker> identifyMarker(map &m, int i, int j);
 
-void defineTracks(map &m, marker start,
+void defineTracks(map &m, std::shared_ptr<Marker>,
                   std::vector<std::shared_ptr<Entity>> &entities);
 void defineTrack(map &m, int startX, int startZ, Direction direction,
                  std::vector<std::shared_ptr<Entity>> &entities,

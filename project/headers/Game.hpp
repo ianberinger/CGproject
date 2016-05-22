@@ -87,8 +87,9 @@ class Game : public IRenderProject {
   // 0.0f, 0.25f), vmml::Vector3f::ZERO, vmml::Vector3f::UP);
 
   /* Variables */
-  marker start;
-  std::vector<marker> checkpoints;
+  bool validMap =
+      false;  // signifies a valid map, ie. valid start and checkpoints
+  std::vector<std::shared_ptr<Marker>> markers;
   std::vector<positionInTime> pastPositions;
 
   Player player;

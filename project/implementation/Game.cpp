@@ -4,18 +4,17 @@ void Game::startRun() {
   mainCamera->setPosition(cameraOffset);
   mainCamera->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
 
-  if (start.isValid) {
+  if (validMap) {
     bRenderer::log("START");
-    bRenderer::log("MAP z:" + std::to_string(start.z) + " x:" +
-                   std::to_string(start.x));
-    player.setX(start.x * translateFactor);
-    player.setZ(start.z * translateFactor);
-    bRenderer::log("WORLD z:" + std::to_string(player.getZ()) + " x:" +
+    std::shared_ptr<Marker> start = markers.back();
+    player.setX(start->getX());
+    player.setZ(start->getZ());
+    bRenderer::log("POS z:" + std::to_string(player.getZ()) + " x:" +
                    std::to_string(player.getX()));
-    player.setComAngle(start.angle);
-    mainCamera->rotateCamera(0.0f, start.angle + M_PI, 0.0f);
+    player.setComAngle(start->angle);
+    mainCamera->rotateCamera(0.0f, start->angle + M_PI, 0.0f);
   } else {
-    bRenderer::log("ERROR::NO START FOUND");
+    bRenderer::log("ERROR::NOT A VALID MAP");
   }
 
   time = 0.0 - countdown;
@@ -69,6 +68,22 @@ void Game::updateRenderQueue(const std::string &camera,
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {
       e->draw(bRenderer(), modelMatrix);
+    }
+  }
+
+  bool allCheckpoints = true;
+  for (auto m : markers) {
+    if (m->markerType == CHECKPOINT) {
+      if (!m->passed) {
+        allCheckpoints = false;
+      }
+    }
+    if (collisionHandler.testOBBOverlap(player, *m)) {
+      if (m->markerType == START && allCheckpoints) {
+        // reached start again, stop run & return to menu
+        bRenderer().stopRenderer();
+        runCompleteCallbackFunc();
+      }
     }
   }
 

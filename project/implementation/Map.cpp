@@ -1,10 +1,9 @@
 #include "Map.hpp"
 
-marker loadMap(std::string filePath, map &m,
-               std::vector<std::shared_ptr<Entity>> &entities,
-               std::vector<marker> &checkpoints) {
-  marker start;
-  start.isValid = false;
+bool loadMap(std::string filePath, map &m,
+             std::vector<std::shared_ptr<Entity>> &entities,
+             std::vector<std::shared_ptr<Marker>> &markers) {
+  std::shared_ptr<Marker> start;
 
   std::string currLine;
   std::ifstream file(filePath);
@@ -24,24 +23,25 @@ marker loadMap(std::string filePath, map &m,
     for (int j = 0; j < 50; j++) {
       switch (m[i][j]) {
         case 1: {
-          if (!start.isValid) {
+          if (start == nullptr) {
             start = identifyMarker(m, i, j);
           }
           break;
         }
         case 2: {
-          marker checkpoint = identifyMarker(m, i, j);
-          if (checkpoint.isValid) {
+          std::shared_ptr<Marker> checkpoint = identifyMarker(m, i, j);
+          if (checkpoint != nullptr) {
             bool isCollected = false;
-            for (auto c : checkpoints) {
-              if (c.x == checkpoint.x && c.z == checkpoint.z) {
+            for (auto m : markers) {
+              if (m->getX() == checkpoint->getX() &&
+                  m->getZ() == checkpoint->getZ()) {
                 // don't use this checkpoint
                 isCollected = true;
                 break;
               }
             }
             if (!isCollected) {
-              checkpoints.push_back(checkpoint);
+              markers.push_back(checkpoint);
             }
           }
           break;
@@ -68,11 +68,15 @@ marker loadMap(std::string filePath, map &m,
     }
   }
 
-  defineTracks(m, start, entities);
-  return start;
+  if (start != nullptr) {
+    markers.push_back(start);
+    defineTracks(m, start, entities);
+    return true;
+  }
+  return false;
 }
 
-marker identifyMarker(map &m, int i, int j) {
+std::shared_ptr<Marker> identifyMarker(map &m, int i, int j) {
   int value = m[i][j];
 
   int right = m[i][j + 1];
@@ -80,70 +84,90 @@ marker identifyMarker(map &m, int i, int j) {
   int up = m[i + 1][j];
   int upup = m[i + 2][j];
 
-  marker res;
-  res.isValid = false;
+  bool isValid = false;
+  int z;
+  int x;
+  float angle;
+  Direction direction;
+  MarkerType type;
+
+  // identify marker type, return if we can't
+  if (value == 1) {
+    type = START;
+  } else if (value == 2) {
+    type = CHECKPOINT;
+  } else {
+    return nullptr;
+  }
 
   if (right == value && rightright == value) {
     if (m[i + 1][j + 1] == value) {
       // 111
       // x1x
-      res.isValid = true;
-      res.direction = DOWN;
-      res.x = i;
-      res.z = j + 1;
-      res.angle = 3 * M_PI / 2;
+      isValid = true;
+      direction = DOWN;
+      x = i;
+      z = j + 1;
+      angle = 3 * M_PI / 2;
     } else if (m[i - 1][j + 1] == value) {
       // x1x
       // 111
-      res.isValid = true;
-      res.direction = UP;
-      res.x = i;
-      res.z = j + 1;
-      res.angle = M_PI / 2;
+      isValid = true;
+      direction = UP;
+      x = i;
+      z = j + 1;
+      angle = M_PI / 2;
     }
   } else if (up == value && upup == value) {
     if (m[i + 1][j + 1] == value) {
       // 1x
       // 11
       // 1x
-      res.isValid = true;
-      res.direction = RIGHT;
-      res.x = i + 1;
-      res.z = j;
-      res.angle = M_PI;
+      isValid = true;
+      direction = RIGHT;
+      x = i + 1;
+      z = j;
+      angle = M_PI;
     } else if (m[i + 1][j - 1] == value) {
       // x1
       // 11
       // x1
-      res.isValid = true;
-      res.direction = LEFT;
-      res.x = i + 1;
-      res.z = j;
-      res.angle = 0.0;
+      isValid = true;
+      direction = LEFT;
+      x = i + 1;
+      z = j;
+      angle = 0.0;
     }
   }
-  return res;
+
+  if (isValid) {
+    return std::shared_ptr<Marker>(new Marker(
+        x, z, direction, angle, type));  // TODO: finish correct definition
+  } else {
+    return nullptr;
+  }
 }
 
-void defineTracks(map &m, marker start,
+void defineTracks(map &m, std::shared_ptr<Marker> start,
                   std::vector<std::shared_ptr<Entity>> &entities) {
-  switch (start.direction) {
+  switch (start->direction) {
     case UP:
     case DOWN: {
-      int leftTrackX = start.x;
-      int leftTrackZ = start.z - 2;
+      int leftTrackX = start->getX() / translateFactor;
+      int leftTrackZ = start->getZ() / translateFactor - 2;
 
-      int rightTrackX = start.x;
-      int rightTrackZ = start.z + 2;
+      int rightTrackX = start->getX() / translateFactor;
+      int rightTrackZ = start->getZ() / translateFactor + 2;
 
       if (m[leftTrackX][leftTrackZ] == 5) {
-        defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities, true);
+        defineTrack(m, leftTrackX, leftTrackZ, start->direction, entities,
+                    true);
       } else {
         printf("LeftTrack missaligned at X:%d Z:%d\n", leftTrackX, leftTrackZ);
       }
 
       if (m[rightTrackX][rightTrackZ] == 5) {
-        defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities,
+        defineTrack(m, rightTrackX, rightTrackZ, start->direction, entities,
                     false);
       } else {
         printf("RightTrack missaligned at X:%d Z:%d\n", rightTrackX,
@@ -154,20 +178,21 @@ void defineTracks(map &m, marker start,
     }
     case LEFT:
     case RIGHT: {
-      int leftTrackX = start.x - 2;
-      int leftTrackZ = start.z;
+      int leftTrackX = start->getX() - 2;
+      int leftTrackZ = start->getZ();
 
-      int rightTrackX = start.x + 2;
-      int rightTrackZ = start.z;
+      int rightTrackX = start->getX() + 2;
+      int rightTrackZ = start->getZ();
 
       if (m[leftTrackX][leftTrackZ] == 5) {
-        defineTrack(m, leftTrackX, leftTrackZ, start.direction, entities, true);
+        defineTrack(m, leftTrackX, leftTrackZ, start->direction, entities,
+                    true);
       } else {
         printf("LeftTrack missaligned at X:%d Z:%d\n", leftTrackX, leftTrackZ);
       }
 
       if (m[rightTrackX][rightTrackZ] == 5) {
-        defineTrack(m, rightTrackX, rightTrackZ, start.direction, entities,
+        defineTrack(m, rightTrackX, rightTrackZ, start->direction, entities,
                     false);
       } else {
         printf("RightTrack missaligned at X:%d Z:%d\n", rightTrackX,

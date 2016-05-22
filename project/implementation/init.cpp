@@ -103,13 +103,13 @@ void Game::initFunction() {
 
   // create camera
   mainCamera = bRenderer().getObjects()->createCamera("camera");
-  
+
   // create light
   LightPtr light = bRenderer().getObjects()->createLight("light");
   light->setPosition(vmml::Vector4f(0.f, 30.f, .5f, 1.f));
 
   // loading the the map
-  start = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, checkpoints);
+  validMap = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, markers);
 
   player.setCollisionHandler(&collisionHandler);
 }
