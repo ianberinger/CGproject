@@ -96,10 +96,10 @@ void Game::initFunction() {
       bRenderer().getObjects()->loadFont("Comic Sans MS.ttf", 500);
 
   // create text sprites
-  countdownText = bRenderer().getObjects()->createTextSprite(
-      "countdown", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
-  timeText = bRenderer().getObjects()->createTextSprite(
-      "time", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+  centerText = bRenderer().getObjects()->createTextSprite(
+      "center", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
+  topText = bRenderer().getObjects()->createTextSprite(
+      "top", vmml::Vector3f(1.0, 1.0, 1.0), "UNSET", comicSans);
 
   // create camera
   mainCamera = bRenderer().getObjects()->createCamera("camera");

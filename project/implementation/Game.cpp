@@ -111,9 +111,9 @@ void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
     // render countdown
     sprintf(timeBuffer, "%.0f...", fabs(time));
 
-    countdownText->setText(timeBuffer);
+    centerText->setText(timeBuffer);
     bRenderer().getModelRenderer()->drawText(
-        "countdown", camera,
+        "center", camera,
         modelMatrix *
             vmml::create_translation(vmml::Vector3f(
                 player.getX() + 5, player.getY() + 4, player.getZ() - 2)) *
@@ -125,9 +125,9 @@ void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
   } else {
     if (time < 1.0) {
       isPaused = false;
-      countdownText->setText("GO!");
+      centerText->setText("GO!");
       bRenderer().getModelRenderer()->drawText(
-          "countdown", camera,
+          "center", camera,
           modelMatrix *
               vmml::create_translation(vmml::Vector3f(
                   player.getX() + 5, player.getY() + 4, player.getZ() - 2)) *
@@ -138,10 +138,10 @@ void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
           std::vector<std::string>({}));
     }
     sprintf(timeBuffer, "%.3fs", time);
-    timeText->setText(timeBuffer);
+    topText->setText(timeBuffer);
 
     bRenderer().getModelRenderer()->drawText(
-        "time", camera,
+        "top", camera,
         modelMatrix *
             vmml::create_translation(vmml::Vector3f(
                 player.getX(), player.getY() + 10, player.getZ() - 2)) *

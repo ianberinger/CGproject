@@ -95,8 +95,8 @@ class Game : public IRenderProject {
 
   Player player;
   CameraPtr mainCamera;
-  TextSpritePtr countdownText;
-  TextSpritePtr timeText;
+  TextSpritePtr centerText;
+  TextSpritePtr topText;
   std::vector<std::shared_ptr<Entity>> ent;
 
   Collisionhandler collisionHandler;

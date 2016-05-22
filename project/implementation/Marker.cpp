@@ -2,7 +2,7 @@
 
 Marker::Marker(float x, float z, Direction direction, float angle,
                MarkerType type)
-    : Entity(x, 0, z, 1, 1, 1, 0.0, 0.0, true, Entity::COLLIDABLE) {
+    : Entity(x, 0, z, 3, 3, 3, 0.0, 0.0, true, Entity::COLLIDABLE) {
   this->direction = direction;
   this->angle = angle;
   this->markerType = type;
