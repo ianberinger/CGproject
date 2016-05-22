@@ -53,6 +53,7 @@ class Game : public IRenderProject {
  private:
   /* Update render queue */
   void updateRenderQueue(const std::string &camera, const double &deltaTime);
+  void drawText(const std::string &camera, vmml::Matrix4f &modelMatrix);
 
   /* Camera movement */
   void updateCamera(const std::string &camera, const double &deltaTime);

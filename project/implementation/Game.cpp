@@ -93,8 +93,20 @@ void Game::updateRenderQueue(const std::string &camera,
 
   // draw stuff
   player.draw(bRenderer(), modelMatrix);
+  drawText(camera, modelMatrix);
 
-  char timeBuffer[5];
+  bRenderer().getModelRenderer()->queueModelInstance(
+      "terrain", "terrain_instance", camera,
+      modelMatrix * vmml::create_scaling(vmml::Vector3f(4.0f)),
+      std::vector<std::string>({}));
+  bRenderer().getModelRenderer()->queueModelInstance(
+      "sphere", "sphere_instance", camera,
+      modelMatrix * vmml::create_scaling(vmml::Vector3f(400.0f)),
+      std::vector<std::string>({}));
+}
+
+void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
+  char timeBuffer[10];
   if (time < 0.0) {
     // render countdown
     sprintf(timeBuffer, "%.0f...", fabs(time));
@@ -139,15 +151,6 @@ void Game::updateRenderQueue(const std::string &camera,
             vmml::create_scaling(vmml::Vector3f(1.0f)),
         std::vector<std::string>({}));
   }
-
-  bRenderer().getModelRenderer()->queueModelInstance(
-      "terrain", "terrain_instance", camera,
-      modelMatrix * vmml::create_scaling(vmml::Vector3f(4.0f)),
-      std::vector<std::string>({}));
-  bRenderer().getModelRenderer()->queueModelInstance(
-      "sphere", "sphere_instance", camera,
-      modelMatrix * vmml::create_scaling(vmml::Vector3f(400.0f)),
-      std::vector<std::string>({}));
 }
 
 /* Camera movement */
