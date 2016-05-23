@@ -17,6 +17,10 @@ void Game::startRun() {
     bRenderer::log("ERROR::NOT A VALID MAP");
   }
 
+  for (auto m : markers) {
+    m->passed = false;
+  }
+
   time = 0.0 - countdown;
   exitCounter = 0.0 - countdown;
   running = true;
@@ -34,8 +38,9 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime) {
     /// Update render queue ///
     updateRenderQueue("camera", deltaTime);
 
-    if ((DEBUG && time > 100.0) ||
-        (runComplete && exitCounter > 0.0)) {  // return to menu
+    if (runComplete && exitCounter > 0.0) {  // return to menu
+      lastRun = currentRun;
+      currentRun.clear();
       bRenderer().stopRenderer();
       runCompleteCallbackFunc();
     }
@@ -99,6 +104,19 @@ void Game::updateRenderQueue(const std::string &camera,
 
   // draw stuff
   player.draw(bRenderer(), modelMatrix);
+  if (!lastRun.empty() && COMPETE) {
+    for (auto p : lastRun) {
+      if (p.time >= time) {
+        ghost.setX(p.position.x());
+        ghost.setY(p.position.y());
+        ghost.setZ(p.position.z());
+        ghost.setComAngle(p.comAngle);
+        ghost.setAddAngle(p.addAngle);
+        break;
+      }
+    }
+    ghost.draw(bRenderer(), modelMatrix);
+  }
   drawText(camera, modelMatrix);
 
   bRenderer().getModelRenderer()->queueModelInstance(
