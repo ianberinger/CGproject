@@ -31,7 +31,7 @@ Player::Player(bool ghost)
 
 void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   r.getObjects()->getShader("car")->setUniform("fogColor", this->fogColor);
-  r.getObjects()->getShader("wheel")->setUniform("ghost", ghost);
+  r.getObjects()->getShader("car")->setUniform("ghost", ghost);
 
   vmml::Matrix4f transformationMatrix{modelMatrix};
   transformationMatrix *= vmml::create_translation(getXYZ()) *
