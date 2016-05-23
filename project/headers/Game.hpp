@@ -62,6 +62,8 @@ class Game : public IRenderProject {
   void updateTime(const double &deltaTime) {
     if (!isPaused || time < 0.0) {
       time += deltaTime;
+    } else if (runComplete) {
+      exitCounter += deltaTime;
     }
   }
   void recordPosition() {
@@ -90,6 +92,8 @@ class Game : public IRenderProject {
   /* Variables */
   bool validMap =
       false;  // signifies a valid map, ie. valid start and checkpoints
+  bool runComplete;
+  bool hitCheckpoint = false;
   std::vector<std::shared_ptr<Marker>> markers;
   std::vector<positionInTime> pastPositions;
 
@@ -103,7 +107,8 @@ class Game : public IRenderProject {
   void (*runCompleteCallbackFunc)();
   std::vector<ShaderPtr> globalShaders;
 
-  float time = 0.0;
+  float time;
+  float exitCounter;
   bool isPaused =
       true;  // used for signaling a paused game, while still rendering
   bool isBirdsEye = false;

@@ -18,8 +18,10 @@ void Game::startRun() {
   }
 
   time = 0.0 - countdown;
+  exitCounter = 0.0 - countdown;
   running = true;
   isPaused = true;
+  runComplete = false;
 }
 
 /* Draw your scene here */
@@ -32,7 +34,8 @@ void Game::loopFunction(const double &deltaTime, const double &elapsedTime) {
     /// Update render queue ///
     updateRenderQueue("camera", deltaTime);
 
-    if (DEBUG && time > 100.0) {  // return to menu
+    if ((DEBUG && time > 100.0) ||
+        (runComplete && exitCounter > 0.0)) {  // return to menu
       bRenderer().stopRenderer();
       runCompleteCallbackFunc();
     }
@@ -72,6 +75,7 @@ void Game::updateRenderQueue(const std::string &camera,
   }
 
   bool allCheckpoints = true;
+  hitCheckpoint = false;
   for (auto m : markers) {
     if (m->markerType == CHECKPOINT) {
       if (!m->passed) {
@@ -80,9 +84,11 @@ void Game::updateRenderQueue(const std::string &camera,
     }
     if (collisionHandler.testOBBOverlap(player, *m)) {
       if (m->markerType == START && allCheckpoints) {
-        // reached start again, stop run & return to menu
-        bRenderer().stopRenderer();
-        runCompleteCallbackFunc();
+        // reached start again, pause game & mark ran as complete
+        runComplete = true;
+        isPaused = true;
+      } else if (m->markerType == CHECKPOINT) {
+        hitCheckpoint = true;
       }
     }
   }
@@ -106,11 +112,19 @@ void Game::updateRenderQueue(const std::string &camera,
 }
 
 void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
-  char timeBuffer[10];
-  if (time < 0.0) {
-    // render countdown
-    sprintf(timeBuffer, "%.0f...", fabs(time));
-
+  char timeBuffer[20];
+  if (time < 1.0 || hitCheckpoint || runComplete) {
+    if (time < 0.0) {
+      // render countdown
+      sprintf(timeBuffer, "%.0f...", fabs(time));
+    } else if (time < 1.0) {
+      isPaused = false;
+      sprintf(timeBuffer, "GO!");
+    } else if (hitCheckpoint) {
+      sprintf(timeBuffer, "Checkpoint!");
+    } else {
+      sprintf(timeBuffer, "Run complete!");
+    }
     centerText->setText(timeBuffer);
     bRenderer().getModelRenderer()->drawText(
         "center", camera,
@@ -123,20 +137,6 @@ void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
             vmml::create_scaling(vmml::Vector3f(2.0f)),
         std::vector<std::string>({}));
   } else {
-    if (time < 1.0) {
-      isPaused = false;
-      centerText->setText("GO!");
-      bRenderer().getModelRenderer()->drawText(
-          "center", camera,
-          modelMatrix *
-              vmml::create_translation(vmml::Vector3f(
-                  player.getX() + 5, player.getY() + 4, player.getZ() - 2)) *
-              vmml::create_rotation(
-                  M_PI_F + player.getAddAngle() + player.getComAngle(),
-                  vmml::Vector3f::UNIT_Y) *
-              vmml::create_scaling(vmml::Vector3f(2.0f)),
-          std::vector<std::string>({}));
-    }
     sprintf(timeBuffer, "%.3fs", time);
     topText->setText(timeBuffer);
 
@@ -144,7 +144,7 @@ void Game::drawText(const std::string &camera, vmml::Matrix4f &modelMatrix) {
         "top", camera,
         modelMatrix *
             vmml::create_translation(vmml::Vector3f(
-                player.getX(), player.getY() + 10, player.getZ() - 2)) *
+                player.getX() + 5, player.getY() + 10, player.getZ() - 2)) *
             vmml::create_rotation(
                 M_PI_F + player.getAddAngle() + player.getComAngle(),
                 vmml::Vector3f::UNIT_Y) *
