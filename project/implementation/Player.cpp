@@ -3,18 +3,21 @@
 
 Helper h;
 
-Player::Player()
+Player::Player(bool ghost)
     : Entity(0.0f, 0.0f, 0.0f, 6.0, 1, 3.0, 5.0, 0.0, true,
              Entity::Type::NOTCOLLIDABLE) {
+  this->ghost = ghost;
   // wheels for the car
   std::shared_ptr<Wheel> w1(new Wheel(0.55, 1.4, 1.0, 1, 1, 1, 0.0, 0.0, true,
-                                      Entity::Type::NOTCOLLIDABLE));
+                                      Entity::Type::NOTCOLLIDABLE, ghost));
   std::shared_ptr<Wheel> w2(new Wheel(-0.5, 1.4, 1.0, 1, 1, 1, 0.0, 0.0, true,
-                                      Entity::Type::NOTCOLLIDABLE));
+                                      Entity::Type::NOTCOLLIDABLE, ghost));
   std::shared_ptr<Wheel> w3(new Wheel(0.525, 1.4, -0.68, 1, 1, 1, 0.0, 0.0,
-                                      true, Entity::Type::NOTCOLLIDABLE));
+                                      true, Entity::Type::NOTCOLLIDABLE,
+                                      ghost));
   std::shared_ptr<Wheel> w4(new Wheel(-0.475, 1.4, -0.68, 1, 1, 1, 0.0, 0.0,
-                                      true, Entity::Type::NOTCOLLIDABLE));
+                                      true, Entity::Type::NOTCOLLIDABLE,
+                                      ghost));
 
   emitterObj = std::make_shared<EmitterObject>(-1.9, 0.5, -2.5);
 
@@ -22,17 +25,13 @@ Player::Player()
   wheels.push_back(w2);
   wheels.push_back(w3);
   wheels.push_back(w4);
-}
-
-Player::Player(float x, float y, float z, float w, float h, float l,
-               float weight, float r, bool col, Type type)
-    : Entity(x, y, z, w, h, l, weight, r, col, type) {
   setVelocity(0);
   setAcceleration(0);
 }
 
 void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   r.getObjects()->getShader("car")->setUniform("fogColor", this->fogColor);
+  r.getObjects()->getShader("wheel")->setUniform("ghost", ghost);
 
   vmml::Matrix4f transformationMatrix{modelMatrix};
   transformationMatrix *= vmml::create_translation(getXYZ()) *

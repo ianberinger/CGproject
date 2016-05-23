@@ -5,11 +5,14 @@ Wheel::Wheel()
              Entity::Type::NOTCOLLIDABLE) {}
 
 Wheel::Wheel(float x, float y, float z, float w, float h, float l, float weight,
-             float r, bool col, Type type)
-    : Entity(x, y, z, w, h, l, weight, r, col, type) {}
+             float r, bool col, Type type, bool ghost)
+    : Entity(x, y, z, w, h, l, weight, r, col, type) {
+  this->ghost = ghost;
+}
 
 void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   r.getObjects()->getShader("wheel")->setUniform("fogColor", fogColor);
+  r.getObjects()->getShader("wheel")->setUniform("ghost", ghost);
 
   r.getModelRenderer()->drawModel(
       "wheel", "camera",

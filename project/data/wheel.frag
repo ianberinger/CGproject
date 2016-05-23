@@ -2,6 +2,7 @@
 // TODO: create varying variable to receive color values from the vertex shader, don't forget to specify precision
 uniform mediump vec4 EyePos;
 uniform mediump vec4 fogColor;
+uniform bool ghost;
 
 uniform sampler2D DiffuseMap;
 
@@ -17,6 +18,8 @@ void main()
     mediump float fogCo=1.0/(pow(2.71828,(dist*0.05)));
 
     lowp vec4 color = texture2D(DiffuseMap,texCoordVarying.xy);
-    
+    if (ghost) {
+        color.w = 0.5;
+    }
     gl_FragColor = color;
 }

@@ -8,10 +8,7 @@
 
 class Player : public Entity {
  public:
-  Player();
-  Player(float x, float y, float z, float w, float h, float l, float weight,
-         float r, bool col, Type type);
-
+  Player(bool ghost);
   virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
   virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
   virtual void handleCollision(Entity &b);
@@ -54,6 +51,7 @@ class Player : public Entity {
   std::vector<std::shared_ptr<Wheel>> wheels;
   Collisionhandler *collisionHandler;
   std::shared_ptr<EmitterObject> emitterObj;
+  bool ghost;
 };
 
 #endif /* Player_h */

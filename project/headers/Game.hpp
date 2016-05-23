@@ -34,8 +34,8 @@ class Game : public IRenderProject {
   //// gameControl for parent eg. ViewController ////
   void runCompleteCallback(void (*f)()) { runCompleteCallbackFunc = f; }
   float getTime() { return time; }
-  std::vector<positionInTime> getPositions() { return pastPositions; }
   void startRun();
+  // std::vector<positionInTime> getPositions() { return currentRun; }
   // void callback(void (*f)()){bRenderer().setTerminateFunction(f);};
   // void stop(){bRenderer().stopRenderer();}
 
@@ -48,7 +48,9 @@ class Game : public IRenderProject {
   /* Make renderer accessible to public so we can get the UIView on iOS */
   Renderer &getProjectRenderer() { return bRenderer(); }
 
+  // Variables set by parent //
   bool DEBUG = false;
+  bool COMPETE = false;
 
  private:
   /* Update render queue */
@@ -68,7 +70,7 @@ class Game : public IRenderProject {
   }
   void recordPosition() {
     if (!isPaused) {
-      pastPositions.push_back(positionInTime{
+      currentRun.push_back(positionInTime{
           time, player.getComAngle(), player.getAddAngle(), player.getXYZ()});
     }
   }
@@ -95,9 +97,11 @@ class Game : public IRenderProject {
   bool runComplete;
   bool hitCheckpoint = false;
   std::vector<std::shared_ptr<Marker>> markers;
-  std::vector<positionInTime> pastPositions;
+  std::vector<positionInTime> currentRun;
+  std::vector<positionInTime> lastRun;
 
-  Player player;
+  Player player = Player(false);
+  Player ghost = Player(true);
   CameraPtr mainCamera;
   TextSpritePtr centerText;
   TextSpritePtr topText;
