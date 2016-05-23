@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
+                <outlet property="Compete" destination="Kf1-bX-GEh" id="bdV-Sq-pR6"/>
                 <outlet property="Debug" destination="mAl-aA-q2T" id="KRE-fB-iFt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -42,6 +43,16 @@
                     <rect key="frame" x="362" y="204" width="51" height="31"/>
                     <accessibility key="accessibilityConfiguration" label="Debug"/>
                 </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFe-KU-ggm">
+                    <rect key="frame" x="246" y="170" width="108" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kf1-bX-GEh">
+                    <rect key="frame" x="362" y="165" width="51" height="31"/>
+                    <accessibility key="accessibilityConfiguration" label="Debug"/>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -50,6 +61,7 @@
                 <constraint firstAttribute="trailing" secondItem="7FL-iM-zAe" secondAttribute="trailing" id="2Qg-o8-RhP"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="height" secondItem="EtC-fa-R2L" secondAttribute="height" id="7jv-Un-w1F"/>
                 <constraint firstItem="EtC-fa-R2L" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="A8H-hd-R4v"/>
+                <constraint firstItem="dFe-KU-ggm" firstAttribute="leading" secondItem="5Nc-Xq-ia2" secondAttribute="leading" id="JZj-U4-mR8"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="baseline" secondItem="5Nc-Xq-ia2" secondAttribute="baseline" id="KIm-sN-697"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="leading" secondItem="5Nc-Xq-ia2" secondAttribute="trailing" constant="8" symbolic="YES" id="Kgn-4a-oN4"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="top" secondItem="EtC-fa-R2L" secondAttribute="bottom" constant="8" symbolic="YES" id="KtU-qI-HLx"/>
@@ -62,11 +74,15 @@
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="width" secondItem="EtC-fa-R2L" secondAttribute="width" id="YoT-gL-bJU"/>
                 <constraint firstItem="EtC-fa-R2L" firstAttribute="centerX" secondItem="7FL-iM-zAe" secondAttribute="centerX" id="ZXK-02-NZr"/>
                 <constraint firstItem="5Nc-Xq-ia2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="246" id="Zip-6c-nHm"/>
+                <constraint firstItem="Kf1-bX-GEh" firstAttribute="leading" secondItem="dFe-KU-ggm" secondAttribute="trailing" constant="8" symbolic="YES" id="awd-Ud-mdc"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="width" secondItem="EtC-fa-R2L" secondAttribute="width" id="g4b-zN-R3S"/>
                 <constraint firstItem="5Nc-Xq-ia2" firstAttribute="centerX" secondItem="7FL-iM-zAe" secondAttribute="centerX" id="i8v-Bc-OtY"/>
                 <constraint firstItem="5Nc-Xq-ia2" firstAttribute="centerX" secondItem="7FL-iM-zAe" secondAttribute="centerX" constant="10" id="jo6-oU-wMO"/>
+                <constraint firstItem="Kf1-bX-GEh" firstAttribute="leading" secondItem="mAl-aA-q2T" secondAttribute="leading" id="mZG-8I-d6i"/>
                 <constraint firstAttribute="bottom" secondItem="7FL-iM-zAe" secondAttribute="bottom" id="mxk-vT-abJ"/>
                 <constraint firstItem="5Nc-Xq-ia2" firstAttribute="centerY" secondItem="mAl-aA-q2T" secondAttribute="centerY" id="n4x-9D-Y1e"/>
+                <constraint firstItem="mAl-aA-q2T" firstAttribute="top" secondItem="Kf1-bX-GEh" secondAttribute="bottom" constant="8" symbolic="YES" id="nnr-dW-Yy0"/>
+                <constraint firstItem="dFe-KU-ggm" firstAttribute="centerY" secondItem="Kf1-bX-GEh" secondAttribute="centerY" id="yRf-mj-Qs7"/>
                 <constraint firstItem="mAl-aA-q2T" firstAttribute="top" secondItem="EtC-fa-R2L" secondAttribute="bottom" constant="8" symbolic="YES" id="zqO-YA-ABZ"/>
             </constraints>
             <variation key="default">

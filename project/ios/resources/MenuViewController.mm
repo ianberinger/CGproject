@@ -7,6 +7,7 @@ UIView *v;
 @interface MenuViewController () {
 }
 @property(weak, nonatomic) IBOutlet UISwitch *Debug;
+@property(weak, nonatomic) IBOutlet UISwitch *Compete;
 
 @end
 
@@ -51,6 +52,7 @@ UIView *v;
 
 - (IBAction)startGame:(UIButton *)sender {
   g.DEBUG = [_Debug isOn];
+  g.COMPETE = [_Compete isOn];
   g.startRun();
   g.appDidBecomeActive();
   [self.view addSubview:v];
