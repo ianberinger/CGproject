@@ -32,6 +32,7 @@ class EmitterObject : public Entity {
   vmml::Vector3f gravity;
   float life;
   float time;
+    bool init=true;
   Emitter emitter;
   GLuint partBuff;
 
