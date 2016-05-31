@@ -8,6 +8,8 @@ Road::Road(float x, float y, float z, float w, float h, float l, float weight,
 
 void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   r.getObjects()->getShader("road")->setUniform("fogColor", fogColor);
+  r.getObjects()->getShader("road")->setUniform("EyeVec", r.getObjects()->getCamera("camera")->getPosition());
+  r.getObjects()->getShader("road")->setUniform("LightPos", r.getObjects()->getLight("light")->getPosition());
 
   int x_cord = getX();
   int z_cord = getZ();
@@ -19,12 +21,14 @@ void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   // bRenderer::log("Stretch:" + std::to_string(stretchvalue) + " length:" +
   // std::to_string(getLength()));
 
+  r.getObjects()->getShader("road")->setUniform("ScaleFactor", vmml::Vector3f(1.1f, 1.0f, stretchvalue/2 + 2));
+  
   r.getModelRenderer()->drawModel(
-      "Plate", "camera",
+      "plate", "camera",
       modelMatrix * vmml::create_translation(vmml::Vector3f(
-                        getX(), getY(), getZ() + stretchvalue / 2 - 1)) *
+                        getX(), getY()+0.1, getZ() + stretchvalue / 2 - 1)) *
           vmml::create_scaling(
-              vmml::Vector3f(1.1f, 0.1f, stretchvalue / 2 + 2)),
+              vmml::Vector3f(2.0f, 1.0f, stretchvalue / 2 + 2)),
       std::vector<std::string>({}));
 }
 

@@ -88,7 +88,7 @@ void Game::initFunction() {
                                          wheelProperties);
   bRenderer().getObjects()->loadObjModel("ramp.obj", true, true, false, 4, true,
                                          false);
-  bRenderer().getObjects()->loadObjModel("Plate.obj", false, true, roadShader,
+  bRenderer().getObjects()->loadObjModel("plate.obj", false, true, roadShader,
                                          roadProperties);
 
 

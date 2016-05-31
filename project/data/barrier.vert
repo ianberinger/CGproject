@@ -9,8 +9,6 @@ attribute vec4 Position;
 attribute vec4 Normal;
 attribute vec4 TexCoord;
 
-// TODO: create varying variable to hand over color values to the fragment shader
-
 varying vec4 colorVarying;
 varying mediump vec4 posVarying;
 varying lowp vec4 texCoordVarying;
@@ -20,7 +18,6 @@ void main()
 {
     vec4 pos = ModelViewMatrix * Position;  // vertex position in eye coordinates
 
-    // TODO: uncomment to assign normal value to color varying variable
     colorVarying = vec4(vec3(0.5) + Normal.xyz * 0.5, 1.0);
     posVarying=pos;
   lowp float x = mod(TexCoord.x, 10.0);
