@@ -21,7 +21,7 @@ void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   // bRenderer::log("Stretch:" + std::to_string(stretchvalue) + " length:" +
   // std::to_string(getLength()));
 
-  r.getObjects()->getShader("road")->setUniform("ScaleFactor", vmml::Vector3f(1.1f, 1.0f, stretchvalue/2 + 2));
+  r.getObjects()->getShader("road")->setUniform("ScaleFactor", vmml::Vector3f(2.0f, 1.0f, stretchvalue/2 + 2));
   
   r.getModelRenderer()->drawModel(
       "plate", "camera",

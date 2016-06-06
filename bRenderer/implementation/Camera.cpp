@@ -60,6 +60,7 @@ vmml::Matrix4f Camera::getInverseViewMatrix(){
 
 vmml::Matrix4f Camera::getProjectionMatrix()
 {
+
 	return createPerspective(_fov, _aspect, _near, _far);
 }
 

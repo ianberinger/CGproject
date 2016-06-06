@@ -109,7 +109,7 @@ void Game::initFunction() {
 
   // create light
   LightPtr light = bRenderer().getObjects()->createLight("light");
-  light->setPosition(vmml::Vector4f(0.f, 30.f, .5f, 1.f));
+  light->setPosition(vmml::Vector4f(25.f, 30.f, .5f, 1.f));
 
   // loading the the map
   validMap = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, markers);
