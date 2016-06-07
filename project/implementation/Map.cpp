@@ -59,7 +59,7 @@ bool loadMap(std::string filePath, map &m,
           break;
         }
         case 7: {
-          std::shared_ptr<Entity> p(new Tree(i, 0, j, 1, 1, 1, 10.0, 0.0, true,
+          std::shared_ptr<Entity> p(new Tree(i, 11, j, 1, 1, 1, 10.0, 0.0, true,
                                              Entity::Type::COLLIDABLE));
           entities.push_back(p);
           break;

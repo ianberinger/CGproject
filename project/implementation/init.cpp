@@ -33,8 +33,10 @@ void Game::initFunction() {
       "terrain", 0, false, true, true, false, false);
   ShaderPtr sphereShader = bRenderer().getObjects()->loadShaderFile(
       "sphere", 0, false, true, true, false, false);
-  ShaderPtr treeShader = bRenderer().getObjects()->loadShaderFile(
-      "tree", 0, false, true, true, false, false);
+  ShaderPtr treeTrunkShader = bRenderer().getObjects()->loadShaderFile(
+      "tree_trunk", 0, false, false, false, false, false);
+  ShaderPtr treeTopShader = bRenderer().getObjects()->loadShaderFile(
+      "tree_top", 0, false, false, false, false, false);
   ShaderPtr barrierShader = bRenderer().getObjects()->loadShaderFile(
       "barrier", 0, false, true, true, false, false);
   ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile(
@@ -58,8 +60,10 @@ void Game::initFunction() {
       bRenderer().getObjects()->createProperties("terrainProperties");
   PropertiesPtr sphereProperties =
       bRenderer().getObjects()->createProperties("sphereProperties");
-  PropertiesPtr treeProperties =
-      bRenderer().getObjects()->createProperties("treeProperties");
+  PropertiesPtr treeTrunkProperties =
+      bRenderer().getObjects()->createProperties("treeTrunkProperties");
+  PropertiesPtr treeTopProperties =
+  bRenderer().getObjects()->createProperties("treeTopProperties");
   PropertiesPtr barrierProperties =
       bRenderer().getObjects()->createProperties("barrierProperties");
   PropertiesPtr carProperties =
@@ -78,8 +82,10 @@ void Game::initFunction() {
                                          true, false);
   bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4,
                                          true, false);
-  bRenderer().getObjects()->loadObjModel("tree.obj", true, true, false, 4, true,
-                                         false);
+  bRenderer().getObjects()->loadObjModel("tree_trunk.obj", false, true, treeTrunkShader,
+                                         treeTrunkProperties);
+  bRenderer().getObjects()->loadObjModel("tree_top.obj", false, true, treeTopShader,
+                                         treeTopProperties);
   bRenderer().getObjects()->loadObjModel("barrier.obj", false, true,
                                          barrierShader, barrierProperties);
   bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader,
