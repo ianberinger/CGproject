@@ -39,6 +39,8 @@ void Game::initFunction() {
       "tree_top", 0, false, false, false, false, false);
   ShaderPtr barrierShader = bRenderer().getObjects()->loadShaderFile(
       "barrier", 0, false, true, true, false, false);
+  ShaderPtr fenceShader = bRenderer().getObjects()->loadShaderFile(
+      "fence", 0, false, true, true, false, false);
   ShaderPtr carShader = bRenderer().getObjects()->loadShaderFile(
       "car", 0, false, false, false, false, false);
   ShaderPtr wheelShader = bRenderer().getObjects()->loadShaderFile(
@@ -66,6 +68,8 @@ void Game::initFunction() {
   bRenderer().getObjects()->createProperties("treeTopProperties");
   PropertiesPtr barrierProperties =
       bRenderer().getObjects()->createProperties("barrierProperties");
+  PropertiesPtr fenceProperties =
+      bRenderer().getObjects()->createProperties("fenceProperties");
   PropertiesPtr carProperties =
       bRenderer().getObjects()->createProperties("carProperties");
   PropertiesPtr wheelProperties =
@@ -78,8 +82,8 @@ void Game::initFunction() {
   // load models
   bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true,
                                          false);
-  bRenderer().getObjects()->loadObjModel("terrain.obj", true, true, false, 4,
-                                         true, false);
+  bRenderer().getObjects()->loadObjModel("terrain.obj", false, true, terrainShader,
+                                         terrainProperties);
   bRenderer().getObjects()->loadObjModel("sphere.obj", true, true, false, 4,
                                          true, false);
   bRenderer().getObjects()->loadObjModel("tree_trunk.obj", false, true, treeTrunkShader,
@@ -88,6 +92,8 @@ void Game::initFunction() {
                                          treeTopProperties);
   bRenderer().getObjects()->loadObjModel("barrier.obj", false, true,
                                          barrierShader, barrierProperties);
+  bRenderer().getObjects()->loadObjModel("fence.obj", false, true,
+                                         fenceShader, fenceProperties);
   bRenderer().getObjects()->loadObjModel("car.obj", false, true, carShader,
                                          carProperties);
   bRenderer().getObjects()->loadObjModel("wheel.obj", false, true, wheelShader,

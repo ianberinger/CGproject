@@ -18,15 +18,15 @@ varying lowp vec4 texCoordVarying;
 
 void main()
 {
-    vec4 pos = ModelViewMatrix * Position;  // vertex position in eye coordinates
+  vec4 pos = ModelViewMatrix * Position;  // vertex position in eye coordinates
   
   mediump float minZ = pos.z / 3.0;
   mediump float maxZ = pos.z * 4.2;
-
-    colorVarying = vec4(vec3(0.5) + Normal.xyz * 0.5, 1.0);
-    posVarying=pos;
+  
+  colorVarying = vec4(vec3(0.5) + Normal.xyz * 0.5, 1.0);
+  posVarying=pos;
   texCoordVarying = TexCoord;
   detailLevel = 1.0 - log(pos.z / minZ)/log(maxZ / minZ);
-
-    gl_Position = ProjectionMatrix * pos;
+  
+  gl_Position = ProjectionMatrix * pos;
 }

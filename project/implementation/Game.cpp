@@ -119,9 +119,13 @@ void Game::updateRenderQueue(const std::string &camera,
   }
   drawText(camera, modelMatrix);
 
+  bRenderer().getObjects()->getShader("terrain")->setUniform("ScaleFactor", vmml::Vector3f(400.0f));
+  bRenderer().getObjects()->getShader("terrain")->setUniform("fogColor", fogColor);
+  bRenderer().getObjects()->getShader("terrain")->setUniform("EyeVec", bRenderer().getObjects()->getCamera("camera")->getPosition());
+  bRenderer().getObjects()->getShader("terrain")->setUniform("LightPos", bRenderer().getObjects()->getLight("light")->getPosition());
   bRenderer().getModelRenderer()->queueModelInstance(
       "terrain", "terrain_instance", camera,
-      modelMatrix * vmml::create_scaling(vmml::Vector3f(4.0f)),
+      modelMatrix * vmml::create_scaling(vmml::Vector3f(400.0f)),
       std::vector<std::string>({}));
   bRenderer().getModelRenderer()->queueModelInstance(
       "sphere", "sphere_instance", camera,

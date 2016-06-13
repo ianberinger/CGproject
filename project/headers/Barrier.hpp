@@ -14,6 +14,7 @@ class Barrier : public Entity {
 
  private:
   Direction direction;
+  vmml::Vector3f scaleFactor;
 };
 
 #endif /* Barrier_h */

@@ -1,26 +1,26 @@
-
 uniform mat4 ModelViewMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ProjectionMatrix;
-uniform mediump vec4 EyePos;
+uniform highp vec4 EyePos;
 
 attribute vec4 Position;
 attribute vec4 Normal;
 attribute vec4 TexCoord;
 
-// TODO: create varying variable to hand over color values to the fragment shader
+varying highp vec4 posVarying;
+varying highp vec4 texCoordVarying;
+varying highp float detailLevel;
 
-varying vec4 colorVarying;
-varying mediump vec4 posVarying; 
-
-void main()
-{
-    vec4 pos = ModelViewMatrix * Position;  // vertex position in eye coordinates
-
-    // TODO: uncomment to assign normal value to color varying variable
-    colorVarying = vec4(vec3(0.5) + Normal.xyz * 0.5, 1.0);
-    posVarying=pos;
-
-    
-    gl_Position = ProjectionMatrix * pos;
+void main() {
+  vec4 pos = ModelViewMatrix * Position;
+  
+  highp float minZ = pos.z / 3.0;
+  highp float maxZ = pos.z * 5.0;
+  
+  posVarying=pos;
+  texCoordVarying = TexCoord;
+  
+  detailLevel = 1.0 - log(pos.z / minZ)/log(maxZ / minZ);
+  
+  gl_Position = ProjectionMatrix * pos;
 }
