@@ -598,8 +598,8 @@
 			children = (
 				64A033C41D06AEB200C25ADA /* trunk_xtoon.png */,
 				6479EE981D06B24000373E00 /* trunk_normal.png */,
-				22F2E8F41CC8024A00C2AEE9 /* tree_trunk.frag */,
 				22F2E8F71CC8024A00C2AEE9 /* tree_trunk.vert */,
+				22F2E8F41CC8024A00C2AEE9 /* tree_trunk.frag */,
 				64C7E24F1D060C1C0055101B /* tree_trunk.mtl */,
 				64C7E2501D060C1C0055101B /* tree_trunk.obj */,
 			);

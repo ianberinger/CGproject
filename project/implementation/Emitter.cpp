@@ -41,7 +41,7 @@ EmitterObject::EmitterObject(float x, float y, float z)
   emitter = newEmitter;
 }
 
-void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
     
     //only create the ParticleBuffer once
     if(init){

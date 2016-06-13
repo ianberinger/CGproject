@@ -29,7 +29,7 @@ Player::Player(bool ghost)
   setAcceleration(0);
 }
 
-void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
   r.getObjects()->getShader("car")->setUniform("fogColor", this->fogColor);
   r.getObjects()->getShader("car")->setUniform("ghost", ghost);
 
@@ -40,10 +40,10 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
                           vmml::create_scaling(vmml::Vector3f(0.75f));
 
   for (auto e : wheels) {
-    e->draw(r, transformationMatrix);
+    e->draw(r, transformationMatrix, lightPositionMatrix, false);
   }
 
-  emitterObj->draw(r, transformationMatrix);
+  emitterObj->draw(r, transformationMatrix, lightPositionMatrix, false);
 
   r.getModelRenderer()->drawModel("car", "camera", transformationMatrix,
                                   std::vector<std::string>({}));

@@ -10,7 +10,7 @@ Wheel::Wheel(float x, float y, float z, float w, float h, float l, float weight,
   this->ghost = ghost;
 }
 
-void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
   r.getObjects()->getShader("wheel")->setUniform("fogColor", fogColor);
   r.getObjects()->getShader("wheel")->setUniform("ghost", ghost);
 

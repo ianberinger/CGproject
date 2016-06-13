@@ -6,7 +6,7 @@ Road::Road(float x, float y, float z, float w, float h, float l, float weight,
            float r, bool col, Type type)
     : Entity(x, y, z, w, h, l, weight, r, col, type) {}
 
-void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
   r.getObjects()->getShader("road")->setUniform("fogColor", fogColor);
   r.getObjects()->getShader("road")->setUniform("EyeVec", r.getObjects()->getCamera("camera")->getPosition());
   r.getObjects()->getShader("road")->setUniform("LightPos", r.getObjects()->getLight("light")->getPosition());

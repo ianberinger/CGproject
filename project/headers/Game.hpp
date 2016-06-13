@@ -56,7 +56,9 @@ class Game : public IRenderProject {
   /* Update render queue */
   void updateRenderQueue(const std::string &camera, const double &deltaTime);
   void drawText(const std::string &camera, vmml::Matrix4f &modelMatrix);
-
+  void createShadowMap();
+  void drawSceneForShadowMap();
+  
   /* Camera movement */
   void updateCamera(const std::string &camera, const double &deltaTime);
 
@@ -111,6 +113,8 @@ class Game : public IRenderProject {
   void (*runCompleteCallbackFunc)();
   std::vector<ShaderPtr> globalShaders;
 
+  vmml::Matrix4f lightPosMatrix;
+  
   float time;
   float exitCounter;
   bool isPaused =

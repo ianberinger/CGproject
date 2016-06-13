@@ -75,7 +75,7 @@ void Game::updateRenderQueue(const std::string &camera,
     }
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {
-      e->draw(bRenderer(), modelMatrix);
+      e->draw(bRenderer(), modelMatrix, lightPosMatrix, false);
     }
   }
 
@@ -103,7 +103,7 @@ void Game::updateRenderQueue(const std::string &camera,
   }
 
   // draw stuff
-  player.draw(bRenderer(), modelMatrix);
+  player.draw(bRenderer(), modelMatrix, lightPosMatrix, false);
   if (!lastRun.empty() && COMPETE) {
     for (auto p : lastRun) {
       if (p.time >= time) {
@@ -115,7 +115,7 @@ void Game::updateRenderQueue(const std::string &camera,
         break;
       }
     }
-    ghost.draw(bRenderer(), modelMatrix);
+    ghost.draw(bRenderer(), modelMatrix, lightPosMatrix, false);
   }
   drawText(camera, modelMatrix);
 

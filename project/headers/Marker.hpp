@@ -8,7 +8,7 @@ enum MarkerType { START, CHECKPOINT };
 class Marker : public Entity {
  public:
   Marker(float x, float z, Direction direction, float angle, MarkerType type);
-  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
+  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPosMatrix, bool shadowMap);
   virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
   virtual void handleCollision(Entity &b);
   bool isStart() {

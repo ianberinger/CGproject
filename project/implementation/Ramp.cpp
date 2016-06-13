@@ -4,7 +4,7 @@ Ramp::Ramp(float x, float y, float z, float w, float h, float l, float weight,
            float r, bool col, Type type)
     : Entity(x, y, z, w, h, l, weight, r, col, type) {}
 
-void Ramp::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Ramp::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
   r.getObjects()->getShader("ramp")->setUniform("fogColor", fogColor);
 
   r.getModelRenderer()->drawModel(

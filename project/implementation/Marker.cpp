@@ -9,7 +9,7 @@ Marker::Marker(float x, float z, Direction direction, float angle,
   this->markerType = type;
 }
 
-void Marker::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Marker::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPosMatrix, bool shadowMap) {
   // TODO display something nice
 }
 

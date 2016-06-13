@@ -26,7 +26,7 @@ typedef struct Emitter {
 class EmitterObject : public Entity {
  public:
   EmitterObject(float x, float y, float z);
-  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
+  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode);
   virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
   virtual void handleCollision(Entity &b);
   vmml::Vector3f gravity;

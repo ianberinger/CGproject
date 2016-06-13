@@ -51,6 +51,7 @@ void Game::initFunction() {
       "particles", 0, false, false, false, false, false);
   ShaderPtr roadShader = bRenderer().getObjects()->loadShaderFile(
       "road", 0, false, true, true, false, false);
+  ShaderPtr depthShader = bRenderer().getObjects()->loadShaderFile("DepthShader");
 
   globalShaders.push_back(sphereShader);
   globalShaders.push_back(terrainShader);
@@ -102,9 +103,6 @@ void Game::initFunction() {
                                          false);
   bRenderer().getObjects()->loadObjModel("plate.obj", false, true, roadShader,
                                          roadProperties);
-
-
-    
     
   // load fonts
   FontPtr comicSans =
@@ -127,12 +125,10 @@ void Game::initFunction() {
   validMap = loadMap(bRenderer::getFilePath("map2.txt"), _map, ent, markers);
 
   player.setCollisionHandler(&collisionHandler);
-    
-    
      
      //Code used to draw plain to texture
         
-    GLint _oldFbo=0;
+    /*GLint _oldFbo=0;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFbo);
     GLuint FramebufferName = 0;
     glGenFramebuffers(1, &FramebufferName);
@@ -168,10 +164,57 @@ void Game::initFunction() {
     
     
     mainCamera->setPosition(vmml::Vector3f(-100,-10,-100));
-    glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);*/
+  
+  //createShadowMap();
+    
+}
 
-    
-    
+void Game::createShadowMap() {
+  GLint _oldFbo;
+  glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFbo);
+  
+  GLuint depthMapFBO;
+  glGenFramebuffers(1, &depthMapFBO);
+  
+  const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+  
+  GLuint depthMap;
+  glGenTextures(1, &depthMap);
+  glBindTexture(GL_TEXTURE_2D, depthMap);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
+               SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  
+  glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+  glDrawBuffers(0, GL_NONE);
+  glReadBuffer(GL_NONE);
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  
+  glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+  glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+  glClear(GL_DEPTH_BUFFER_BIT);
+  
+  GLfloat near_plane = 1.0f, far_plane = 7.5f;
+  vmml::Matrix4f lightProjection = mainCamera->createPerspective(10.0f, 10.0f, near_plane, far_plane);
+  vmml::Matrix4f lightView = mainCamera->lookAt(bRenderer().getObjects()->getLight("light")->getPosition(), vmml::Vector3f(0.0f), vmml::Vector3f(0.0f, 1.0f, 0.0f));
+  lightPosMatrix = lightProjection * lightView;
+  
+  drawSceneForShadowMap();
+  
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);
+}
+
+void Game::drawSceneForShadowMap() {
+  vmml::Matrix4f modelMatrix;
+  for (auto entity : ent) {
+    entity->draw(bRenderer(), modelMatrix, lightPosMatrix, true);
+  }
 }
 
 /* This function is executed when terminating the renderer */

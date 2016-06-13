@@ -9,7 +9,7 @@ Barrier::Barrier(float x, float y, float z, float w, float h, float l,
   setLength(getLength() * 2.0);
 }
 
-void Barrier::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
+void Barrier::draw(Renderer &r, vmml::Matrix4f &modelMatrix, vmml::Matrix4f &lightPositionMatrix, bool shadowMode) {
   r.getObjects()->getShader("barrier")->setUniform("fogColor", fogColor);
   r.getObjects()->getShader("barrier")->setUniform("EyeVec", r.getObjects()->getCamera("camera")->getPosition());
   r.getObjects()->getShader("barrier")->setUniform("LightPos", r.getObjects()->getLight("light")->getPosition());
