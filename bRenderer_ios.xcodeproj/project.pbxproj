@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2200EAA51CEB6EAE00D49343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200EAA41CEB6EAE00D49343 /* AudioToolbox.framework */; };
 		2200EAA71CEB6EB700D49343 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200EAA61CEB6EB700D49343 /* OpenAL.framework */; };
+		2283C3541D0EC95100DBAB84 /* terrain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2283C3531D0EC95100DBAB84 /* terrain_normal.png */; };
 		228594FB1CD106ED0063E8A6 /* car.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 228594F81CD106ED0063E8A6 /* car.mtl */; };
 		228594FC1CD106ED0063E8A6 /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = 228594F91CD106ED0063E8A6 /* car.obj */; };
 		228594FD1CD106ED0063E8A6 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 228594FA1CD106ED0063E8A6 /* car.png */; };
@@ -56,7 +57,6 @@
 		3C7FAAE11CEB1DB9007C2B20 /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD31CEB1DB9007C2B20 /* Road.cpp */; };
 		3C7FAAE21CEB1DB9007C2B20 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD41CEB1DB9007C2B20 /* init.cpp */; };
 		3C7FAAE31CEB1DB9007C2B20 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD51CEB1DB9007C2B20 /* Map.cpp */; };
-		640098991D089B020018AEA5 /* terrain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 640098981D089B020018AEA5 /* terrain_normal.png */; };
 		6400989F1D08A0F80018AEA5 /* terrain_bump.png in Resources */ = {isa = PBXBuildFile; fileRef = 6400989E1D08A0F80018AEA5 /* terrain_bump.png */; };
 		64293D0A1CFCE497009B8B09 /* plate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 64293D081CFCE497009B8B09 /* plate.mtl */; };
 		64293D0B1CFCE497009B8B09 /* plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64293D091CFCE497009B8B09 /* plate.obj */; };
@@ -186,6 +186,7 @@
 /* Begin PBXFileReference section */
 		2200EAA41CEB6EAE00D49343 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2200EAA61CEB6EB700D49343 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		2283C3531D0EC95100DBAB84 /* terrain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain_normal.png; sourceTree = "<group>"; };
 		228594F81CD106ED0063E8A6 /* car.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.mtl; sourceTree = "<group>"; };
 		228594F91CD106ED0063E8A6 /* car.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.obj; sourceTree = "<group>"; };
 		228594FA1CD106ED0063E8A6 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
@@ -246,7 +247,6 @@
 		3C7FAAED1CEB1DC2007C2B20 /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		3C7FAAEE1CEB1DC2007C2B20 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		3C7FAAEF1CEB1DC2007C2B20 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
-		640098981D089B020018AEA5 /* terrain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain_normal.png; sourceTree = "<group>"; };
 		6400989E1D08A0F80018AEA5 /* terrain_bump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain_bump.png; sourceTree = "<group>"; };
 		64293D081CFCE497009B8B09 /* plate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plate.mtl; sourceTree = "<group>"; };
 		64293D091CFCE497009B8B09 /* plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plate.obj; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 		6433426F1CE90D0400C4F165 /* Terrain */ = {
 			isa = PBXGroup;
 			children = (
-				640098981D089B020018AEA5 /* terrain_normal.png */,
+				2283C3531D0EC95100DBAB84 /* terrain_normal.png */,
 				6400989E1D08A0F80018AEA5 /* terrain_bump.png */,
 				643316571D088DFF002B832A /* terrain.obj */,
 				643316581D088DFF002B832A /* terrain.mtl */,
@@ -1034,7 +1034,6 @@
 				228595001CD108B20063E8A6 /* car.frag in Resources */,
 				3C4E3E851CD7FB3300B01D9D /* sphere.obj in Resources */,
 				22F2E9001CC8024A00C2AEE9 /* tree_trunk.frag in Resources */,
-				640098991D089B020018AEA5 /* terrain_normal.png in Resources */,
 				228595011CD108B20063E8A6 /* car.vert in Resources */,
 				64293D0B1CFCE497009B8B09 /* plate.obj in Resources */,
 				B47949AF1BA6742B00B5E9DC /* config.json in Resources */,
@@ -1054,6 +1053,7 @@
 				648DA9E41CF1EBE800078FBE /* barrier_xtoon.png in Resources */,
 				64D8EC1B1D09FA7C002B204F /* fence.obj in Resources */,
 				646D85B11D033CAC00959AAC /* road_xtoon.png in Resources */,
+				2283C3541D0EC95100DBAB84 /* terrain_normal.png in Resources */,
 				643316591D088DFF002B832A /* terrain.obj in Resources */,
 				6461B4831CEA186100375ADD /* road.frag in Resources */,
 				22F7ABE21CEB597E00CA84E5 /* menubackground.png in Resources */,
