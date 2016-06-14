@@ -51,6 +51,8 @@ void Game::initFunction() {
       "particles", 0, false, false, false, false, false);
   ShaderPtr roadShader = bRenderer().getObjects()->loadShaderFile(
       "road", 0, false, true, true, false, false);
+  ShaderPtr carShadowShader = bRenderer().getObjects()->loadShaderFile(
+                                                                  "car_shadow", 0, false, true, true, false, false);
 
   globalShaders.push_back(sphereShader);
   globalShaders.push_back(terrainShader);
@@ -78,6 +80,8 @@ void Game::initFunction() {
       bRenderer().getObjects()->createProperties("rampProperties");
   PropertiesPtr roadProperties =
       bRenderer().getObjects()->createProperties("roadProperties");
+  PropertiesPtr carShadowProperties =
+      bRenderer().getObjects()->createProperties("carShadowProperties");
 
   // load models
   bRenderer().getObjects()->loadObjModel("guy.obj", true, true, false, 4, true,
@@ -102,7 +106,8 @@ void Game::initFunction() {
                                          false);
   bRenderer().getObjects()->loadObjModel("plate.obj", false, true, roadShader,
                                          roadProperties);
-
+  bRenderer().getObjects()->loadObjModel("car_shadow.obj", false, true, carShadowShader,
+                                         carShadowProperties);
 
     
     
