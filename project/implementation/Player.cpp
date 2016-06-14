@@ -60,7 +60,7 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
     
     r.getObjects()->getShader("car_shadow")->setUniform("ShadowStrength", 1.2 + (1.0 - (0.5 + shadowTranslationFactor.x())));
     
-    r.getModelRenderer()->drawModel("car_shadow", "camera", modelMatrix * vmml::create_translation(vmml::Vector3f(getX() + shadowTranslationFactor.x(), getY()+0.1, getZ())) * vmml::create_rotation(getAddAngle() + getComAngle(),vmml::Vector3f::UNIT_Y) *
+    r.getModelRenderer()->drawModel("car_shadow", "camera", modelMatrix * vmml::create_translation(vmml::Vector3f(getX() + shadowTranslationFactor.x(), getY()+0.2, getZ())) * vmml::create_rotation(getAddAngle() + getComAngle(),vmml::Vector3f::UNIT_Y) *
                                     vmml::create_scaling(shadowScalingFactor), std::vector<std::string>({}));
   }
 }
