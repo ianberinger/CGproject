@@ -60,6 +60,8 @@ class Entity {
   bool hasCollision() { return collision; }
 
   virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix) = 0;
+  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                    vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos) = 0;
   virtual void update(Renderer &r, bool isPaused, const double &deltaTime) = 0;
   /**
    *  Handles the collision with object b

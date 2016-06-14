@@ -35,6 +35,11 @@ void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
       std::vector<std::string>({}));
 }
 
+void Road::draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos) {
+  draw(r, modelMatrix);
+}
+
 void Road::update(Renderer &r, bool isPaused, const double &deltaTime) {
   // do something
 }

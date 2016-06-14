@@ -11,8 +11,12 @@ Wheel::Wheel(float x, float y, float z, float w, float h, float l, float weight,
 }
 
 void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
-  r.getObjects()->getShader("wheel")->setUniform("fogColor", fogColor);
-  r.getObjects()->getShader("wheel")->setUniform("ghost", ghost);
+  if (shader == nullptr) {
+    shader = r.getObjects()->getShader("wheel");
+    shader->setUniform("fogColor", fogColor);
+  }
+  // r.getObjects()->getShader("wheel")->setUniform("fogColor", fogColor);
+  shader->setUniform("ghost", ghost);
 
   r.getModelRenderer()->drawModel(
       "wheel", "camera",
@@ -21,6 +25,11 @@ void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
           vmml::create_rotation(getComAngle(), vmml::Vector3f::UNIT_X) *
           vmml::create_scaling(vmml::Vector3f(0.5f)),
       std::vector<std::string>({}));
+}
+
+void Wheel::draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                 vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos) {
+  // TODO display something nice
 }
 
 void Wheel::update(Renderer &r, bool isPaused, const double &deltaTime) {

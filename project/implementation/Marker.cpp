@@ -13,6 +13,11 @@ void Marker::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   // TODO display something nice
 }
 
+void Marker::draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                  vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos) {
+  // TODO display something nice
+}
+
 void Marker::update(Renderer &r, bool isPaused, const double &deltaTime) {
   // do something
 }

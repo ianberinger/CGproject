@@ -42,12 +42,11 @@ EmitterObject::EmitterObject(float x, float y, float z)
 }
 
 void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
-    
-    //only create the ParticleBuffer once
-    if(init){
-        glGenBuffers(1, &partBuff);
-        init=false;
-    }
+  // only create the ParticleBuffer once
+  if (init) {
+    glGenBuffers(1, &partBuff);
+    init = false;
+  }
 
   glBindBuffer(GL_ARRAY_BUFFER, partBuff);
   glBufferData(GL_ARRAY_BUFFER, sizeof(emitter.eParticles), emitter.eParticles,
@@ -90,6 +89,10 @@ void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
 }
 
+void EmitterObject::draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                         vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos) {
+  // TODO display something nice
+}
 void EmitterObject::update(Renderer &r, bool isPaused,
                            const double &deltaTime) {
   time = time + deltaTime;

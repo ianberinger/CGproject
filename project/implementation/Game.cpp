@@ -68,6 +68,11 @@ void Game::updateRenderQueue(const std::string &camera,
   recordPosition();
   updateCamera(camera, deltaTime);
 
+  vmml::Vector3f lightPos =
+      bRenderer().getObjects()->getLight("light")->getPosition();
+  vmml::Vector3f cameraPos =
+      bRenderer().getObjects()->getCamera("camera")->getPosition();
+
   for (auto e : ent) {
     if (collisionHandler.testOBBOverlap(player, *e)) {
       // std::cout << "COLLISION" << std::endl;
@@ -75,7 +80,7 @@ void Game::updateRenderQueue(const std::string &camera,
     }
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {
-      e->draw(bRenderer(), modelMatrix);
+      e->draw(bRenderer(), modelMatrix, cameraPos, lightPos);
     }
   }
 
@@ -103,7 +108,7 @@ void Game::updateRenderQueue(const std::string &camera,
   }
 
   // draw stuff
-  player.draw(bRenderer(), modelMatrix);
+  player.draw(bRenderer(), modelMatrix, cameraPos, lightPos);
   if (!lastRun.empty() && COMPETE) {
     for (auto p : lastRun) {
       if (p.time >= time) {
@@ -115,7 +120,7 @@ void Game::updateRenderQueue(const std::string &camera,
         break;
       }
     }
-    ghost.draw(bRenderer(), modelMatrix);
+    ghost.draw(bRenderer(), modelMatrix, cameraPos, lightPos);
   }
   drawText(camera, modelMatrix);
 

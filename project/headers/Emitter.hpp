@@ -27,12 +27,14 @@ class EmitterObject : public Entity {
  public:
   EmitterObject(float x, float y, float z);
   virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix);
+  virtual void draw(Renderer &r, vmml::Matrix4f &modelMatrix,
+                    vmml::Vector3f &cameraPos, vmml::Vector3f &lightPos);
   virtual void update(Renderer &r, bool isPaused, const double &deltaTime);
   virtual void handleCollision(Entity &b);
   vmml::Vector3f gravity;
   float life;
   float time;
-    bool init=true;
+  bool init = true;
   Emitter emitter;
   GLuint partBuff;
 
