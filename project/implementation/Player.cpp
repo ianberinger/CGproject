@@ -48,23 +48,21 @@ void Player::draw(Renderer &r, vmml::Matrix4f &modelMatrix) {
   r.getModelRenderer()->drawModel("car", "camera", transformationMatrix,
                                   std::vector<std::string>({}));
   
-  vmml::Vector4f lightPosition = r.getObjects()->getLight("light")->getPosition();
-  vmml::Vector4f lightDistance = getXYZ() - vmml::Vector3f(lightPosition.x(), lightPosition.y(), lightPosition.z());
-  vmml::Vector3f shadowTranslationFactor;
-  shadowTranslationFactor.z() = 0.0;
-  
-  vmml::Vector3f shadowScalingFactor = vmml::Vector3f(0.6 + std::abs(lightDistance.x() / 250),1.0,0.6);
-  
-  shadowTranslationFactor.x() = lightDistance.x() / 125;
-  
-  std::cout << "shadow translation factor: " << shadowTranslationFactor.x() << std::endl;
-  
-  std::cout << "shadow strength: " << 1.0 - (0.5 + shadowTranslationFactor.x()) << std::endl;
-  
-  r.getObjects()->getShader("car_shadow")->setUniform("ShadowStrength", 1.2 + (1.0 - (0.5 + shadowTranslationFactor.x())));
-  
-  r.getModelRenderer()->drawModel("car_shadow", "camera", modelMatrix * vmml::create_translation(vmml::Vector3f(getX() + shadowTranslationFactor.x(), -2.0, getZ())) * vmml::create_rotation(getAddAngle() + getComAngle(),vmml::Vector3f::UNIT_Y) *
-           vmml::create_scaling(shadowScalingFactor), std::vector<std::string>({}));
+  if (!ghost) {
+    vmml::Vector4f lightPosition = r.getObjects()->getLight("light")->getPosition();
+    vmml::Vector4f lightDistance = getXYZ() - vmml::Vector3f(lightPosition.x(), lightPosition.y(), lightPosition.z());
+    vmml::Vector3f shadowTranslationFactor;
+    shadowTranslationFactor.z() = 0.0;
+    
+    vmml::Vector3f shadowScalingFactor = vmml::Vector3f(0.6 + std::abs(lightDistance.x() / 250),0.1,0.6);
+    
+    shadowTranslationFactor.x() = lightDistance.x() / 125;
+    
+    r.getObjects()->getShader("car_shadow")->setUniform("ShadowStrength", 1.2 + (1.0 - (0.5 + shadowTranslationFactor.x())));
+    
+    r.getModelRenderer()->drawModel("car_shadow", "camera", modelMatrix * vmml::create_translation(vmml::Vector3f(getX() + shadowTranslationFactor.x(), getY()+0.1, getZ())) * vmml::create_rotation(getAddAngle() + getComAngle(),vmml::Vector3f::UNIT_Y) *
+                                    vmml::create_scaling(shadowScalingFactor), std::vector<std::string>({}));
+  }
 }
 
 void Player::update(Renderer &r, bool isPaused, const double &deltaTime) {
@@ -73,9 +71,9 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime) {
   float pitch = r.getInput()->getGyroscopePitch();  // left / right
   /*bRenderer::log("roll:" + std::to_string(roll));
    bRenderer::log("pitch:" + std::to_string(pitch));*/
-
+    
   setVelocity(h.clip(getVelocity() + ((roll + 0.75) / 20), minSpeed, maxSpeed));
-
+  
   if (isPaused) {
     roll = 0.0;
     pitch = 0.0;
@@ -105,7 +103,8 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime) {
       setX(getX() - getVelocity() * sinf(getComAngle()));
       setZ(getZ() - getVelocity() * cosf(getComAngle()));
     }
-  } else {
+  }
+  else {
     setX(getX() - getVelocity() * sinf(getComAngle()));
     setZ(getZ() - getVelocity() * cosf(getComAngle()));
   }
