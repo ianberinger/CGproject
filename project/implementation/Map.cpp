@@ -53,9 +53,28 @@ bool loadMap(std::string filePath, map &m,
           break;
         }
         case 4: {
-          // std::shared_ptr<Entity> p( new Barrier(i,0,j,1,1,1,10.0,0.0,true,
-          // Entity::Type::COLLIDABLE, UP) );
-          // entities.push_back(p);
+          std::shared_ptr<Entity> p(new Barrier(i, 0, j + 0.25, 1, 1, 1, 10.0,
+                                                0.0, true,
+                                                Entity::Type::COLLIDABLE, UP));
+          entities.push_back(p);
+          break;
+        }
+        case 5: {
+          std::shared_ptr<Entity> p(
+              new Barrier(i + 0.5, 0, j + 0.75, 1, 1, 1, 10.0, 0.0, true,
+                          Entity::Type::COLLIDABLE, LEFT));
+          entities.push_back(p);
+          break;
+        }
+        case 6: {
+          std::shared_ptr<Entity> l(new Barrier(i, 0, j + 0.25, 1, 1, 1, 10.0,
+                                                0.0, true,
+                                                Entity::Type::COLLIDABLE, UP));
+          entities.push_back(l);
+          std::shared_ptr<Entity> p(
+              new Barrier(i + 0.5, 0, j + 0.75, 1, 1, 1, 10.0, 0.0, true,
+                          Entity::Type::COLLIDABLE, LEFT));
+          entities.push_back(p);
           break;
         }
         case 7: {
@@ -70,7 +89,7 @@ bool loadMap(std::string filePath, map &m,
 
   if (start != nullptr) {
     markers.push_back(start);
-    defineTracks(m, start, entities);
+    // defineTracks(m, start, entities);
     return true;
   }
   return false;

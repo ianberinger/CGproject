@@ -15,6 +15,6 @@ Possible values
 
 4: barrier 
 5: barrier round
+6: barrier down / right
 
-6: ramp
 7: tree

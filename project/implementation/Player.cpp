@@ -79,7 +79,7 @@ void Player::update(Renderer &r, bool isPaused, const double &deltaTime) {
 
   setRotation(fmod(getComAngle(), 6.823) - 1.532);
 
-  std::cout << "rotation: " << getRotation() << std::endl;
+  // std::cout << "rotation: " << getRotation() << std::endl;
 
   if (hasCollision()) {
     setCollision(false);

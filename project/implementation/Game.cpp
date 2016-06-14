@@ -70,8 +70,8 @@ void Game::updateRenderQueue(const std::string &camera,
 
   for (auto e : ent) {
     if (collisionHandler.testOBBOverlap(player, *e)) {
-      std::cout << "COLLISION" << std::endl;
-      player.setCollision(true);
+      // std::cout << "COLLISION" << std::endl;
+      // player.setCollision(true);
     }
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {
@@ -119,25 +119,39 @@ void Game::updateRenderQueue(const std::string &camera,
   }
   drawText(camera, modelMatrix);
 
-  bRenderer().getObjects()->getShader("terrain")->setUniform("ScaleFactor", vmml::Vector3f(400.0f));
-  bRenderer().getObjects()->getShader("terrain")->setUniform("fogColor", fogColor);
-  bRenderer().getObjects()->getShader("terrain")->setUniform("EyeVec", bRenderer().getObjects()->getCamera("camera")->getPosition());
-  bRenderer().getObjects()->getShader("terrain")->setUniform("LightPos", bRenderer().getObjects()->getLight("light")->getPosition());
-        vmml::Matrix4f viewMatrix = bRenderer().getObjects()->getCamera("camera")->getViewMatrix();
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "ScaleFactor", vmml::Vector3f(400.0f));
+  bRenderer().getObjects()->getShader("terrain")->setUniform("fogColor",
+                                                             fogColor);
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "EyeVec", bRenderer().getObjects()->getCamera("camera")->getPosition());
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "LightPos", bRenderer().getObjects()->getLight("light")->getPosition());
+  vmml::Matrix4f viewMatrix =
+      bRenderer().getObjects()->getCamera("camera")->getViewMatrix();
 
-        bRenderer().getObjects()->getShader("terrain")->setUniform("ProjectionMatrix", vmml::Matrix4f::IDENTITY);
-        bRenderer().getObjects()->getShader("terrain")->setUniform("ViewMatrix", viewMatrix);
-        bRenderer().getObjects()->getShader("terrain")->setUniform("ModelMatrix", modelMatrix);
-        
-        vmml::Matrix3f normalMatrix;
-        vmml::compute_inverse(vmml::transpose(vmml::Matrix3f(modelMatrix)), normalMatrix);
-        bRenderer().getObjects()->getShader("terrain")->setUniform("NormalMatrix", normalMatrix);
-        
-        bRenderer().getObjects()->getShader("terrain")->setUniform("EyePos", bRenderer().getObjects()->getCamera("camera")->getPosition());
-        
-        bRenderer().getObjects()->getShader("terrain")->setUniform("LightPos", bRenderer().getObjects()->getLight("light")->getPosition());
-        bRenderer().getObjects()->getShader("terrain")->setUniform("Ia", vmml::Vector3f(2.f));
-        bRenderer().getObjects()->getShader("terrain")->setUniform("Id", vmml::Vector3f(10.f));
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "ProjectionMatrix", vmml::Matrix4f::IDENTITY);
+  bRenderer().getObjects()->getShader("terrain")->setUniform("ViewMatrix",
+                                                             viewMatrix);
+  bRenderer().getObjects()->getShader("terrain")->setUniform("ModelMatrix",
+                                                             modelMatrix);
+
+  vmml::Matrix3f normalMatrix;
+  vmml::compute_inverse(vmml::transpose(vmml::Matrix3f(modelMatrix)),
+                        normalMatrix);
+  bRenderer().getObjects()->getShader("terrain")->setUniform("NormalMatrix",
+                                                             normalMatrix);
+
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "EyePos", bRenderer().getObjects()->getCamera("camera")->getPosition());
+
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "LightPos", bRenderer().getObjects()->getLight("light")->getPosition());
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "Ia", vmml::Vector3f(2.f));
+  bRenderer().getObjects()->getShader("terrain")->setUniform(
+      "Id", vmml::Vector3f(10.f));
   bRenderer().getModelRenderer()->queueModelInstance(
       "terrain", "terrain_instance", camera,
       modelMatrix * vmml::create_scaling(vmml::Vector3f(400.0f)),
