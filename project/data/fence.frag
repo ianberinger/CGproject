@@ -16,7 +16,7 @@ void main()
 {
   
   mediump float dist= length((EyePos-posVarying).xyz);
-  mediump float fogCo=1.0/(pow(2.71828,(dist*0.05)));
+  mediump float fogCo=1.0/(pow(2.71828,(dist*0.04)));
   
   mediump vec3 normal = texture2D(NormalMap, texCoordVarying.st).xyz;
   mediump vec3 n = normalize(normal * 2.0 - 1.0);
