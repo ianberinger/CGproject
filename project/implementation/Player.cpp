@@ -4,7 +4,7 @@
 Helper h;
 
 Player::Player(bool ghost)
-    : Entity(0.0f, 0.0f, 0.0f, 6.0, 1, 3.0, 5.0, 0.0, true,
+    : Entity(0.0f, -0.3f, 0.0f, 6.0, 1, 3.0, 5.0, 0.0, true,
              Entity::Type::NOTCOLLIDABLE) {
   this->ghost = ghost;
   // wheels for the car

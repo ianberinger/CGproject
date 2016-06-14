@@ -37,7 +37,7 @@ uniform float u_Life;
     // Lifetime
     float growth = r / (u_eVelocity + a_pVelocityOffset);
     float decay = u_eDecay + a_pDecayOffset;
-    r=0.075;
+    r=0.03;
     
     
     // 3
@@ -46,11 +46,11 @@ uniform float u_Life;
         float time = u_Time / growth;
         x = x * r * time;
         y = y * r * time;
-        z = z + time *0.05;
+        z = z + time *0.08;
 
 
 //    vec4 pos=u_ModelViewMatrix*vec4(164.0+x,1.0+y,16.0,1.0);
-    vec4 pos=u_ModelViewMatrix*vec4(x,1.5+y,5.5+z,1.0);
+    vec4 pos=u_ModelViewMatrix*vec4(x,1.5+y,5.0+z,1.0);
 
     // 5
     // Required OpenGLES 2.0 outputs
