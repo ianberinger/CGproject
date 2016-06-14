@@ -14,7 +14,7 @@ void main()
   mediump float dist= length((EyePos-posVarying).xyz);
   mediump float fogCo=1.0/(pow(2.71828,(dist*0.05)));
   
-  lowp vec4 color = vec4(0.0, 0.0, 0.0, ShadowStrength);
+  lowp vec4 color = vec4(0.2, 0.2, 0.2, ShadowStrength);
   
   gl_FragColor = color;
 }
