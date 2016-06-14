@@ -62,6 +62,8 @@
 		64293D0B1CFCE497009B8B09 /* plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64293D091CFCE497009B8B09 /* plate.obj */; };
 		643316591D088DFF002B832A /* terrain.obj in Resources */ = {isa = PBXBuildFile; fileRef = 643316571D088DFF002B832A /* terrain.obj */; };
 		6433165A1D088DFF002B832A /* terrain.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 643316581D088DFF002B832A /* terrain.mtl */; };
+		643D63171D0FCD28009E8930 /* fence_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 643D63161D0FCD28009E8930 /* fence_normal.png */; };
+		643D63191D0FCD35009E8930 /* fence_xtoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 643D63181D0FCD35009E8930 /* fence_xtoon.png */; };
 		6461B4811CEA185600375ADD /* road.vert in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4801CEA185600375ADD /* road.vert */; };
 		6461B4831CEA186100375ADD /* road.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6461B4821CEA186100375ADD /* road.frag */; };
 		646D85AF1D03297000959AAC /* road_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 646D85AE1D03297000959AAC /* road_normal.png */; };
@@ -252,6 +254,8 @@
 		64293D091CFCE497009B8B09 /* plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plate.obj; sourceTree = "<group>"; };
 		643316571D088DFF002B832A /* terrain.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = terrain.obj; sourceTree = "<group>"; };
 		643316581D088DFF002B832A /* terrain.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = terrain.mtl; sourceTree = "<group>"; };
+		643D63161D0FCD28009E8930 /* fence_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fence_normal.png; sourceTree = "<group>"; };
+		643D63181D0FCD35009E8930 /* fence_xtoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fence_xtoon.png; sourceTree = "<group>"; };
 		6461B4801CEA185600375ADD /* road.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.vert; sourceTree = "<group>"; };
 		6461B4821CEA186100375ADD /* road.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = road.frag; sourceTree = "<group>"; };
 		646D85AE1D03297000959AAC /* road_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road_normal.png; sourceTree = "<group>"; };
@@ -610,6 +614,8 @@
 			isa = PBXGroup;
 			children = (
 				64D8EC191D09FA7C002B204F /* wood.png */,
+				643D63161D0FCD28009E8930 /* fence_normal.png */,
+				643D63181D0FCD35009E8930 /* fence_xtoon.png */,
 				64D8EC171D09FA7C002B204F /* fench.mtl */,
 				64D8EC181D09FA7C002B204F /* fence.obj */,
 				64D8EC1D1D09FAA0002B204F /* fence.vert */,
@@ -1021,6 +1027,7 @@
 				3C4E3E841CD7FB3300B01D9D /* sphere.mtl in Resources */,
 				22A4CA761CD7493A009AB514 /* wheel.vert in Resources */,
 				64A033C51D06AEB200C25ADA /* trunk_xtoon.png in Resources */,
+				643D63171D0FCD28009E8930 /* fence_normal.png in Resources */,
 				646D85AF1D03297000959AAC /* road_normal.png in Resources */,
 				22A4CA751CD7493A009AB514 /* wheel.frag in Resources */,
 				64293D0A1CFCE497009B8B09 /* plate.mtl in Resources */,
@@ -1046,6 +1053,7 @@
 				6461B4811CEA185600375ADD /* road.vert in Resources */,
 				22F2E8FB1CC8024A00C2AEE9 /* guy.vert in Resources */,
 				3C00FEDF1CE133FA00DFEFF5 /* Comic Sans MS.ttf in Resources */,
+				643D63191D0FCD35009E8930 /* fence_xtoon.png in Resources */,
 				228594FC1CD106ED0063E8A6 /* car.obj in Resources */,
 				3C17638B1CD8D48900097387 /* mapDefinition.txt in Resources */,
 				64D8EC1A1D09FA7C002B204F /* fench.mtl in Resources */,

@@ -71,7 +71,7 @@ void Game::updateRenderQueue(const std::string &camera,
   for (auto e : ent) {
     if (collisionHandler.testOBBOverlap(player, *e)) {
       // std::cout << "COLLISION" << std::endl;
-      // player.setCollision(true);
+      player.setCollision(true);
     }
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {

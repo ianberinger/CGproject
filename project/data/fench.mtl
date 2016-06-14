@@ -9,4 +9,5 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd wood.png
+map_Kd fence_xtoon.png
+map_Bump fence_normal.png
