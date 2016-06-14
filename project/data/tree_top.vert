@@ -2,6 +2,7 @@ uniform mat4 ModelViewMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ProjectionMatrix;
 uniform mediump vec4 EyePos;
+uniform mat4 LightSpaceMatrix;
 
 uniform lowp float RenderMode;
 

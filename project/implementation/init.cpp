@@ -51,7 +51,6 @@ void Game::initFunction() {
       "particles", 0, false, false, false, false, false);
   ShaderPtr roadShader = bRenderer().getObjects()->loadShaderFile(
       "road", 0, false, true, true, false, false);
-  ShaderPtr depthShader = bRenderer().getObjects()->loadShaderFile("DepthShader");
 
   globalShaders.push_back(sphereShader);
   globalShaders.push_back(terrainShader);
@@ -166,12 +165,37 @@ void Game::initFunction() {
     mainCamera->setPosition(vmml::Vector3f(-100,-10,-100));
     glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);*/
   
-  //createShadowMap();
+  createShadowMap();
     
 }
 
 void Game::createShadowMap() {
-  GLint _oldFbo;
+  GLint defaultFbo = Framebuffer::getCurrentFramebuffer();
+  GLint defaultWidth = bRenderer().getView()->getViewportWidth();
+  GLint defaultHeight = bRenderer().getView()->getViewportHeight();
+  
+  bRenderer().getObjects()->createFramebuffer("fbo");
+  bRenderer().getObjects()->createDepthMap("DepthMap", 1024, 1024);
+  
+  bRenderer().getObjects()->getFramebuffer("fbo")->bindDepthMap(bRenderer().getObjects()->getDepthMap("DepthMap"), false);
+  bRenderer().getObjects()->getFramebuffer("fbo")->unbind(defaultFbo);
+  
+  bRenderer().getView()->setViewportSize(1024, 1024);
+  bRenderer().getObjects()->getFramebuffer("fbo")->bind(false);
+  
+  GLfloat near_plane = 1.0f, far_plane = 7.5f;
+  vmml::Matrix4f lightProjection = mainCamera->createPerspective(10.0f, 10.0f, near_plane, far_plane);
+  vmml::Matrix4f lightView = mainCamera->lookAt(bRenderer().getObjects()->getLight("light")->getPosition(), vmml::Vector3f(0.0f), vmml::Vector3f(0.0f, 1.0f, 0.0f));
+  lightPosMatrix = lightProjection * lightView;
+  
+  drawSceneForShadowMap();
+  
+  bRenderer().getView()->setViewportSize(defaultWidth, defaultHeight);
+  bRenderer().getObjects()->getFramebuffer("fbo")->unbind(defaultFbo);
+  
+  /*GLint _oldFbo;
+  GLint m_viewport[4];
+  glGetIntegerv(GL_VIEWPORT, m_viewport);
   glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFbo);
   
   GLuint depthMapFBO;
@@ -193,7 +217,7 @@ void Game::createShadowMap() {
   glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
   glDrawBuffers(0, GL_NONE);
   glReadBuffer(GL_NONE);
-  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);
   
   glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
   glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
@@ -206,14 +230,14 @@ void Game::createShadowMap() {
   
   drawSceneForShadowMap();
   
-  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glViewport(m_viewport[0], m_viewport[1], m_viewport[2], m_viewport[3]);
   glBindFramebuffer(GL_FRAMEBUFFER, _oldFbo);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);*/
 }
 
 void Game::drawSceneForShadowMap() {
-  vmml::Matrix4f modelMatrix;
   for (auto entity : ent) {
-    entity->draw(bRenderer(), modelMatrix, lightPosMatrix, true);
+    entity->draw(bRenderer(), lightPosMatrix, lightPosMatrix, true);
   }
 }
 

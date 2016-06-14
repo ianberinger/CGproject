@@ -1,6 +1,7 @@
 uniform mediump vec4 EyePos;
 uniform mediump vec4 fogColor;
 uniform mediump vec4 LightPos;
+uniform mediump mat4 LightSpaceMatrix;
 
 uniform sampler2D DiffuseMap;
 uniform sampler2D NormalMap;

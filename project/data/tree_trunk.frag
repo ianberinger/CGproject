@@ -1,15 +1,18 @@
 uniform mediump vec4 EyePos;
 uniform mediump vec4 fogColor;
 uniform mediump vec4 LightPos;
+uniform mediump mat4 LightSpaceMatrix;
 
 uniform sampler2D DiffuseMap;
 uniform sampler2D NormalMap;
+uniform sampler2D DepthMap;
 
 uniform lowp float RenderMode;
 
 varying mediump float detailLevel;
 varying mediump vec4 posVarying;
 varying lowp vec4 texCoordVarying;
+varying mediump vec4 fragPosLightSpace;
 
 void main()
 {
@@ -24,8 +27,15 @@ void main()
     
     lowp vec4 color = texture2D(DiffuseMap, vec2(detailLevel, dot(n,l)));
     
-    gl_FragColor = mix(fogColor,color,fogCo);
+    //shadow
+    lowp vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    lowp float closestDepth = texture2D(DepthMap, projCoords.xy).r;
+    lowp float currentDepth = projCoords.z;
+    lowp float shadow = currentDepth > closestDepth ? 1.0 : 0.0;
+    
+    gl_FragColor = texture2D(DepthMap, texCoordVarying.st);
   } else {
-    //gl_FragDepth = gl_FragCoord.z;
+    gl_FragDepthEXT = 0.9;
   }
 }
