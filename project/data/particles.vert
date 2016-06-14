@@ -28,7 +28,8 @@ uniform float u_Life;
     
     float x = cos(a_pID);
     float y = sin(a_pID);
-    float r = u_eRadius * a_pRadiusOffset;
+    float z = a_pID/1800.0;
+    float r = u_eRadius;
     
     
     
@@ -36,29 +37,20 @@ uniform float u_Life;
     // Lifetime
     float growth = r / (u_eVelocity + a_pVelocityOffset);
     float decay = u_eDecay + a_pDecayOffset;
-    
+    r=0.075;
     
     
     // 3
     // If blast is growing
-    if(u_Time < growth)
-    {
+   
         float time = u_Time / growth;
         x = x * r * time;
         y = y * r * time;
-    }
-    
-    // 4
-    // Else if blast is decaying
-    else
-    {
-        float time = (u_Time - growth) / decay;
-        x = (x * r) + (u_Gravity.x * time);
-        y = (y * r) + (u_Gravity.y * time);
-    }
+        z = z + time *0.05;
+
 
 //    vec4 pos=u_ModelViewMatrix*vec4(164.0+x,1.0+y,16.0,1.0);
-    vec4 pos=u_ModelViewMatrix*vec4(0.3+x,1.5+y,5.5,1.0);
+    vec4 pos=u_ModelViewMatrix*vec4(x,1.5+y,5.5+z,1.0);
 
     // 5
     // Required OpenGLES 2.0 outputs

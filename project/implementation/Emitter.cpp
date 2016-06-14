@@ -5,17 +5,17 @@ EmitterObject::EmitterObject(float x, float y, float z)
              Entity::Type::NOTCOLLIDABLE) {
   Emitter newEmitter = {0.0f};
 
-  float oRadius = 0.20f;
-  float oVelocity = 0.50f;
+  float oRadius = 0.3f;
+  float oVelocity = 1.00f;
   float oDecay = 0.25f;
-  float oSize = 8.00f;
+  float oSize = 1.00f;
   float oColor = 0.5f;
 
   for (int i = 0; i < NUM_PARTICLES; i++) {
     newEmitter.eParticles[i].pID =
         (((float)i / (float)NUM_PARTICLES) * 2 * M_PI_F);
 
-    newEmitter.eParticles[i].pRadiusOffset = randomFloatBetween(oRadius, 1.00f);
+    newEmitter.eParticles[i].pRadiusOffset = randomFloatBetween(oRadius, 0.10f);
     newEmitter.eParticles[i].pVelocityOffset =
         randomFloatBetween(-oVelocity, oVelocity);
     newEmitter.eParticles[i].pDecayOffset = randomFloatBetween(-oDecay, oDecay);
