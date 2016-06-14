@@ -2,6 +2,7 @@
 #define PROJECT_MAIN_H
 
 #include "CollisionHandler.hpp"
+#include "Frustum.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
 #include "bRenderer.h"
@@ -110,6 +111,7 @@ class Game : public IRenderProject {
   Collisionhandler collisionHandler;
   void (*runCompleteCallbackFunc)();
   std::vector<ShaderPtr> globalShaders;
+  Frustum frustum;
 
   float time;
   float exitCounter;

@@ -57,6 +57,7 @@
 		3C7FAAE11CEB1DB9007C2B20 /* Road.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD31CEB1DB9007C2B20 /* Road.cpp */; };
 		3C7FAAE21CEB1DB9007C2B20 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD41CEB1DB9007C2B20 /* init.cpp */; };
 		3C7FAAE31CEB1DB9007C2B20 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7FAAD51CEB1DB9007C2B20 /* Map.cpp */; };
+		3CBC27701D0FE65C002B8510 /* Frustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC276F1D0FE65C002B8510 /* Frustum.cpp */; };
 		6400989F1D08A0F80018AEA5 /* terrain_bump.png in Resources */ = {isa = PBXBuildFile; fileRef = 6400989E1D08A0F80018AEA5 /* terrain_bump.png */; };
 		64293D0A1CFCE497009B8B09 /* plate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 64293D081CFCE497009B8B09 /* plate.mtl */; };
 		64293D0B1CFCE497009B8B09 /* plate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 64293D091CFCE497009B8B09 /* plate.obj */; };
@@ -247,6 +248,8 @@
 		3C7FAAED1CEB1DC2007C2B20 /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		3C7FAAEE1CEB1DC2007C2B20 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		3C7FAAEF1CEB1DC2007C2B20 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
+		3CBC276E1D0FE630002B8510 /* Frustum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Frustum.hpp; sourceTree = "<group>"; };
+		3CBC276F1D0FE65C002B8510 /* Frustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frustum.cpp; sourceTree = "<group>"; };
 		6400989E1D08A0F80018AEA5 /* terrain_bump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain_bump.png; sourceTree = "<group>"; };
 		64293D081CFCE497009B8B09 /* plate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plate.mtl; sourceTree = "<group>"; };
 		64293D091CFCE497009B8B09 /* plate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plate.obj; sourceTree = "<group>"; };
@@ -634,6 +637,7 @@
 				3C7FAAED1CEB1DC2007C2B20 /* Entity.hpp */,
 				3C7FAAEE1CEB1DC2007C2B20 /* Game.hpp */,
 				3C7FAAEF1CEB1DC2007C2B20 /* Map.hpp */,
+				3CBC276E1D0FE630002B8510 /* Frustum.hpp */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -656,6 +660,7 @@
 				3C7FAAD31CEB1DB9007C2B20 /* Road.cpp */,
 				3C7FAAD41CEB1DB9007C2B20 /* init.cpp */,
 				3C7FAAD51CEB1DB9007C2B20 /* Map.cpp */,
+				3CBC276F1D0FE65C002B8510 /* Frustum.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -1115,6 +1120,7 @@
 				B4794A451BA6743D00B5E9DC /* Shader.cpp in Sources */,
 				B4794A4C1BA6743D00B5E9DC /* TextureData.cpp in Sources */,
 				B47AD6D31B827EA300AFC632 /* pfr.c in Sources */,
+				3CBC27701D0FE65C002B8510 /* Frustum.cpp in Sources */,
 				B4794A561BA6743D00B5E9DC /* TextureData_ios.mm in Sources */,
 				B4794A4F1BA6743D00B5E9DC /* Renderer_desktop.cpp in Sources */,
 				B47AD6EF1B827FCF00AFC632 /* ftbase.c in Sources */,

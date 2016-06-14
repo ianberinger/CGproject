@@ -3,6 +3,7 @@
 void Game::startRun() {
   mainCamera->setPosition(cameraOffset);
   mainCamera->setRotation(vmml::Vector3f(-0.5f, 0.0f, 0.f));
+  frustum.setCamInternals(90.0, 16 / 9.0, 0.0, 20.0);
 
   if (validMap) {
     bRenderer::log("START");
@@ -72,6 +73,9 @@ void Game::updateRenderQueue(const std::string &camera,
     if (collisionHandler.testOBBOverlap(player, *e)) {
       // std::cout << "COLLISION" << std::endl;
       // player.setCollision(true);
+    }
+    if (frustum.pointInFrustum(e->getXYZ())) {
+      std::cout << "IN FRUSTUM" << std::endl;
     }
     if (std::abs(player.getX() - e->getX()) < 40 ||
         std::abs(player.getZ() - e->getZ()) < 40) {
@@ -223,4 +227,7 @@ void Game::updateCamera(const std::string &camera, const double &deltaTime) {
       -player.getZ() - 17.0 * cosf(player.getComAngle()) - camdisty);
   mainCamera->setPosition(cameraPosition);
   mainCamera->rotateCamera(0.0f, player.getRotAngle(), 0.0f);
+
+  frustum.setCamDef(mainCamera->getPosition(), player.getXYZ(),
+                    mainCamera->getUp());
 }
